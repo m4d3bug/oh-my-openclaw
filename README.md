@@ -1,14 +1,12 @@
 # oh-my-openclaw
 
-Claude Code level experience for [OpenClaw](https://github.com/openclaw/openclaw).
-
-Multi-agent orchestration, skill extensions, and a Claude Code-style workflow — all running inside Docker so your host openclaw is never touched.
+Claude Code level experience for [OpenClaw](https://github.com/openclaw/openclaw) — running entirely inside Docker, host installation untouched.
 
 ---
 
 ## Try it in 3 minutes — no local install needed
 
-Fork this repo, set two Secrets, run one Action, and chat on Telegram.
+Fork this repo, set Secrets, push any commit, and chat on Telegram.
 
 ### Step 1 — Fork
 
@@ -18,146 +16,136 @@ Click **Fork** on this repo.
 
 Go to your fork → **Settings → Secrets and variables → Actions → New repository secret**
 
-| Secret name | Where to get it | Required |
-|---|---|---|
-| `ANTHROPIC_API_KEY` | [console.anthropic.com/keys](https://console.anthropic.com/keys) | Yes |
-| `ANTHROPIC_BASE_URL` | Your API proxy / gateway base URL (e.g. `https://your-proxy.example.com/v1`) | Yes |
-| `TELEGRAM_BOT_TOKEN` | Message [@BotFather](https://t.me/BotFather) → `/newbot` | Yes |
-| `TELEGRAM_CHAT_ID` | See below | Yes |
+Pick **one** model backend (or both — OpenAI takes priority if both are set):
 
-**How to get your `TELEGRAM_CHAT_ID`** (no pairing command needed):
+**Option A — OpenAI-compatible** (e.g. Aliyun DashScope):
 
-1. Send any message to your bot (e.g. `/start`)
-2. Open in browser: `https://api.telegram.org/bot<YOUR_TOKEN>/getUpdates`
-3. Find `result[0].message.chat.id` in the JSON — that number is your chat ID
+| Secret | Example value |
+|---|---|
+| `OPENAI_API_KEY` | your API key |
+| `OPENAI_BASE_URL` | `https://coding.dashscope.aliyuncs.com/v1` |
+| `OPENAI_MODEL` | `MiniMax-M2.5` (default) |
 
-> **These are Secrets (not Variables)** — GitHub never shows their values in logs.
+**Option B — Anthropic-compatible** (e.g. SiliconFlow):
 
-### Step 3 — (Optional) set Variables
+| Secret | Example value |
+|---|---|
+| `ANTHROPIC_API_KEY` | your API key |
+| `ANTHROPIC_BASE_URL` | `https://api.siliconflow.cn/v1` |
+| `ANTHROPIC_MODEL` | `Pro/MiniMaxAI/MiniMax-M2.5` (default) |
 
-Go to **Settings → Secrets and variables → Actions → Variables tab**
+**Always required:**
 
-| Variable name | Default | Options |
-|---|---|---|
-| `OMC_AGENT_MODE` | `team` | `team` / `autopilot` |
-| `OMC_MODEL_DEFAULT` | `claude-sonnet-4-6` | any Anthropic model ID |
+| Secret | How to get it |
+|---|---|
+| `TELEGRAM_BOT_TOKEN` | Message [@BotFather](https://t.me/BotFather) → `/newbot` |
 
-### Step 4 — Run the workflow
+> Secrets are never printed in logs.
 
-Go to **Actions → Test Drive — Telegram → Run workflow**
+### Step 3 — Trigger the workflow
 
-Pick a duration (5–25 minutes) and click **Run workflow**.
+Push any commit (or go to **Actions → Test Drive — Telegram → Run workflow**).
 
-### Step 5 — Chat on Telegram
+For manual runs you can choose a duration: 5 / 10 / 15 / 20 / 25 minutes.
 
-Open Telegram and message your bot. Try:
+Every push auto-triggers a 5-minute test run.
 
-```
-/autopilot build a REST API for a todo list
-/team create a login system with JWT
-/code read src/index.js
-/git status
-```
+### Step 4 — Chat on Telegram
+
+Send any message to your bot. The agent responds using the model you configured.
 
 The bot shuts down automatically when the workflow finishes.
-If you like what you see, run `bash install.sh` locally.
 
 ---
 
-## Local install
+## How it works
 
-Requires: Docker, Node ≥ 22
-
-```bash
-git clone https://github.com/m4d3bug/oh-my-openclaw
-cd oh-my-openclaw
-bash install.sh
-omc start
+```
+GitHub Actions
+  └── docker run ghcr.io/openclaw/openclaw
+        ├── docker/gen-config.py   → ~/.openclaw/openclaw.json
+        ├── openclaw setup         → workspace init
+        └── openclaw gateway run   → Telegram polling (TELEGRAM_BOT_TOKEN)
 ```
 
-The installer:
-1. Pulls `alpine/openclaw:latest` and `ghcr.io/openclaw/openclaw`
-2. Installs `@goplus/agentguard` and other deps
-3. Validates all built-in skills through AgentGuard
-4. Links the `omc` CLI
+- No Docker build step — uses the official `ghcr.io/openclaw/openclaw` image directly
+- Config is generated at runtime from environment variables
+- Telegram polling mode — no webhook, no server needed
+- `dmPolicy: open` + `allowFrom: ["*"]` — no pairing required in CI
 
-**Host openclaw is never touched.**
+### Supported models (OpenAI provider)
+
+| Model ID | Name | Reasoning |
+|---|---|---|
+| `MiniMax-M2.5` | MiniMax M2.5 | yes |
+| `qwen3.5-plus` | Qwen3.5 Plus | yes |
+| `qwen3-max-2026-01-23` | Qwen3 Max | yes |
+| `qwen3-coder-next` | Qwen3 Coder Next | no |
+| `qwen3-coder-plus` | Qwen3 Coder Plus | no |
+| `glm-5` | GLM-5 | yes |
+| `glm-4.7` | GLM-4.7 | yes |
+| `kimi-k2.5` | Kimi K2.5 | yes |
+
+### Supported models (Anthropic provider)
+
+| Model ID | Name |
+|---|---|
+| `Pro/MiniMaxAI/MiniMax-M2.5` | MiniMax M2.5 (SiliconFlow) |
+| `Pro/Qwen/Qwen3-235B-A22B` | Qwen3 235B (SiliconFlow) |
+| `Pro/THUDM/GLM-4-32B` | GLM-4 32B (SiliconFlow) |
+| `Pro/moonshotai/Kimi-K2-Instruct` | Kimi K2 (SiliconFlow) |
 
 ---
 
-## omc CLI
+## Agent prompts
 
-```
-omc setup              Interactive setup wizard
-omc validate [opts]    AgentGuard skill validation
-omc start [full]       Start container (default: alpine image)
-omc update             Pull latest images, re-validate, rebuild
-omc agent [name]       Print a built-in agent prompt
-```
+The `agents/` directory contains 10 role-specific system prompt definitions:
 
-## Chat commands
-
-| Command | Description |
+| File | Role |
 |---|---|
-| `/autopilot <task>` | Autonomous multi-step task execution |
-| `/team <task>` | Parallel multi-agent team mode |
-| `/code read <file>` | Read a file |
-| `/code edit <file> "<instruction>"` | AI-powered file edit |
-| `/code new <file> "<description>"` | Create a new file |
-| `/code run <command>` | Run a shell command |
-| `/git status` | Git status |
-| `/git diff` | Git diff |
-| `/git commit "<msg>"` | Commit all changes |
-| `/git pr <title>` | Create a GitHub PR |
-| `/notify <msg>` | Send cross-channel notification |
+| `architect.md` | System design, ADRs, component diagrams |
+| `backend.md` | APIs, databases, server-side logic |
+| `frontend.md` | UI, components, accessibility |
+| `devops.md` | Docker, CI/CD, infrastructure |
+| `researcher.md` | Tech evaluation, documentation synthesis |
+| `reviewer.md` | Code review, quality assurance |
+| `tester.md` | Test strategy, unit/integration/e2e tests |
+| `product.md` | PRDs, user stories, prioritization |
+| `security.md` | Threat modeling, vulnerability assessment |
+| `data.md` | Pipelines, analytics, ML ops |
 
-## Agents
+These are prompt files. Paste the contents into your conversation to switch the agent's persona, or reference them when building custom openclaw agent routing.
 
-| Agent | Role |
-|---|---|
-| `architect` | System design, ADRs, component diagrams |
-| `backend` | APIs, databases, server-side logic |
-| `frontend` | UI, components, accessibility |
-| `devops` | Docker, CI/CD, infrastructure |
-| `researcher` | Tech evaluation, documentation synthesis |
-| `reviewer` | Code review, quality assurance |
-| `tester` | Test strategy, unit/integration/e2e tests |
-| `product` | PRDs, user stories, prioritization |
-| `security` | Threat modeling, vulnerability assessment |
-| `data` | Pipelines, analytics, ML ops |
+---
 
 ## Security
 
-Every skill is scanned by [`@goplus/agentguard`](https://github.com/GoPlusSecurity/agentguard) at:
+Skills are scanned by [`@goplus/agentguard`](https://github.com/GoPlusSecurity/agentguard) at runtime via `.openclaw/skills/oh-my-openclaw.js`.
 
-- **Build time** — baked into the Docker image
-- **Install time** — during `bash install.sh`
-- **Runtime** — on skill load via `.openclaw/skills/oh-my-openclaw.js`
-- **On-demand** — `omc validate --dir ./my-skills --strict`
+---
 
-## Architecture
+## Repository structure
 
 ```
 oh-my-openclaw/
 ├── .github/workflows/
-│   └── test-drive.yml      # GitHub Actions test (no local install needed)
-├── install.sh
-├── scripts/
-│   ├── omc.js              # CLI entry point
-│   ├── validate.js         # AgentGuard runner
-│   └── setup.js            # Interactive setup wizard
+│   └── test-drive.yml          # Auto-runs on every push; manual: 5–25 min
 ├── docker/
-│   ├── Dockerfile          # ghcr.io/openclaw/openclaw based
-│   ├── Dockerfile.alpine   # alpine/openclaw:latest based (CI default)
-│   ├── docker-compose.yml
-│   └── entrypoint.sh
-├── agents/                 # 10 agent prompt definitions
-├── skills/                 # autopilot / team / code / git / notify
+│   ├── bootstrap.sh            # Entry point inside the container
+│   ├── gen-config.py           # Generates openclaw.json from env vars
+│   └── openclaw.template.json  # Reference config template
+├── agents/                     # 10 agent system prompt definitions (.md)
+├── skills/                     # Skill extensions (autopilot/team/code/git/notify)
 ├── config/
-│   ├── openclaw.example.yml
-│   └── agents.yml
-└── .openclaw/skills/       # openclaw skill registration entry point
+│   ├── agents.yml              # Agent roster reference
+│   └── openclaw.example.yml    # Config reference
+├── .openclaw/skills/
+│   └── oh-my-openclaw.js       # AgentGuard-validated skill loader
+├── package.json                # @goplus/agentguard dependency
+└── install.sh                  # Local install helper
 ```
+
+---
 
 ## License
 
