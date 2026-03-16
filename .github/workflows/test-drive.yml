@@ -50,6 +50,7 @@ jobs:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           ANTHROPIC_BASE_URL: ${{ secrets.ANTHROPIC_BASE_URL }}
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
           OPENCLAW_GATEWAY_PORT: '18789'
           OMC_AGENT_MODE: ${{ vars.OMC_AGENT_MODE || 'team' }}
           OMC_MODEL_DEFAULT: ${{ vars.OMC_MODEL_DEFAULT || 'claude-sonnet-4-6' }}
@@ -71,6 +72,8 @@ jobs:
           channels:
             - type: telegram
               token: "${TELEGRAM_BOT_TOKEN}"
+              # Pre-paired chat — no interactive pairing needed in CI
+              chat_id: "${TELEGRAM_CHAT_ID}"
               polling: true
 
           omc:
@@ -86,7 +89,7 @@ jobs:
             - code
             - notify
           ENDYML
-          echo "[omc] Runtime config written."
+          echo "[omc] Runtime config written (chat_id pre-paired)."
 
       # ── 7. Build the oh-my-openclaw image (alpine base) ───────────────────
       - name: Build oh-my-openclaw Docker image
@@ -102,12 +105,14 @@ jobs:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           ANTHROPIC_BASE_URL: ${{ secrets.ANTHROPIC_BASE_URL }}
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
         run: |
           docker run -d \
             --name omc \
             -e ANTHROPIC_API_KEY="${ANTHROPIC_API_KEY}" \
             -e ANTHROPIC_BASE_URL="${ANTHROPIC_BASE_URL}" \
             -e TELEGRAM_BOT_TOKEN="${TELEGRAM_BOT_TOKEN}" \
+            -e TELEGRAM_CHAT_ID="${TELEGRAM_CHAT_ID}" \
             -e OPENCLAW_GATEWAY_PORT=18789 \
             -v "$PWD/config/openclaw.runtime.yml:/omc/config/openclaw.yml:ro" \
             -v "$PWD/agents:/omc/agents:ro" \

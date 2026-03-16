@@ -23,6 +23,13 @@ Go to your fork → **Settings → Secrets and variables → Actions → New rep
 | `ANTHROPIC_API_KEY` | [console.anthropic.com/keys](https://console.anthropic.com/keys) | Yes |
 | `ANTHROPIC_BASE_URL` | Your API proxy / gateway base URL (e.g. `https://your-proxy.example.com/v1`) | Yes |
 | `TELEGRAM_BOT_TOKEN` | Message [@BotFather](https://t.me/BotFather) → `/newbot` | Yes |
+| `TELEGRAM_CHAT_ID` | See below | Yes |
+
+**How to get your `TELEGRAM_CHAT_ID`** (no pairing command needed):
+
+1. Send any message to your bot (e.g. `/start`)
+2. Open in browser: `https://api.telegram.org/bot<YOUR_TOKEN>/getUpdates`
+3. Find `result[0].message.chat.id` in the JSON — that number is your chat ID
 
 > **These are Secrets (not Variables)** — GitHub never shows their values in logs.
 
