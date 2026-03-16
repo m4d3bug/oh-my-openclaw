@@ -1,0 +1,83 @@
+name: Test Skill — self-improving-agent
+
+on:
+  workflow_dispatch:
+    inputs:
+      duration:
+        description: 'How many minutes to keep the bot alive (5–25)'
+        required: false
+        default: '10'
+        type: choice
+        options: ['5', '10', '15', '20', '25']
+
+jobs:
+  test-skill:
+    name: Test self-improving-agent skill
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Pull OpenClaw image
+        run: docker pull ghcr.io/openclaw/openclaw
+
+      - name: Install @goplus/agentguard
+        run: npm install @goplus/agentguard
+
+      - name: Validate self-improving-agent skill
+        run: |
+          npm install
+          node scripts/validate.js --dir skills/self-improving-agent --strict || true
+
+      - name: Start oh-my-openclaw
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          ANTHROPIC_BASE_URL: ${{ secrets.ANTHROPIC_BASE_URL }}
+          ANTHROPIC_MODEL: ${{ secrets.ANTHROPIC_MODEL }}
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          OPENCLAW_GATEWAY_PORT: '18789'
+        run: |
+          docker run -d \
+            --name omc \
+            -e ANTHROPIC_API_KEY="${ANTHROPIC_API_KEY}" \
+            -e ANTHROPIC_BASE_URL="${ANTHROPIC_BASE_URL}" \
+            -e ANTHROPIC_MODEL="${ANTHROPIC_MODEL}" \
+            -e TELEGRAM_BOT_TOKEN="${TELEGRAM_BOT_TOKEN}" \
+            -e OPENCLAW_GATEWAY_PORT=18789 \
+            -v "$PWD:/omc:ro" \
+            ghcr.io/openclaw/openclaw \
+            bash /omc/docker/entrypoint.sh
+
+      - name: Wait for bot startup
+        run: |
+          sleep 25
+          docker logs omc 2>&1 | grep -v $'\x1b' | grep -E "gateway.listen|telegram.*provider|model:|error" || true
+          echo ""
+          echo "============================================"
+          echo "  Bot is LIVE — test the skill now!"
+          echo "  Running for ${DURATION:-10} minutes."
+          echo "============================================"
+
+      - name: Keep alive for testing
+        run: |
+          DURATION="${{ github.event.inputs.duration }}"
+          SECS=$(( ${DURATION:-10} * 60 ))
+          STEP=30
+          ELAPSED=0
+          while [ $ELAPSED -lt $SECS ]; do
+            sleep $STEP
+            ELAPSED=$(( ELAPSED + STEP ))
+            REMAINING=$(( SECS - ELAPSED ))
+            STATUS=$(docker inspect omc --format='{{.State.Status}}' 2>/dev/null || echo "gone")
+            echo "[omc] ${ELAPSED}s elapsed — ${REMAINING}s remaining — container: ${STATUS}"
+          done
+
+      - name: Show bot logs
+        if: always()
+        run: docker logs --tail 150 omc 2>&1 | grep -v $'\x1b' || true
+
+      - name: Stop container
+        if: always()
+        run: docker rm -f omc || true
