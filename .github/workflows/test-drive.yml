@@ -1,0 +1,147 @@
+name: Test Drive — Telegram
+
+# Manually triggered from GitHub Actions tab.
+# Fork this repo → set Secrets → Run workflow → chat on Telegram.
+on:
+  workflow_dispatch:
+    inputs:
+      duration:
+        description: 'How many minutes to keep the bot alive (5–25)'
+        required: false
+        default: '15'
+        type: choice
+        options: ['5', '10', '15', '20', '25']
+
+jobs:
+  test-drive:
+    name: Boot oh-my-openclaw & connect to Telegram
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+
+    steps:
+      # ── 1. Checkout ────────────────────────────────────────────────────────
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      # ── 2. Node 22 ─────────────────────────────────────────────────────────
+      - name: Setup Node 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'npm'
+
+      # ── 3. Pull both reference images ──────────────────────────────────────
+      - name: Pull OpenClaw images
+        run: |
+          docker pull alpine/openclaw:latest
+          docker pull ghcr.io/openclaw/openclaw
+
+      # ── 4. Install deps — gets @goplus/agentguard ──────────────────────────
+      - name: Install npm dependencies
+        run: npm install
+
+      # ── 5. AgentGuard: validate all built-in skills ────────────────────────
+      - name: Validate skills with AgentGuard
+        run: node scripts/validate.js --all --strict
+
+      # ── 6. Write runtime openclaw config from secrets ──────────────────────
+      - name: Generate runtime config
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          OPENCLAW_GATEWAY_PORT: '18789'
+          OMC_AGENT_MODE: ${{ vars.OMC_AGENT_MODE || 'team' }}
+          OMC_MODEL_DEFAULT: ${{ vars.OMC_MODEL_DEFAULT || 'claude-sonnet-4-6' }}
+        run: |
+          cat > config/openclaw.runtime.yml <<ENDYML
+          gateway:
+            port: ${OPENCLAW_GATEWAY_PORT}
+            host: 0.0.0.0
+
+          model:
+            provider: anthropic
+            api_key: "${ANTHROPIC_API_KEY}"
+            default: ${OMC_MODEL_DEFAULT}
+            fast: claude-haiku-4-5-20251001
+            smart: claude-sonnet-4-6
+            powerful: claude-opus-4-6
+
+          channels:
+            - type: telegram
+              token: "${TELEGRAM_BOT_TOKEN}"
+              polling: true
+
+          omc:
+            agent_mode: ${OMC_AGENT_MODE}
+            routing:
+              use_fast_below_tokens: 1000
+              use_powerful_above_tokens: 8000
+
+          skills:
+            - autopilot
+            - team
+            - git
+            - code
+            - notify
+          ENDYML
+          echo "[omc] Runtime config written."
+
+      # ── 7. Build the oh-my-openclaw image (alpine base) ───────────────────
+      - name: Build oh-my-openclaw Docker image
+        run: |
+          docker build \
+            -f docker/Dockerfile.alpine \
+            -t oh-my-openclaw:ci \
+            .
+
+      # ── 8. Start the bot ───────────────────────────────────────────────────
+      - name: Start oh-my-openclaw
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+        run: |
+          docker run -d \
+            --name omc \
+            -e ANTHROPIC_API_KEY="${ANTHROPIC_API_KEY}" \
+            -e TELEGRAM_BOT_TOKEN="${TELEGRAM_BOT_TOKEN}" \
+            -e OPENCLAW_GATEWAY_PORT=18789 \
+            -v "$PWD/config/openclaw.runtime.yml:/omc/config/openclaw.yml:ro" \
+            -v "$PWD/agents:/omc/agents:ro" \
+            -v "$PWD/.openclaw:/omc/.openclaw:ro" \
+            oh-my-openclaw:ci
+
+      # ── 9. Wait for startup & print instructions ───────────────────────────
+      - name: Wait for bot startup
+        run: |
+          sleep 6
+          docker logs omc
+          echo ""
+          echo "============================================"
+          echo "  Bot is LIVE on Telegram!"
+          echo "  Send /autopilot or /team in your chat."
+          echo "  Running for ${{ github.event.inputs.duration }} minutes."
+          echo "============================================"
+
+      # ── 10. Keep alive ─────────────────────────────────────────────────────
+      - name: Keep alive for testing
+        run: |
+          SECS=$(( ${{ github.event.inputs.duration }} * 60 ))
+          STEP=30
+          ELAPSED=0
+          while [ $ELAPSED -lt $SECS ]; do
+            sleep $STEP
+            ELAPSED=$(( ELAPSED + STEP ))
+            REMAINING=$(( SECS - ELAPSED ))
+            echo "[omc] ${ELAPSED}s elapsed — ${REMAINING}s remaining"
+            docker inspect omc --format='Status: {{.State.Status}}' 2>/dev/null || true
+          done
+
+      # ── 11. Final logs ─────────────────────────────────────────────────────
+      - name: Show bot logs
+        if: always()
+        run: docker logs --tail 100 omc || true
+
+      # ── 12. Cleanup ────────────────────────────────────────────────────────
+      - name: Stop & remove container
+        if: always()
+        run: docker rm -f omc || true
