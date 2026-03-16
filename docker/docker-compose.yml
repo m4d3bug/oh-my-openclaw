@@ -1,56 +1,60 @@
-services:
-  # Full-featured instance using official GitHub Container Registry image
-  openclaw-full:
-    build:
-      context: ..
-      dockerfile: docker/Dockerfile
-    image: oh-my-openclaw:full
-    container_name: omc-full
-    environment:
-      - OPENCLAW_GATEWAY_PORT=18789
-      - OMC_AGENT_MODE=team
-      - OMC_MODEL_ROUTER=auto
-      - OMC_LOG_LEVEL=info
-    volumes:
-      - ${WORKSPACE:-$PWD}:/workspace
-      - omc-data:/omc/data
-    ports:
-      - "18789:18789"
-    restart: unless-stopped
-    profiles: [full]
+version: '3.8'
 
-  # Lightweight Alpine instance (faster startup, smaller footprint)
+services:
   openclaw-alpine:
-    build:
-      context: ..
-      dockerfile: docker/Dockerfile.alpine
-    image: oh-my-openclaw:alpine
+    image: ghcr.io/openclaw/openclaw:latest
     container_name: omc-alpine
     environment:
-      - OPENCLAW_GATEWAY_PORT=18789
-      - OMC_AGENT_MODE=autopilot
-      - OMC_MODEL_ROUTER=auto
-      - OMC_LOG_LEVEL=warn
-    volumes:
-      - ${WORKSPACE:-$PWD}:/workspace
-      - omc-data:/omc/data
+      - OPENCLAW_GATEWAY_PORT=${OPENCLAW_GATEWAY_PORT:-18789}
+      - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY}
+      - ANTHROPIC_BASE_URL=${ANTHROPIC_BASE_URL}
+      - ANTHROPIC_MODEL=${ANTHROPIC_MODEL}
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+      - OPENAI_BASE_URL=${OPENAI_BASE_URL}
+      - OPENAI_MODEL=${OPENAI_MODEL}
+      - TELEGRAM_BOT_TOKEN=${TELEGRAM_BOT_TOKEN}
     ports:
-      - "18789:18789"
-    restart: unless-stopped
-    profiles: [alpine]
-
-  # Validation-only runner: checks configs/skills via AgentGuard, then exits
-  validate:
-    build:
-      context: ..
-      dockerfile: docker/Dockerfile.alpine
-    image: oh-my-openclaw:alpine
-    container_name: omc-validate
-    command: ["node", "/omc/scripts/validate.js", "--all", "--report"]
+      - "${OPENCLAW_GATEWAY_PORT:-18789}:${OPENCLAW_GATEWAY_PORT:-18789}"
     volumes:
-      - ${SKILLS_DIR:-./skills}:/omc/user-skills:ro
-      - ${CONFIG_DIR:-./config}:/omc/user-config:ro
-    profiles: [validate]
+      - ${PWD}/skills:/omc/skills:ro
+      - ${PWD}/config:/omc/config:ro
+      - ${PWD}/agents:/omc/agents:ro
+      - ./docker/entrypoint.sh:/omc/docker/entrypoint.sh:ro
+    entrypoint: ["bash", "/omc/docker/entrypoint.sh"]
+    profiles:
+      - alpine
 
-volumes:
-  omc-data:
+  openclaw-full:
+    image: ghcr.io/openclaw/openclaw:latest
+    container_name: omc-full
+    environment:
+      - OPENCLAW_GATEWAY_PORT=${OPENCLAW_GATEWAY_PORT:-18789}
+      - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY}
+      - ANTHROPIC_BASE_URL=${ANTHROPIC_BASE_URL}
+      - ANTHROPIC_MODEL=${ANTHROPIC_MODEL}
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+      - OPENAI_BASE_URL=${OPENAI_BASE_URL}
+      - OPENAI_MODEL=${OPENAI_MODEL}
+      - TELEGRAM_BOT_TOKEN=${TELEGRAM_BOT_TOKEN}
+    ports:
+      - "${OPENCLAW_GATEWAY_PORT:-18789}:${OPENCLAW_GATEWAY_PORT:-18789}"
+    volumes:
+      - ${PWD}/skills:/omc/skills:ro
+      - ${PWD}/config:/omc/config:ro
+      - ${PWD}/agents:/omc/agents:ro
+      - ./docker/entrypoint.sh:/omc/docker/entrypoint.sh:ro
+    entrypoint: ["bash", "/omc/docker/entrypoint.sh"]
+    profiles:
+      - full
+
+  validate:
+    image: ghcr.io/openclaw/openclaw:latest
+    container_name: omc-validate
+    environment:
+      - SKILLS_DIR=${SKILLS_DIR:-/omc/skills}
+    volumes:
+      - ${PWD}:/omc:ro
+    entrypoint: ["bash", "-c", "npm install @goplus/agentguard && node /omc/scripts/validate.js --dir ${SKILLS_DIR} --strict"]
+    profiles:
+      - validate
+    working_dir: /omc

@@ -23,11 +23,11 @@ if [ ! -f "$CONFIG_FILE" ]; then
 fi
 
 echo "[omc] Using config: $CONFIG_FILE"
-echo "[omc] Skill path:   $OMC_DIR/.openclaw/skills"
+echo "[omc] Skill path:   $OMC_DIR/skills"
 
 exec openclaw gateway \
   --port "${OPENCLAW_GATEWAY_PORT:-18789}" \
   --config "$CONFIG_FILE" \
-  --skill-path "$OMC_DIR/.openclaw/skills" \
+  --skill-path "$OMC_DIR/skills" \
   --agent-config "$OMC_DIR/config/agents.yml" \
   "$@"

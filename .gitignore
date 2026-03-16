@@ -1,5 +1,5 @@
+# oh-my-openclaw gitignore
 node_modules/
-docker/docker-compose.override.yml
-config/openclaw.yml
 .env
 *.log
+.DS_Store

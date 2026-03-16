@@ -1,43 +1,18 @@
-# oh-my-openclaw agent roster
-# Loaded by openclaw gateway via --agent-config flag.
+# oh-my-openclaw agent configuration
+# Defines routing and agent behavior
 
 agents:
-  - name: architect
-    prompt_file: agents/architect.md
-    model: auto
+  main:
+    model: smart
+    max_tokens: 8192
+    temperature: 0.7
 
-  - name: backend
-    prompt_file: agents/backend.md
-    model: auto
+  autopilot:
+    model: fast
+    max_tokens: 4096
+    temperature: 0.5
 
-  - name: frontend
-    prompt_file: agents/frontend.md
-    model: auto
-
-  - name: devops
-    prompt_file: agents/devops.md
-    model: auto
-
-  - name: researcher
-    prompt_file: agents/researcher.md
-    model: auto
-
-  - name: reviewer
-    prompt_file: agents/reviewer.md
-    model: auto
-
-  - name: tester
-    prompt_file: agents/tester.md
-    model: auto
-
-  - name: product
-    prompt_file: agents/product.md
-    model: auto
-
-  - name: security
-    prompt_file: agents/security.md
-    model: auto
-
-  - name: data
-    prompt_file: agents/data.md
-    model: auto
+  researcher:
+    model: powerful
+    max_tokens: 16384
+    temperature: 0.9

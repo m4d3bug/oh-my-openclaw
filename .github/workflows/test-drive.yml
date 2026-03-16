@@ -51,7 +51,13 @@ jobs:
       - name: Install @goplus/agentguard
         run: npm install @goplus/agentguard
 
-      # ── 4. Start oh-my-openclaw ────────────────────────────────────────────
+      # ── 4. Validate skills with AgentGuard ─────────────────────────────
+      - name: Validate skills with AgentGuard
+        run: |
+          npm install
+          node scripts/validate.js --all --strict || true
+
+      # ── 5. Start oh-my-openclaw ────────────────────────────────────────────
       - name: Start oh-my-openclaw
         env:
           OPENAI_API_KEY:      ${{ secrets.OPENAI_API_KEY }}
@@ -75,9 +81,9 @@ jobs:
             -e OPENCLAW_GATEWAY_PORT=18789 \
             -v "$PWD:/omc:ro" \
             ghcr.io/openclaw/openclaw \
-            bash /omc/docker/bootstrap.sh
+            bash /omc/docker/entrypoint.sh
 
-      # ── 5. Wait for startup ────────────────────────────────────────────────
+      # ── 6. Wait for startup ────────────────────────────────────────────────
       - name: Wait for bot startup
         run: |
           sleep 20
@@ -88,7 +94,7 @@ jobs:
           echo "  Running for ${DURATION:-5} minutes."
           echo "============================================"
 
-      # ── 6. Keep alive ──────────────────────────────────────────────────────
+      # ── 7. Keep alive ───────────────────────────────────────────────────────
       - name: Keep alive for testing
         run: |
           DURATION="${{ github.event.inputs.duration }}"
@@ -103,12 +109,12 @@ jobs:
             echo "[omc] ${ELAPSED}s elapsed — ${REMAINING}s remaining — container: ${STATUS}"
           done
 
-      # ── 7. Final logs ──────────────────────────────────────────────────────
+      # ── 8. Final logs ───────────────────────────────────────────────────────
       - name: Show bot logs
         if: always()
         run: docker logs --tail 150 omc 2>&1 | grep -v $'\x1b' || true
 
-      # ── 8. Cleanup ─────────────────────────────────────────────────────────
+      # ── 9. Cleanup ─────────────────────────────────────────────────────────
       - name: Stop container
         if: always()
         run: docker rm -f omc || true

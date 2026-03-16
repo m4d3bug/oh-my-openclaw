@@ -4,17 +4,9 @@
  */
 
 import autopilot from './autopilot.js';
-import team from './team.js';
-import git from './git.js';
-import code from './code.js';
-import notify from './notify.js';
 
 export const skills = [
   autopilot,
-  team,
-  git,
-  code,
-  notify,
 ];
 
 export default skills;
