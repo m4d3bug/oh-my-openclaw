@@ -30,11 +30,9 @@ jobs:
           node-version: '22'
           cache: 'npm'
 
-      # ── 3. Pull both reference images ──────────────────────────────────────
-      - name: Pull OpenClaw images
-        run: |
-          docker pull alpine/openclaw:latest
-          docker pull ghcr.io/openclaw/openclaw
+      # ── 3. Pull official OpenClaw image ────────────────────────────────────
+      - name: Pull OpenClaw image
+        run: docker pull ghcr.io/openclaw/openclaw
 
       # ── 4. Install deps — includes @goplus/agentguard ─────────────────────
       - name: Install npm dependencies (includes @goplus/agentguard)
@@ -87,15 +85,7 @@ jobs:
           ENDYML
           echo "[omc] Runtime config written (chat_id pre-paired)."
 
-      # ── 7. Build the oh-my-openclaw image (alpine base) ───────────────────
-      - name: Build oh-my-openclaw Docker image
-        run: |
-          docker build \
-            -f docker/Dockerfile.alpine \
-            -t oh-my-openclaw:ci \
-            .
-
-      # ── 8. Start the bot ───────────────────────────────────────────────────
+      # ── 7. Start the bot (mount skills/config into official image) ────────
       - name: Start oh-my-openclaw
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
@@ -113,7 +103,11 @@ jobs:
             -v "$PWD/config/openclaw.runtime.yml:/omc/config/openclaw.yml:ro" \
             -v "$PWD/agents:/omc/agents:ro" \
             -v "$PWD/.openclaw:/omc/.openclaw:ro" \
-            oh-my-openclaw:ci
+            ghcr.io/openclaw/openclaw \
+            openclaw gateway \
+              --port 18789 \
+              --config /omc/config/openclaw.yml \
+              --agent-config /omc/agents/agents.yml
 
       # ── 9. Wait for startup & print instructions ───────────────────────────
       - name: Wait for bot startup
