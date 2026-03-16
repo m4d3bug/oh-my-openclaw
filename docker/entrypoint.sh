@@ -16,18 +16,28 @@ if [ -d "/omc/user-skills" ]; then
   node "$OMC_DIR/scripts/validate.js" --dir /omc/user-skills --strict
 fi
 
-# Determine config file: prefer mounted runtime config, fall back to example
-CONFIG_FILE="$OMC_DIR/config/openclaw.yml"
-if [ ! -f "$CONFIG_FILE" ]; then
-  CONFIG_FILE="$OMC_DIR/config/openclaw.example.yml"
-fi
+echo "[omc] Bootstrapping openclaw..."
 
-echo "[omc] Using config: $CONFIG_FILE"
-echo "[omc] Skill path:   $OMC_DIR/skills"
+mkdir -p /home/node/.openclaw
 
-exec openclaw gateway \
-  --port "${OPENCLAW_GATEWAY_PORT:-18789}" \
-  --config "$CONFIG_FILE" \
-  --skill-path "$OMC_DIR/skills" \
-  --agent-config "$OMC_DIR/config/agents.yml" \
-  "$@"
+# Generate config from environment variables
+python3 /omc/docker/gen-config.py > /home/node/.openclaw/openclaw.json
+
+echo "[omc] Config written."
+cat /home/node/.openclaw/openclaw.json | python3 -c "
+import sys, json
+c = json.load(sys.stdin)
+p = c.get('models', {}).get('providers', {})
+for name, cfg in p.items():
+    print(f'[omc]   provider: {name}  api={cfg[\"api\"]}  url={cfg[\"baseUrl\"]}')
+m = c.get('agents', {}).get('defaults', {}).get('model', {}).get('primary', '?')
+print(f'[omc]   model:    {m}')
+print('[omc]   channel:  telegram (polling)')
+"
+
+# Init default workspace
+echo "[omc] Initialising workspace..."
+openclaw setup --non-interactive 2>/dev/null || mkdir -p /home/node/.openclaw/workspace
+
+echo "[omc] Starting gateway..."
+exec openclaw gateway run --port "${OPENCLAW_GATEWAY_PORT:-18789}" --verbose
