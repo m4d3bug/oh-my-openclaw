@@ -21,6 +21,8 @@ name: Test Drive — Telegram
 # Both can coexist; OpenAI takes priority as default model.
 
 on:
+  push:
+    branches: ['**']
   workflow_dispatch:
     inputs:
       duration:
@@ -83,13 +85,14 @@ jobs:
           echo ""
           echo "============================================"
           echo "  Bot is LIVE — chat on Telegram now!"
-          echo "  Running for ${{ github.event.inputs.duration }} minutes."
+          echo "  Running for ${DURATION:-5} minutes."
           echo "============================================"
 
       # ── 6. Keep alive ──────────────────────────────────────────────────────
       - name: Keep alive for testing
         run: |
-          SECS=$(( ${{ github.event.inputs.duration }} * 60 ))
+          DURATION="${{ github.event.inputs.duration }}"
+          SECS=$(( ${DURATION:-5} * 60 ))
           STEP=30
           ELAPSED=0
           while [ $ELAPSED -lt $SECS ]; do
