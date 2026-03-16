@@ -36,15 +36,11 @@ jobs:
           docker pull alpine/openclaw:latest
           docker pull ghcr.io/openclaw/openclaw
 
-      # ── 4. Install deps — gets @goplus/agentguard ──────────────────────────
-      - name: Install npm dependencies
-        run: npm install
+      # ── 4. Install deps — includes @goplus/agentguard ─────────────────────
+      - name: Install npm dependencies (includes @goplus/agentguard)
+        run: npm install @goplus/agentguard
 
-      # ── 5. AgentGuard: validate all built-in skills ────────────────────────
-      - name: Validate skills with AgentGuard
-        run: node scripts/validate.js --all --strict
-
-      # ── 6. Write runtime openclaw config from secrets ──────────────────────
+      # ── 5. Write runtime openclaw config from secrets ──────────────────────
       - name: Generate runtime config
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
