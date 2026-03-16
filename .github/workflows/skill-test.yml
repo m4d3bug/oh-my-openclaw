@@ -1,0 +1,87 @@
+name: Skill Test
+
+# Automatically test skills on push to skills/ directory
+# Validates skills with AgentGuard before running tests
+
+on:
+  push:
+    paths:
+      - 'skills/**'
+      - 'scripts/validate.js'
+  pull_request:
+    paths:
+      - 'skills/**'
+      - 'scripts/validate.js'
+  workflow_dispatch:
+    inputs:
+      skill_name:
+        description: 'Specific skill to test (leave empty to test all)'
+        required: false
+        type: string
+
+jobs:
+  validate:
+    name: Validate skills with AgentGuard
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Install AgentGuard
+        run: npm install @goplus/agentguard
+
+      - name: Validate skills
+        run: |
+          if [ -n "${{ github.event.inputs.skill_name }}" ]; then
+            echo "Validating skill: ${{ github.event.inputs.skill_name }}"
+            node scripts/validate.js --dir skills/${{ github.event.inputs.skill_name }} --strict
+          else
+            echo "Validating all skills"
+            node scripts/validate.js --all --strict
+          fi
+
+  test:
+    name: Test skill in Docker
+    needs: validate
+    runs-on: ubuntu-latest
+    if: github.event_name == 'workflow_dispatch'
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Pull OpenClaw image
+        run: docker pull ghcr.io/openclaw/openclaw
+
+      - name: Start test container
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          ANTHROPIC_BASE_URL: ${{ secrets.ANTHROPIC_BASE_URL }}
+          ANTHROPIC_MODEL: ${{ secrets.ANTHROPIC_MODEL }}
+        run: |
+          docker run -d \
+            --name omc-test \
+            -e ANTHROPIC_API_KEY="${ANTHROPIC_API_KEY}" \
+            -e ANTHROPIC_BASE_URL="${ANTHROPIC_BASE_URL}" \
+            -e ANTHROPIC_MODEL="${ANTHROPIC_MODEL}" \
+            -v "$PWD:/omc:ro" \
+            ghcr.io/openclaw/openclaw \
+            bash /omc/docker/entrypoint.sh
+
+      - name: Run skill test
+        run: |
+          sleep 30
+          docker logs omc-test --tail 50
+
+      - name: Cleanup
+        if: always()
+        run: docker rm -f omc-test || true

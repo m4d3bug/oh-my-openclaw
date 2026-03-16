@@ -1,0 +1,120 @@
+name: Test Drive — Telegram
+
+# Fork this repo → set Secrets → Run workflow → chat on Telegram.
+#
+# Required Secrets (Settings → Secrets and variables → Actions):
+#   TELEGRAM_BOT_TOKEN   — from @BotFather
+#   TELEGRAM_CHAT_ID     — your chat ID (send /start to bot, then GET getUpdates)
+#
+# Pick ONE of the two model backends:
+#
+#   OpenAI-compatible (e.g. Aliyun DashScope):
+#     OPENAI_API_KEY
+#     OPENAI_BASE_URL     (e.g. https://coding.dashscope.aliyuncs.com/v1)
+#     OPENAI_MODEL        (e.g. MiniMax-M2.5)
+#
+#   Anthropic-compatible (e.g. SiliconFlow):
+#     ANTHROPIC_API_KEY
+#     ANTHROPIC_BASE_URL  (e.g. https://api.siliconflow.cn/v1)
+#     ANTHROPIC_MODEL     (e.g. Pro/MiniMaxAI/MiniMax-M2.5)
+#
+# Both can coexist; OpenAI takes priority as default model.
+
+on:
+  push:
+    branches: ['**']
+  workflow_dispatch:
+    inputs:
+      duration:
+        description: 'How many minutes to keep the bot alive (5–25)'
+        required: false
+        default: '15'
+        type: choice
+        options: ['5', '10', '15', '20', '25']
+
+jobs:
+  test-drive:
+    name: Boot oh-my-openclaw & connect to Telegram
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+
+    steps:
+      # ── 1. Checkout ────────────────────────────────────────────────────────
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      # ── 2. Pull official OpenClaw image ────────────────────────────────────
+      - name: Pull OpenClaw image
+        run: docker pull ghcr.io/openclaw/openclaw
+
+      # ── 3. Install @goplus/agentguard ──────────────────────────────────────
+      - name: Install @goplus/agentguard
+        run: npm install @goplus/agentguard
+
+      # ── 4. Validate skills with AgentGuard ─────────────────────────────
+      - name: Validate skills with AgentGuard
+        run: |
+          npm install
+          node scripts/validate.js --all --strict || true
+
+      # ── 5. Start oh-my-openclaw ────────────────────────────────────────────
+      - name: Start oh-my-openclaw
+        env:
+          OPENAI_API_KEY:      ${{ secrets.OPENAI_API_KEY }}
+          OPENAI_BASE_URL:     ${{ secrets.OPENAI_BASE_URL }}
+          OPENAI_MODEL:        ${{ secrets.OPENAI_MODEL }}
+          ANTHROPIC_API_KEY:   ${{ secrets.ANTHROPIC_API_KEY }}
+          ANTHROPIC_BASE_URL:  ${{ secrets.ANTHROPIC_BASE_URL }}
+          ANTHROPIC_MODEL:     ${{ secrets.ANTHROPIC_MODEL }}
+          TELEGRAM_BOT_TOKEN:  ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          OPENCLAW_GATEWAY_PORT: '18789'
+        run: |
+          docker run -d \
+            --name omc \
+            -e OPENAI_API_KEY="${OPENAI_API_KEY}" \
+            -e OPENAI_BASE_URL="${OPENAI_BASE_URL}" \
+            -e OPENAI_MODEL="${OPENAI_MODEL}" \
+            -e ANTHROPIC_API_KEY="${ANTHROPIC_API_KEY}" \
+            -e ANTHROPIC_BASE_URL="${ANTHROPIC_BASE_URL}" \
+            -e ANTHROPIC_MODEL="${ANTHROPIC_MODEL}" \
+            -e TELEGRAM_BOT_TOKEN="${TELEGRAM_BOT_TOKEN}" \
+            -e OPENCLAW_GATEWAY_PORT=18789 \
+            -v "$PWD:/omc:ro" \
+            ghcr.io/openclaw/openclaw \
+            bash /omc/docker/entrypoint.sh
+
+      # ── 6. Wait for startup ────────────────────────────────────────────────
+      - name: Wait for bot startup
+        run: |
+          sleep 20
+          docker logs omc 2>&1 | grep -v $'\x1b' | grep -E "gateway.listen|telegram.*provider|model:|error" || true
+          echo ""
+          echo "============================================"
+          echo "  Bot is LIVE — chat on Telegram now!"
+          echo "  Running for ${DURATION:-5} minutes."
+          echo "============================================"
+
+      # ── 7. Keep alive ───────────────────────────────────────────────────────
+      - name: Keep alive for testing
+        run: |
+          DURATION="${{ github.event.inputs.duration }}"
+          SECS=$(( ${DURATION:-5} * 60 ))
+          STEP=30
+          ELAPSED=0
+          while [ $ELAPSED -lt $SECS ]; do
+            sleep $STEP
+            ELAPSED=$(( ELAPSED + STEP ))
+            REMAINING=$(( SECS - ELAPSED ))
+            STATUS=$(docker inspect omc --format='{{.State.Status}}' 2>/dev/null || echo "gone")
+            echo "[omc] ${ELAPSED}s elapsed — ${REMAINING}s remaining — container: ${STATUS}"
+          done
+
+      # ── 8. Final logs ───────────────────────────────────────────────────────
+      - name: Show bot logs
+        if: always()
+        run: docker logs --tail 150 omc 2>&1 | grep -v $'\x1b' || true
+
+      # ── 9. Cleanup ─────────────────────────────────────────────────────────
+      - name: Stop container
+        if: always()
+        run: docker rm -f omc || true

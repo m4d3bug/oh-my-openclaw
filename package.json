@@ -1,0 +1,22 @@
+{
+  "name": "oh-my-openclaw",
+  "version": "0.1.0",
+  "description": "Automatically test and iterate OpenCLAW skills via GitHub Actions with best practices",
+  "type": "module",
+  "bin": {
+    "omc": "./scripts/omc.js"
+  },
+  "scripts": {
+    "setup": "node scripts/setup.js",
+    "validate": "node scripts/validate.js",
+    "update": "bash scripts/update.sh",
+    "install-skill": "node scripts/install-skill.js"
+  },
+  "dependencies": {
+    "@goplus/agentguard": "latest"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "license": "MIT"
+}
