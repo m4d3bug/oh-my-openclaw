@@ -21,6 +21,7 @@ Go to your fork → **Settings → Secrets and variables → Actions → New rep
 | Secret name | Where to get it | Required |
 |---|---|---|
 | `ANTHROPIC_API_KEY` | [console.anthropic.com/keys](https://console.anthropic.com/keys) | Yes |
+| `ANTHROPIC_BASE_URL` | Your API proxy / gateway base URL (e.g. `https://your-proxy.example.com/v1`) | Yes |
 | `TELEGRAM_BOT_TOKEN` | Message [@BotFather](https://t.me/BotFather) → `/newbot` | Yes |
 
 > **These are Secrets (not Variables)** — GitHub never shows their values in logs.
