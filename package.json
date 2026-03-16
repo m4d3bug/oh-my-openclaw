@@ -1,0 +1,21 @@
+{
+  "name": "oh-my-openclaw",
+  "version": "0.1.0",
+  "description": "Claude Code level experience for OpenClaw",
+  "type": "module",
+  "bin": {
+    "omc": "./scripts/omc.js"
+  },
+  "scripts": {
+    "setup": "node scripts/setup.js",
+    "validate": "node scripts/validate.js",
+    "update": "bash scripts/update.sh"
+  },
+  "dependencies": {
+    "@goplus/agentguard": "latest"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "license": "MIT"
+}

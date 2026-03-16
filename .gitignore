@@ -1,0 +1,5 @@
+node_modules/
+docker/docker-compose.override.yml
+config/openclaw.yml
+.env
+*.log
