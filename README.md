@@ -32,6 +32,8 @@ curl -fsSL https://raw.githubusercontent.com/m4d3bug/oh-my-openclaw/master/insta
 | 12 | [daily-digest](https://clawhub.ai/pmaeter/daily-digest) | 1.0.0 | 68 | ✅ Benign | Generate daily journal from memory files |
 | 13 | [proactivity](https://clawhub.ai/ivangdavila/proactivity) | 1.0.1 | 18 | ✅ Benign | Anticipate needs, keep work moving, improve over time |
 | 14 | [cli-anything](https://github.com/HKUDS/CLI-Anything) | — | — | GitHub | Natural language to CLI commands for any tool |
+| 15 | [agent-team-orchestration](https://clawhub.ai/arminnaimi/agent-team-orchestration) | 1.0.0 | 125 | ✅ Benign | Multi-agent team coordination — roles, handoffs, reviews |
+| 16 | [runesleo-systematic-debugging](https://clawhub.ai/runesleo/runesleo-systematic-debugging) | 3.0.0 | 9 | ✅ Benign | Four-phase systematic debugging framework |
 
 > Skills are **not** stored in this repo. They are installed from ClawHub/GitHub at container startup via `skills.txt` and `github-skills.txt`.
 > skill-vetter is installed first to audit all subsequent installs.

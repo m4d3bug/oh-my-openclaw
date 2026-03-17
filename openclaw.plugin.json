@@ -2,7 +2,7 @@
   "id": "oh-my-openclaw",
   "name": "oh-my-openclaw",
   "description": "Curated ClawHub skills for OpenClaw — Claude Code level experience",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "skills": [
     "./skills/skill-vetter",
     "./skills/self-improving-agent",
@@ -17,7 +17,9 @@
     "./skills/summarize",
     "./skills/daily-digest",
     "./skills/proactivity",
-    "./skills/cli-anything"
+    "./skills/cli-anything",
+    "./skills/agent-team-orchestration",
+    "./skills/runesleo-systematic-debugging"
   ],
   "configSchema": {
     "type": "object",
