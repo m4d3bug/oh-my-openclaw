@@ -10,12 +10,19 @@ curl -fsSL https://raw.githubusercontent.com/m4d3bug/oh-my-openclaw/master/insta
 
 ## Included skills
 
-| Skill | Version | What it does |
-|-------|---------|-------------|
-| [self-improving-agent](https://clawhub.ai/pskoett/self-improving-agent) | 3.0.4 | Logs errors, corrections, and learnings for continuous improvement across sessions |
-| [agent-reach](https://clawhub.ai/Panniantong/agent-reach) | 1.1.0 | Search and read 14+ platforms (Twitter, Reddit, YouTube, GitHub, Bilibili, etc.) |
-| [summarize](https://clawhub.ai/steipete/summarize) | 1.0.0 | Summarize conversations, code changes, and sessions |
-| [agent-browser](https://clawhub.ai/TheSethRose/agent-browser) | 0.2.0 | Headless browser automation — navigate, click, type, screenshot, record |
+| # | Skill | Version | Stars | Security | What it does |
+|---|-------|---------|-------|----------|-------------|
+| 1 | [skill-vetter](https://clawhub.ai/spclaudehome/skill-vetter) | 1.0.0 | 434 | Benign | Security-first vetting — review any skill before install |
+| 2 | [self-improving-agent](https://clawhub.ai/pskoett/self-improving-agent) | 3.0.4 | 2.2k | Benign | Logs errors, corrections, and learnings across sessions |
+| 3 | [github](https://clawhub.ai/steipete/github) | 1.0.0 | 378 | Benign | Git workflow — PRs, issues, CI runs via `gh` CLI |
+| 4 | [multi-search-engine](https://clawhub.ai/gpyAngyoujun/multi-search-engine) | 2.0.1 | 303 | Benign | 17 search engines (8 CN + 9 Global), no API key needed |
+| 5 | [agent-reach](https://clawhub.ai/Panniantong/agent-reach) | 1.1.0 | 7.5k | Suspicious | Read 14+ platforms (Twitter, Reddit, YouTube, Bilibili, etc.) |
+| 6 | [agent-browser](https://clawhub.ai/TheSethRose/agent-browser) | 0.2.0 | — | Suspicious | Headless browser — navigate, click, type, screenshot, record |
+| 7 | [planning-with-files](https://clawhub.ai/OthmanAdi/planning-with-files) | 2.22.0 | 22 | Suspicious | Task planning — task_plan.md / findings.md / progress.md |
+| 8 | [test-runner](https://clawhub.ai/cmanfre7/test-runner) | 1.0.0 | 10 | Benign | Run tests — Jest, pytest, Playwright, XCTest |
+| 9 | [summarize](https://clawhub.ai/steipete/summarize) | 1.0.0 | — | Benign | Summarize conversations, code changes, and sessions |
+
+> skill-vetter is installed first — it audits all subsequent skill installs.
 
 ## Try it — GitHub Actions + Telegram
 
