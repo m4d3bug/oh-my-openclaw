@@ -14,8 +14,8 @@
     "./skills/agent-wal",
     "./skills/proactivity",
     "./skills/metacognition",
-    "./skills/runesleo-systematic-debugging",
     "./skills/agent-team-orchestration",
+    "./skills/reflection",
     "./skills/smart-context",
     "./skills/summarize",
     "./skills/daily-digest",
@@ -40,7 +40,11 @@
     "./skills/find-skills",
     "./skills/auto-updater",
     "./skills/openclaw-youtube-transcript",
-    "./skills/humanizer"
+    "./skills/humanizer",
+    "./skills/brainstorming",
+    "./skills/writing-plans",
+    "./skills/copywriting",
+    "./skills/content-strategy"
   ],
   "configSchema": {
     "type": "object",

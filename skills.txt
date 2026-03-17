@@ -18,8 +18,8 @@ agent-wal [github]
 # ── Agent Behavior ───────────────────────────────
 proactivity
 metacognition [github]
-runesleo-systematic-debugging
 agent-team-orchestration
+reflection
 
 # ── Session Management ───────────────────────────
 smart-context [github]
@@ -53,3 +53,7 @@ find-skills
 auto-updater
 openclaw-youtube-transcript [force]
 humanizer
+brainstorming [force]
+writing-plans [force]
+copywriting
+content-strategy

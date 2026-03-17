@@ -14,7 +14,7 @@ openclaw plugins install @m4d3bug/oh-my-openclaw
 curl -fsSL https://raw.githubusercontent.com/m4d3bug/oh-my-openclaw/master/install.sh | bash
 ```
 
-## Included skills (37)
+## Included skills (41)
 
 ### Security
 
@@ -40,8 +40,8 @@ curl -fsSL https://raw.githubusercontent.com/m4d3bug/oh-my-openclaw/master/insta
 |-------|---------|----------|---------------|-------------|
 | [proactivity](https://clawhub.ai/ivangdavila/proactivity) | 1.0.1 | 18 | ✅ Benign | Anticipate needs, keep work moving, improve over time |
 | [metacognition](https://clawskills.sh/skills/meimakes-metacognition) | 1.0.0 | 0 | ✅ Benign | Self-reflection engine — extract patterns into knowledge graph |
-| [runesleo-systematic-debugging](https://clawhub.ai/runesleo/runesleo-systematic-debugging) | 3.0.0 | 9 | ✅ Benign | Four-phase systematic debugging framework |
 | [agent-team-orchestration](https://clawhub.ai/arminnaimi/agent-team-orchestration) | 1.0.0 | 125 | ✅ Benign | Multi-agent team coordination — roles, handoffs, reviews |
+| [reflection](https://clawhub.ai/ivangdavila/reflection) | 1.1.0 | 23 | ✅ Benign | Self-critique before responding — fewer revision rounds |
 
 ### Session Management
 
@@ -88,8 +88,16 @@ curl -fsSL https://raw.githubusercontent.com/m4d3bug/oh-my-openclaw/master/insta
 | [openclaw-youtube-transcript](https://clawhub.ai/YoavRez/openclaw-youtube-transcript) | 1.0.1 | 25 | ⚠️ Suspicious | Transcribe YouTube videos via yt-dlp |
 | [humanizer](https://clawhub.ai/biostartechnology/humanizer) | 1.0.0 | 760 | ✅ Benign | Remove AI writing patterns — make text sound human |
 
+### Creative & Planning
+
+| Skill | Version | Installs | OpenClaw Scan | What it does |
+|-------|---------|----------|---------------|-------------|
+| [brainstorming](https://clawhub.ai/zlc000190/brainstorming) | 0.1.0 | 88 | ✅ Benign | Explore intent, requirements and design before implementation |
+| [writing-plans](https://clawhub.ai/zlc000190/writing-plans) | 0.1.0 | 43 | ✅ Benign | Generate multi-step implementation plans from specs |
+| [copywriting](https://clawhub.ai/JK-0001/copywriting) | 0.1.0 | 124 | ✅ Benign | Marketing copy — AIDA/PAS/FAB, headlines, CTAs, ad copy |
+| [content-strategy](https://clawhub.ai/JK-0001/content-strategy) | 0.1.0 | 45 | ✅ Benign | Content marketing strategy, calendar, distribution, metrics |
+
 > skill-vetter is installed first to audit all subsequent installs.
-> Suspicious rate: 6% (2/30) — only agent-reach and planning-with-files, both kept for irreplaceable functionality.
 
 ## Local setup
 
