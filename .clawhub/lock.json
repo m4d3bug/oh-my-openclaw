@@ -4,6 +4,10 @@
     "self-improving-agent": {
       "version": "3.0.4",
       "installedAt": 1773712981426
+    },
+    "agent-reach": {
+      "version": "1.1.0",
+      "installedAt": 1773715490971
     }
   }
 }
