@@ -34,6 +34,9 @@ curl -fsSL https://raw.githubusercontent.com/m4d3bug/oh-my-openclaw/master/insta
 | 14 | [cli-anything](https://github.com/HKUDS/CLI-Anything) | — | — | GitHub | Natural language to CLI commands for any tool |
 | 15 | [agent-team-orchestration](https://clawhub.ai/arminnaimi/agent-team-orchestration) | 1.0.0 | 125 | ✅ Benign | Multi-agent team coordination — roles, handoffs, reviews |
 | 16 | [runesleo-systematic-debugging](https://clawhub.ai/runesleo/runesleo-systematic-debugging) | 3.0.0 | 9 | ✅ Benign | Four-phase systematic debugging framework |
+| 17 | [agent-memory](https://clawhub.ai/skills/agent-memory) | 1.0.0 | 262 | ✅ Benign | Persistent SQLite memory — store, recall, track entities |
+| 18 | [anti-injection-skill](https://clawhub.ai/skills/anti-injection-skill) | 3 | ⚠️ Suspicious | Block prompt injection, memory tampering, data leakage |
+| 19 | [agent-sentinel](https://clawhub.ai/skills/agent-sentinel) | 3 | ✅ Benign | Safety circuit breaker — budget constraints, rate limits |
 
 > Skills are **not** stored in this repo. They are installed from ClawHub/GitHub at container startup via `skills.txt` and `github-skills.txt`.
 > skill-vetter is installed first to audit all subsequent installs.
