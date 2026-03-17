@@ -23,6 +23,9 @@ curl -fsSL https://raw.githubusercontent.com/m4d3bug/oh-my-openclaw/master/insta
 | 9 | [cron-scheduler](https://clawhub.ai/picaye/cron-scheduler) | 1.0.0 | — | Suspicious | Schedule and manage recurring tasks with cron |
 | 10 | [summarize](https://clawhub.ai/steipete/summarize) | 1.0.0 | — | Benign | Summarize conversations, code changes, and sessions |
 | 11 | [cli-anything](https://github.com/HKUDS/CLI-Anything) | — | 1.3k | GitHub | Turn natural language into CLI commands for any tool |
+| 12 | [ontology](https://clawhub.ai/oswalpalash/ontology) | 1.0.4 | 296 | Benign | Typed knowledge graph for structured agent memory |
+| 13 | [daily-digest](https://clawhub.ai/pmaeter/daily-digest) | 1.0.0 | 2 | Benign | Generate daily journal from memory files |
+| 14 | [proactivity](https://clawhub.ai/ivangdavila/proactivity) | 1.0.1 | 3 | Benign | Anticipate needs, keep work moving, improve over time |
 
 > skill-vetter is installed first — it audits all subsequent skill installs.
 

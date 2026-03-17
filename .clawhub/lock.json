@@ -40,6 +40,18 @@
     "cron-scheduler": {
       "version": "1.0.0",
       "installedAt": 1773717924671
+    },
+    "daily-digest": {
+      "version": "1.0.0",
+      "installedAt": 1773718681654
+    },
+    "proactivity": {
+      "version": "1.0.1",
+      "installedAt": 1773718684851
+    },
+    "ontology": {
+      "version": "1.0.4",
+      "installedAt": 1773718689260
     }
   }
 }
