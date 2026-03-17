@@ -42,7 +42,6 @@ github
 test-runner
 planning-with-files [force]
 pyright-lsp [github]
-astrai-code-review [github]
 cacheforge-vibe-check [github]
 docsync [github]
 

@@ -33,7 +33,6 @@
     "./skills/test-runner",
     "./skills/planning-with-files",
     "./skills/pyright-lsp",
-    "./skills/astrai-code-review",
     "./skills/cacheforge-vibe-check",
     "./skills/docsync",
     "./skills/cron-mastery",

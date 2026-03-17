@@ -14,7 +14,7 @@ openclaw plugins install @m4d3bug/oh-my-openclaw
 curl -fsSL https://raw.githubusercontent.com/m4d3bug/oh-my-openclaw/master/install.sh | bash
 ```
 
-## Included skills (42)
+## Included skills (41)
 
 ### Security
 
@@ -55,7 +55,7 @@ curl -fsSL https://raw.githubusercontent.com/m4d3bug/oh-my-openclaw/master/insta
 | Skill | Version | Installs | OpenClaw Scan | What it does |
 |-------|---------|----------|---------------|-------------|
 | [smart-context](https://clawskills.sh/skills/joe3112-smart-context) | 1.0.0 | 0 | ✅ Benign | Token-efficient context pruning, response sizing, delegation |
-| [summarize](https://clawhub.ai/steipete/summarize) | 1.0.0 | — | ✅ Benign | Summarize conversations, code changes, and sessions |
+| [summarize](https://clawhub.ai/steipete/summarize) | 1.0.0 | 3,800 | ✅ Benign | Summarize conversations, code changes, and sessions |
 | [daily-digest](https://clawhub.ai/pmaeter/daily-digest) | 1.0.0 | 68 | ✅ Benign | Generate daily journal from memory files |
 | [alex-session-wrap-up](https://clawskills.sh/skills/xbillwatsonx-alex-session-wrap-up) | 1.0.0 | 0 | ✅ Benign | Auto-commit + extract learnings + persist rules |
 | [buildlog](https://clawskills.sh/skills/espetey-buildlog) | 1.0.1 | 7 | ⚠️ Suspicious | Replayable coding session log for auditing |
@@ -69,7 +69,6 @@ curl -fsSL https://raw.githubusercontent.com/m4d3bug/oh-my-openclaw/master/insta
 | [test-runner](https://clawhub.ai/cmanfre7/test-runner) | 1.0.0 | 71 | ✅ Benign | Run tests — Jest, pytest, Playwright, XCTest |
 | [planning-with-files](https://clawhub.ai/OthmanAdi/planning-with-files) | 2.22.0 | 70 | ⚠️ Suspicious | Task planning — task_plan.md / findings.md / progress.md |
 | [pyright-lsp](https://clawskills.sh/skills/bowen31337-pyright-lsp) | 1.0.0 | 1 | ✅ Benign | Python language server — static type checking |
-| [astrai-code-review](https://clawskills.sh/skills/beee003-astrai-code-review) | 1.0.0 | 0 | ⚠️ Suspicious | AI code review + smart model routing, save 40%+ cost |
 | [cacheforge-vibe-check](https://clawskills.sh/skills/tkuehnl-cacheforge-vibe-check) | 1.0.0 | 0 | ✅ Benign | Detect AI-generated code quality issues |
 | [docsync](https://clawskills.sh/skills/suhteevah-docsync) | 1.0.1 | 0 | ✅ Benign | Auto-generate docs from code, detect doc drift |
 
