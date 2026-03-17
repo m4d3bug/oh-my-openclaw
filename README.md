@@ -80,12 +80,12 @@ curl -fsSL https://raw.githubusercontent.com/m4d3bug/oh-my-openclaw/master/insta
 |-------|---------|----------|---------------|-------------|
 | [multi-search-engine](https://clawhub.ai/gpyAngyoujun/multi-search-engine) | 2.0.1 | 796 | ✅ Benign | 17 search engines (8 CN + 9 Global), no API key needed |
 | [agent-reach](https://clawhub.ai/Panniantong/agent-reach) | 1.1.0 | 246 | ⚠️ Suspicious | Read 14+ platforms (Twitter, Reddit, YouTube, Bilibili, etc.) |
-| [agent-browser](https://clawhub.ai/TheSethRose/agent-browser) | 0.2.0 | — | ✅ Benign | Headless browser — navigate, click, type, screenshot, record |
-| [cli-anything](https://github.com/HKUDS/CLI-Anything) | — | — | GitHub | Natural language to CLI commands for any tool |
+| [agent-browser](https://clawhub.ai/TheSethRose/agent-browser) | 0.2.0 | 2,588 | ✅ Benign | Headless browser — navigate, click, type, screenshot, record |
+| [cli-anything](https://github.com/HKUDS/CLI-Anything) | 2026-03-17 | — | GitHub | Natural language to CLI commands for any tool |
 | [clawddocs](https://clawskills.sh/skills/nicholasspisak-clawddocs) | 1.2.2 | 413 | ✅ Benign | OpenClaw documentation assistant with decision tree routing |
-| [find-skills](https://clawhub.ai/JimLiuxinghai/find-skills) | — | 3,496 | ⚠️ Suspicious | Find and install skills from ClawHub ecosystem |
-| [auto-updater](https://clawhub.ai/maximeprades/auto-updater) | — | 779 | ✅ Benign | Auto-update OpenClaw and skills via daily cron |
-| [openclaw-youtube-transcript](https://clawhub.ai/YoavRez/openclaw-youtube-transcript) | — | 25 | ⚠️ Suspicious | Transcribe YouTube videos via yt-dlp |
+| [find-skills](https://clawhub.ai/JimLiuxinghai/find-skills) | 0.1.0 | 3,496 | ⚠️ Suspicious | Find and install skills from ClawHub ecosystem |
+| [auto-updater](https://clawhub.ai/maximeprades/auto-updater) | 1.0.0 | 779 | ✅ Benign | Auto-update OpenClaw and skills via daily cron |
+| [openclaw-youtube-transcript](https://clawhub.ai/YoavRez/openclaw-youtube-transcript) | 1.0.1 | 25 | ⚠️ Suspicious | Transcribe YouTube videos via yt-dlp |
 | [humanizer](https://clawhub.ai/biostartechnology/humanizer) | 1.0.0 | 760 | ✅ Benign | Remove AI writing patterns — make text sound human |
 
 > skill-vetter is installed first to audit all subsequent installs.
