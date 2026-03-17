@@ -50,5 +50,21 @@ elif [ "$FETCH_EXIT" -ge 2 ]; then
     exit "$FETCH_EXIT"
 fi
 
+# Copy ClawHub skills (SKILL.md-based directories) into OpenClaw skills dir
+OC_SKILLS="/home/node/.openclaw/skills"
+mkdir -p "$OC_SKILLS"
+SKILL_COUNT=0
+for skill_dir in /omocw/skills/*/; do
+    [ -f "${skill_dir}SKILL.md" ] || continue
+    skill_name="$(basename "$skill_dir")"
+    cp -r "$skill_dir" "$OC_SKILLS/$skill_name"
+    echo "[omocw] Loaded ClawHub skill: $skill_name"
+    SKILL_COUNT=$((SKILL_COUNT + 1))
+done
+echo "[omocw] $SKILL_COUNT ClawHub skill(s) loaded"
+
+# Create .learnings/ in workspace for self-improving-agent
+mkdir -p /home/node/.openclaw/workspace/.learnings
+
 echo "[omocw] Starting gateway..."
 exec openclaw gateway run --port "${OPENCLAW_GATEWAY_PORT:-18789}" --verbose
