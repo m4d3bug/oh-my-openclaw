@@ -36,6 +36,10 @@
     "planning-with-files": {
       "version": "2.22.0",
       "installedAt": 1773717312036
+    },
+    "cron-scheduler": {
+      "version": "1.0.0",
+      "installedAt": 1773717924671
     }
   }
 }

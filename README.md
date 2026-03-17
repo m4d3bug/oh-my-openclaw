@@ -20,7 +20,9 @@ curl -fsSL https://raw.githubusercontent.com/m4d3bug/oh-my-openclaw/master/insta
 | 6 | [agent-browser](https://clawhub.ai/TheSethRose/agent-browser) | 0.2.0 | — | Suspicious | Headless browser — navigate, click, type, screenshot, record |
 | 7 | [planning-with-files](https://clawhub.ai/OthmanAdi/planning-with-files) | 2.22.0 | 22 | Suspicious | Task planning — task_plan.md / findings.md / progress.md |
 | 8 | [test-runner](https://clawhub.ai/cmanfre7/test-runner) | 1.0.0 | 10 | Benign | Run tests — Jest, pytest, Playwright, XCTest |
-| 9 | [summarize](https://clawhub.ai/steipete/summarize) | 1.0.0 | — | Benign | Summarize conversations, code changes, and sessions |
+| 9 | [cron-scheduler](https://clawhub.ai/picaye/cron-scheduler) | 1.0.0 | — | Suspicious | Schedule and manage recurring tasks with cron |
+| 10 | [summarize](https://clawhub.ai/steipete/summarize) | 1.0.0 | — | Benign | Summarize conversations, code changes, and sessions |
+| 11 | [cli-anything](https://github.com/HKUDS/CLI-Anything) | — | 1.3k | GitHub | Turn natural language into CLI commands for any tool |
 
 > skill-vetter is installed first — it audits all subsequent skill installs.
 
