@@ -10,18 +10,18 @@ curl -fsSL https://raw.githubusercontent.com/m4d3bug/oh-my-openclaw/master/insta
 
 ## Included skills
 
-| # | Skill | Version | Current Installs | Security | What it does |
-|---|-------|---------|-----------------|----------|-------------|
+| # | Skill | Version | Current Installs | OpenClaw Scan | What it does |
+|---|-------|---------|-----------------|---------------|-------------|
 | 1 | [skill-vetter](https://clawhub.ai/spclaudehome/skill-vetter) | 1.0.0 | 2,000 | ✅ Benign | Security-first vetting — review any skill before install |
 | 2 | [self-improving-agent](https://clawhub.ai/pskoett/self-improving-agent) | 3.0.4 | 3,700 | ✅ Benign | Logs errors, corrections, and learnings across sessions |
 | 3 | [github](https://clawhub.ai/steipete/github) | 1.0.0 | 2,863 | ✅ Benign | Git workflow — PRs, issues, CI runs via `gh` CLI |
 | 4 | [multi-search-engine](https://clawhub.ai/gpyAngyoujun/multi-search-engine) | 2.0.1 | 796 | ✅ Benign | 17 search engines (8 CN + 9 Global), no API key needed |
 | 5 | [ontology](https://clawhub.ai/oswalpalash/ontology) | 1.0.4 | 388 | ✅ Benign | Typed knowledge graph for structured agent memory |
 | 6 | [agent-reach](https://clawhub.ai/Panniantong/agent-reach) | 1.1.0 | 246 | ⚠️ Suspicious | Read 14+ platforms (Twitter, Reddit, YouTube, Bilibili, etc.) |
-| 7 | [agent-browser](https://clawhub.ai/TheSethRose/agent-browser) | 0.2.0 | — | ⚠️ Suspicious | Headless browser — navigate, click, type, screenshot, record |
+| 7 | [agent-browser](https://clawhub.ai/TheSethRose/agent-browser) | 0.2.0 | — | ✅ Benign | Headless browser — navigate, click, type, screenshot, record |
 | 8 | [planning-with-files](https://clawhub.ai/OthmanAdi/planning-with-files) | 2.22.0 | 70 | ⚠️ Suspicious | Task planning — task_plan.md / findings.md / progress.md |
 | 9 | [test-runner](https://clawhub.ai/cmanfre7/test-runner) | 1.0.0 | 71 | ✅ Benign | Run tests — Jest, pytest, Playwright, XCTest |
-| 10 | [cron-scheduler](https://clawhub.ai/picaye/cron-scheduler) | 1.0.0 | — | ⚠️ Suspicious | Schedule and manage recurring tasks with cron |
+| 10 | [cron-scheduler](https://clawhub.ai/picaye/cron-scheduler) | 1.0.0 | — | ✅ Benign | Schedule and manage recurring tasks with cron |
 | 11 | [summarize](https://clawhub.ai/steipete/summarize) | 1.0.0 | — | ✅ Benign | Summarize conversations, code changes, and sessions |
 | 12 | [daily-digest](https://clawhub.ai/pmaeter/daily-digest) | 1.0.0 | 68 | ✅ Benign | Generate daily journal from memory files |
 | 13 | [proactivity](https://clawhub.ai/ivangdavila/proactivity) | 1.0.1 | 18 | ✅ Benign | Anticipate needs, keep work moving, improve over time |
