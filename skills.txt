@@ -55,5 +55,6 @@ openclaw-youtube-transcript [force]
 humanizer
 brainstorming [force]
 writing-plans [force]
+executing-plans [force]
 copywriting
 content-strategy
