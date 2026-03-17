@@ -4,7 +4,7 @@
   "description": "Automatically test and iterate OpenCLAW skills via GitHub Actions with best practices",
   "type": "module",
   "bin": {
-    "omc": "./scripts/omc.js"
+    "omocw": "./scripts/omocw.js"
   },
   "scripts": {
     "setup": "node scripts/setup.js",

@@ -10,7 +10,7 @@ docker compose -f "$ROOT/docker/docker-compose.yml" down --remove-orphans 2>/dev
 echo "[uninstall] Removing Docker images..."
 docker rmi oh-my-openclaw:full oh-my-openclaw:alpine 2>/dev/null || true
 
-echo "[uninstall] Unlinking omc CLI..."
+echo "[uninstall] Unlinking omocw CLI..."
 npm unlink --prefix "$ROOT" 2>/dev/null || true
 
 echo "[uninstall] Done. Host openclaw was never touched."

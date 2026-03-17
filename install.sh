@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # oh-my-openclaw installer
-# Pulls reference images, installs deps, validates skills, links omc CLI.
+# Pulls reference images, installs deps, validates skills, links omocw CLI.
 set -e
 
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
@@ -29,9 +29,9 @@ npm install --prefix "$ROOT"
 echo "[install] Validating skills with AgentGuard..."
 node "$ROOT/scripts/validate.js" --all --strict
 
-# 5. Link omc CLI
-echo "[install] Linking omc CLI..."
-chmod +x "$ROOT/scripts/omc.js"
+# 5. Link omocw CLI
+echo "[install] Linking omocw CLI..."
+chmod +x "$ROOT/scripts/omocw.js"
 if command -v npm &>/dev/null; then
   npm link --prefix "$ROOT" 2>/dev/null || true
 fi
@@ -44,6 +44,6 @@ if [ ! -f "$CONFIG" ]; then
 fi
 
 echo ""
-echo "[install] Done. Run: omc start"
+echo "[install] Done. Run: omocw start"
 echo "          Host openclaw is untouched."
 echo ""

@@ -1,7 +1,7 @@
 # Full-featured OpenClaw image (official GitHub Container Registry)
 FROM ghcr.io/openclaw/openclaw AS base
 
-WORKDIR /omc
+WORKDIR /omocw
 
 # Install Node.js 22+ for oh-my-openclaw scripts
 RUN apt-get update && apt-get install -y --no-install-recommends \

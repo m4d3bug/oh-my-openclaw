@@ -34,6 +34,12 @@ if not OPENAI_KEY and not ANTHROPIC_KEY:
     print('[gen-config] ERROR: set OPENAI_API_KEY or ANTHROPIC_API_KEY', file=sys.stderr)
     sys.exit(1)
 
+if OPENAI_KEY and not OPENAI_URL:
+    print('[gen-config] WARNING: OPENAI_API_KEY set but OPENAI_BASE_URL missing, skipping OpenAI provider', file=sys.stderr)
+
+if ANTHROPIC_KEY and not ANTHROPIC_URL:
+    print('[gen-config] WARNING: ANTHROPIC_API_KEY set but ANTHROPIC_BASE_URL missing, skipping Anthropic provider', file=sys.stderr)
+
 # ── Model definitions shared across both providers ───────────────────────────
 OPENAI_MODELS = [
     dict(id='MiniMax-M2.5',         name='MiniMax M2.5',         reasoning=True,  input=['text'],          contextWindow=200000, maxTokens=8192,  cost=dict(input=0,output=0,cacheRead=0,cacheWrite=0)),

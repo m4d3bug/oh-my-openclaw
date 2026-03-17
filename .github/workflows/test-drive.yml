@@ -43,19 +43,25 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      # ── 2. Pull official OpenClaw image ────────────────────────────────────
-      - name: Pull OpenClaw image
-        run: docker pull ghcr.io/openclaw/openclaw
+      # ── 2. Pull official OpenClaw images ───────────────────────────────────
+      - name: Pull OpenClaw images
+        run: |
+          docker pull ghcr.io/openclaw/openclaw
+          docker pull alpine/openclaw:latest
 
       # ── 3. Install @goplus/agentguard ──────────────────────────────────────
       - name: Install @goplus/agentguard
         run: npm install @goplus/agentguard
 
-      # ── 4. Validate skills with AgentGuard ─────────────────────────────
+      # ── 4. Validate skills with AgentGuard ─────────────────────────────────
       - name: Validate skills with AgentGuard
         run: |
           npm install
           node scripts/validate.js --all --strict || true
+
+      # ── 4.5. Test config generation with alpine/openclaw ───────────────────
+      - name: Test config generation
+        run: bash scripts/test-config.sh --quick
 
       # ── 5. Start oh-my-openclaw ────────────────────────────────────────────
       - name: Start oh-my-openclaw
@@ -70,7 +76,7 @@ jobs:
           OPENCLAW_GATEWAY_PORT: '18789'
         run: |
           docker run -d \
-            --name omc \
+            --name omocw \
             -e OPENAI_API_KEY="${OPENAI_API_KEY}" \
             -e OPENAI_BASE_URL="${OPENAI_BASE_URL}" \
             -e OPENAI_MODEL="${OPENAI_MODEL}" \
@@ -79,15 +85,15 @@ jobs:
             -e ANTHROPIC_MODEL="${ANTHROPIC_MODEL}" \
             -e TELEGRAM_BOT_TOKEN="${TELEGRAM_BOT_TOKEN}" \
             -e OPENCLAW_GATEWAY_PORT=18789 \
-            -v "$PWD:/omc:ro" \
+            -v "$PWD:/omocw:ro" \
             ghcr.io/openclaw/openclaw \
-            bash /omc/docker/entrypoint.sh
+            bash /omocw/docker/entrypoint.sh
 
       # ── 6. Wait for startup ────────────────────────────────────────────────
       - name: Wait for bot startup
         run: |
           sleep 20
-          docker logs omc 2>&1 | grep -v $'\x1b' | grep -E "gateway.listen|telegram.*provider|model:|error" || true
+          docker logs omocw 2>&1 | grep -v $'\x1b' | grep -E "gateway.listen|telegram.*provider|model:|error" || true
           echo ""
           echo "============================================"
           echo "  Bot is LIVE — chat on Telegram now!"
@@ -105,16 +111,16 @@ jobs:
             sleep $STEP
             ELAPSED=$(( ELAPSED + STEP ))
             REMAINING=$(( SECS - ELAPSED ))
-            STATUS=$(docker inspect omc --format='{{.State.Status}}' 2>/dev/null || echo "gone")
-            echo "[omc] ${ELAPSED}s elapsed — ${REMAINING}s remaining — container: ${STATUS}"
+            STATUS=$(docker inspect omocw --format='{{.State.Status}}' 2>/dev/null || echo "gone")
+            echo "[omocw] ${ELAPSED}s elapsed — ${REMAINING}s remaining — container: ${STATUS}"
           done
 
       # ── 8. Final logs ───────────────────────────────────────────────────────
       - name: Show bot logs
         if: always()
-        run: docker logs --tail 150 omc 2>&1 | grep -v $'\x1b' || true
+        run: docker logs --tail 150 omocw 2>&1 | grep -v $'\x1b' || true
 
       # ── 9. Cleanup ─────────────────────────────────────────────────────────
       - name: Stop container
         if: always()
-        run: docker rm -f omc || true
+        run: docker rm -f omocw || true

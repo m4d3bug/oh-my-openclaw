@@ -1,9 +1,7 @@
-version: '3.8'
-
 services:
   openclaw-alpine:
     image: ghcr.io/openclaw/openclaw:latest
-    container_name: omc-alpine
+    container_name: omocw-alpine
     environment:
       - OPENCLAW_GATEWAY_PORT=${OPENCLAW_GATEWAY_PORT:-18789}
       - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY}
@@ -16,17 +14,17 @@ services:
     ports:
       - "${OPENCLAW_GATEWAY_PORT:-18789}:${OPENCLAW_GATEWAY_PORT:-18789}"
     volumes:
-      - ${PWD}/skills:/omc/skills:ro
-      - ${PWD}/config:/omc/config:ro
-      - ${PWD}/agents:/omc/agents:ro
-      - ./docker/entrypoint.sh:/omc/docker/entrypoint.sh:ro
-    entrypoint: ["bash", "/omc/docker/entrypoint.sh"]
+      - ${PWD}/skills:/omocw/skills:ro
+      - ${PWD}/config:/omocw/config:ro
+      - ${PWD}/agents:/omocw/agents:ro
+      - ./docker/entrypoint.sh:/omocw/docker/entrypoint.sh:ro
+    entrypoint: ["bash", "/omocw/docker/entrypoint.sh"]
     profiles:
       - alpine
 
   openclaw-full:
     image: ghcr.io/openclaw/openclaw:latest
-    container_name: omc-full
+    container_name: omocw-full
     environment:
       - OPENCLAW_GATEWAY_PORT=${OPENCLAW_GATEWAY_PORT:-18789}
       - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY}
@@ -39,22 +37,50 @@ services:
     ports:
       - "${OPENCLAW_GATEWAY_PORT:-18789}:${OPENCLAW_GATEWAY_PORT:-18789}"
     volumes:
-      - ${PWD}/skills:/omc/skills:ro
-      - ${PWD}/config:/omc/config:ro
-      - ${PWD}/agents:/omc/agents:ro
-      - ./docker/entrypoint.sh:/omc/docker/entrypoint.sh:ro
-    entrypoint: ["bash", "/omc/docker/entrypoint.sh"]
+      - ${PWD}/skills:/omocw/skills:ro
+      - ${PWD}/config:/omocw/config:ro
+      - ${PWD}/agents:/omocw/agents:ro
+      - ./docker/entrypoint.sh:/omocw/docker/entrypoint.sh:ro
+    entrypoint: ["bash", "/omocw/docker/entrypoint.sh"]
     profiles:
       - full
 
   validate:
     image: ghcr.io/openclaw/openclaw:latest
-    container_name: omc-validate
+    container_name: omocw-validate
     environment:
-      - SKILLS_DIR=${SKILLS_DIR:-/omc/skills}
+      - SKILLS_DIR=${SKILLS_DIR:-/omocw/skills}
     volumes:
-      - ${PWD}:/omc:ro
-    entrypoint: ["bash", "-c", "npm install @goplus/agentguard && node /omc/scripts/validate.js --dir ${SKILLS_DIR} --strict"]
+      - ${PWD}:/omocw:ro
+    entrypoint: ["bash", "-c", "npm install @goplus/agentguard && node /omocw/scripts/validate.js --dir ${SKILLS_DIR} --strict"]
     profiles:
       - validate
-    working_dir: /omc
+    working_dir: /omocw
+
+  # Config test runner using official alpine image (no build step)
+  test:
+    image: alpine/openclaw:latest
+    container_name: omocw-test
+    environment:
+      - OPENAI_API_KEY=${OPENAI_API_KEY:-test-key}
+      - OPENAI_BASE_URL=${OPENAI_BASE_URL:-https://example.com/v1}
+      - OPENAI_MODEL=${OPENAI_MODEL:-MiniMax-M2.5}
+      - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY:-}
+      - ANTHROPIC_BASE_URL=${ANTHROPIC_BASE_URL:-}
+      - ANTHROPIC_MODEL=${ANTHROPIC_MODEL:-}
+      - TELEGRAM_BOT_TOKEN=${TELEGRAM_BOT_TOKEN:-000000000:TEST}
+    volumes:
+      - ${PWD}:/omocw:ro
+    command: ["python3", "/omocw/docker/gen-config.py"]
+    profiles:
+      - test
+
+  # Subproject sync runner — clones/updates third-party projects
+  subproject-sync:
+    image: alpine/openclaw:latest
+    container_name: omocw-subproject-sync
+    volumes:
+      - ${PWD}:/omocw
+    command: ["bash", "/omocw/scripts/subprojects.sh", "sync"]
+    profiles:
+      - subprojects

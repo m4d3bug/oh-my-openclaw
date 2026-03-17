@@ -86,7 +86,7 @@
   "agents": {
     "defaults": {
       "model": {
-        "primary": "aliyun-coding/__OMC_MODEL__"
+        "primary": "aliyun-coding/__OMOCW_MODEL__"
       },
       "contextPruning": {
         "mode": "cache-ttl",

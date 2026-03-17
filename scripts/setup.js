@@ -84,7 +84,7 @@ services:
   openclaw-${imgTag}:
     environment:
       - OPENCLAW_GATEWAY_PORT=${gwPort}
-      - OMC_AGENT_MODE=${agMode}
+      - OMOCW_AGENT_MODE=${agMode}
     volumes:
       - ${wsPath}:/workspace
 `;

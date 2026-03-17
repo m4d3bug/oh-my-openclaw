@@ -1,0 +1,58 @@
+{
+  "_comment": "oh-my-openclaw sources manifest. All URLs fetched at startup; local paths are fallback.",
+
+  "agents": [
+    {
+      "name": "planner",
+      "emoji": "🧠",
+      "default": true,
+      "files": {
+        "BOOTSTRAP.md": {
+          "url": "https://raw.githubusercontent.com/uluckyXH/OpenMOSS/main/prompts/templates/task-planner.md",
+          "local": "agents/planner.md"
+        }
+      }
+    },
+    {
+      "name": "executor",
+      "emoji": "💻",
+      "files": {
+        "BOOTSTRAP.md": {
+          "url": "https://raw.githubusercontent.com/uluckyXH/OpenMOSS/main/prompts/templates/executor.md",
+          "local": "agents/executor.md"
+        }
+      }
+    },
+    {
+      "name": "reviewer",
+      "emoji": "🔍",
+      "files": {
+        "BOOTSTRAP.md": {
+          "url": "https://raw.githubusercontent.com/uluckyXH/OpenMOSS/main/prompts/templates/task-reviewer.md",
+          "local": "agents/reviewer.md"
+        }
+      }
+    },
+    {
+      "name": "patrol",
+      "emoji": "🛡️",
+      "files": {
+        "BOOTSTRAP.md": {
+          "url": "https://raw.githubusercontent.com/uluckyXH/OpenMOSS/main/prompts/templates/task-patrol.md",
+          "local": "agents/patrol.md"
+        }
+      }
+    }
+  ],
+
+  "skills": [
+    { "name": "autopilot.js", "local": "skills/autopilot.js" },
+    { "name": "team.js",      "local": "skills/team.js" },
+    { "name": "git.js",       "local": "skills/git.js" },
+    { "name": "code.js",      "local": "skills/code.js" },
+    { "name": "notify.js",    "local": "skills/notify.js" }
+  ],
+
+  "workspace": [
+  ]
+}

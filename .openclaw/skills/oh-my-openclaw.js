@@ -2,7 +2,7 @@
  * oh-my-openclaw — main openclaw skill entry point
  *
  * Loaded by openclaw via OPENCLAW_SKILL_PATH.
- * Registers all omc skills after AgentGuard validation.
+ * Registers all omocw skills after AgentGuard validation.
  */
 
 import { createRequire } from 'module';

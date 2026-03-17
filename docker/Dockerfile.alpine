@@ -1,7 +1,7 @@
 # Lightweight Alpine-based OpenClaw image
 FROM alpine/openclaw:latest AS base
 
-WORKDIR /omc
+WORKDIR /omocw
 
 # Install Node.js 22+ and dependencies on Alpine
 RUN apk add --no-cache \

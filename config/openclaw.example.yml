@@ -8,13 +8,13 @@ gateway:
 
 # AI model configuration
 model:
-  default: auto          # auto = omc routes based on task complexity
+  default: auto          # auto = omocw routes based on task complexity
   fast: claude-haiku-4-5-20251001
   smart: claude-sonnet-4-6
   powerful: claude-opus-4-6
 
 # oh-my-openclaw agent routing thresholds
-omc:
+omocw:
   routing:
     use_fast_below_tokens: 1000    # use fast model for short tasks
     use_powerful_above_tokens: 8000 # use powerful model for complex tasks
