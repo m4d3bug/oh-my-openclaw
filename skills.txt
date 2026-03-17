@@ -35,6 +35,8 @@ planning-with-files [force]
 pyright-lsp [github]
 cacheforge-vibe-check [github]
 docsync [github]
+simplify-and-harden
+env-setup
 
 # ── DevOps ───────────────────────────────────────
 cron-mastery [force]

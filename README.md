@@ -14,7 +14,7 @@ openclaw plugins install @m4d3bug/oh-my-openclaw
 curl -fsSL https://raw.githubusercontent.com/m4d3bug/oh-my-openclaw/master/install.sh | bash
 ```
 
-## Included skills (31)
+## Included skills (33)
 
 ### Security
 
@@ -63,6 +63,8 @@ curl -fsSL https://raw.githubusercontent.com/m4d3bug/oh-my-openclaw/master/insta
 | [pyright-lsp](https://clawskills.sh/skills/bowen31337-pyright-lsp) | 1.0.0 | 1 | ✅ Benign | Python language server — static type checking |
 | [cacheforge-vibe-check](https://clawskills.sh/skills/tkuehnl-cacheforge-vibe-check) | 1.0.0 | 0 | ✅ Benign | Detect AI-generated code quality issues |
 | [docsync](https://clawskills.sh/skills/suhteevah-docsync) | 1.0.1 | 0 | ✅ Benign | Auto-generate docs from code, detect doc drift |
+| [simplify-and-harden](https://clawhub.ai/pskoett/simplify-and-harden) | 1.0.1 | 6 | ✅ Benign | Post-completion self-review — simplify, harden, micro-doc |
+| [env-setup](https://clawhub.ai/Fratua/env-setup) | 1.0.0 | 2 | ✅ Benign | Scan env vars, generate .env.example, validate .gitignore |
 
 ### DevOps
 

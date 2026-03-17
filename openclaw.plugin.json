@@ -2,7 +2,7 @@
   "id": "oh-my-openclaw",
   "name": "oh-my-openclaw",
   "description": "Curated ClawHub skills for OpenClaw — Claude Code level experience",
-  "version": "0.7.0",
+  "version": "0.8.0",
   "skills": [
     "./skills/skill-vetter",
     "./skills/agent-sentinel",
@@ -27,6 +27,8 @@
     "./skills/pyright-lsp",
     "./skills/cacheforge-vibe-check",
     "./skills/docsync",
+    "./skills/simplify-and-harden",
+    "./skills/env-setup",
     "./skills/cron-mastery",
     "./skills/agentic-devops",
     "./skills/cicd-pipeline",
