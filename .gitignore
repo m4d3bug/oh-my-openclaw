@@ -6,7 +6,5 @@ config/openclaw.local.yml
 .env
 *.log
 .DS_Store
-subprojects/*/
-!subprojects/.gitkeep
-!subprojects/manifest.yml
 test-results/
+/.learnings/

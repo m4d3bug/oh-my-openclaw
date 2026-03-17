@@ -7,7 +7,8 @@
  *   omocw validate           run AgentGuard on all / custom skills
  *   omocw start [alpine]     start openclaw container
  *   omocw update             pull new images + re-validate
- *   omocw install <url>      install a skill from URL
+ *   omocw install <slug>     install a skill via clawhub
+ *   omocw search <query>     search clawhub skills
  *   omocw test [opts]        test config with alpine/openclaw:latest
  *   omocw agent <name>       print a built-in agent prompt
  */
@@ -46,25 +47,36 @@ switch (cmd) {
     break;
 
   case 'install': {
-    const url = rest[0];
-    if (!url) {
-      console.error('Usage: omocw install <install-url> [--force] [--validate]');
+    const slug = rest[0];
+    if (!slug) {
+      console.error('Usage: omocw install <slug> [--version <ver>] [--force]');
       process.exit(1);
     }
-    run(`node ${ROOT}/scripts/install-skill.js ${url} ${rest.slice(1).join(' ')}`);
+    run(`clawhub install ${rest.join(' ')} --workdir ${ROOT}`);
     break;
   }
+
+  case 'uninstall': {
+    const slug = rest[0];
+    if (!slug) {
+      console.error('Usage: omocw uninstall <slug>');
+      process.exit(1);
+    }
+    run(`clawhub uninstall ${slug} --workdir ${ROOT}`);
+    break;
+  }
+
+  case 'search':
+    run(`clawhub search ${rest.join(' ')}`);
+    break;
+
+  case 'list':
+    run(`clawhub list --workdir ${ROOT}`);
+    break;
 
   case 'test':
     run(`bash ${ROOT}/scripts/test-config.sh ${rest.join(' ')}`);
     break;
-
-  case 'subprojects':
-  case 'sub': {
-    const subCmd = rest[0] || 'list';
-    run(`bash ${ROOT}/scripts/subprojects.sh ${subCmd}`);
-    break;
-  }
 
   case 'agent': {
     const name = rest[0];
@@ -94,9 +106,11 @@ Usage:
   omocw validate [opts]    Run AgentGuard on skills
   omocw start [full]       Start openclaw container (default: alpine)
   omocw update             Pull latest images + re-validate + rebuild
-  omocw install <url>      Install a skill from URL (e.g., GitHub raw install.md)
+  omocw install <slug>     Install a skill from ClawHub
+  omocw uninstall <slug>   Uninstall a clawhub skill
+  omocw search <query>     Search ClawHub skills
+  omocw list               List installed clawhub skills
   omocw test [opts]        Test config with alpine/openclaw:latest
-  omocw sub [sync|clean|list]  Manage third-party subprojects
   omocw agent [name]       Show a built-in agent prompt
 
 Options for validate:
@@ -111,8 +125,9 @@ Options for test:
   --with-boot            Full bootstrap test (needs API keys)
 
 Examples:
-  omocw install https://raw.githubusercontent.com/m4d3bug/wechat-to-obsidian/main/install.md
-  omocw test --quick
+  omocw install self-improving-agent
+  omocw search "code review"
+  omocw list
   omocw validate --all --strict
 `);
 }

@@ -74,13 +74,3 @@ services:
     command: ["python3", "/omocw/docker/gen-config.py"]
     profiles:
       - test
-
-  # Subproject sync runner — clones/updates third-party projects
-  subproject-sync:
-    image: alpine/openclaw:latest
-    container_name: omocw-subproject-sync
-    volumes:
-      - ${PWD}:/omocw
-    command: ["bash", "/omocw/scripts/subprojects.sh", "sync"]
-    profiles:
-      - subprojects

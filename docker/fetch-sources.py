@@ -233,50 +233,6 @@ def handle_workspace(entries):
 # Main
 # ---------------------------------------------------------------------------
 
-def load_subproject_manifest():
-    """Load agents/skills from subprojects/manifest.yml if present."""
-    sub_manifest = os.path.join(OC_REPO, "subprojects", "manifest.yml")
-    if not os.path.isfile(sub_manifest):
-        return [], []
-
-    try:
-        import yaml
-    except ImportError:
-        print("[sources] subprojects/manifest.yml found but PyYAML not installed, skipping")
-        return [], []
-
-    with open(sub_manifest) as f:
-        data = yaml.safe_load(f) or {}
-
-    agents = []
-    skills = []
-    for sp in data.get("subprojects", []):
-        if not sp.get("enabled", True):
-            continue
-        name = sp.get("name", "")
-        sp_dir = os.path.join(OC_REPO, "subprojects", name)
-        if not os.path.isdir(sp_dir):
-            continue
-
-        for agent in sp.get("agents", []):
-            agents.append({
-                "name": agent.get("as", ""),
-                "emoji": "",
-                "files": {
-                    "BOOTSTRAP.md": {
-                        "local": os.path.join("subprojects", name, agent["path"])
-                    }
-                }
-            })
-        for skill in sp.get("skills", []):
-            skills.append({
-                "name": skill.get("as", ""),
-                "local": os.path.join("subprojects", name, skill["path"])
-            })
-
-    return agents, skills
-
-
 def main():
     if not MANIFEST:
         print("[sources] no manifest found (sources.json / sources.yml), skipping")
@@ -291,18 +247,8 @@ def main():
     model_id = detect_model_id()
     partial  = False
 
-    all_agents = list(manifest.get("agents") or [])
-    all_skills = list(manifest.get("skills") or [])
-
-    # Merge subproject agents/skills if subprojects are cloned
-    sub_agents, sub_skills = load_subproject_manifest()
-    if sub_agents or sub_skills:
-        print(f"[sources] subprojects: {len(sub_agents)} agents, {len(sub_skills)} skills")
-        all_agents.extend(sub_agents)
-        all_skills.extend(sub_skills)
-
-    partial |= handle_agents(all_agents, model_id)
-    partial |= handle_skills(all_skills)
+    partial |= handle_agents(manifest.get("agents") or [], model_id)
+    partial |= handle_skills(manifest.get("skills") or [])
     partial |= handle_workspace(manifest.get("workspace") or [])
 
     return 1 if partial else 0
