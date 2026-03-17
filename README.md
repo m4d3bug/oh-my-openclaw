@@ -10,22 +10,22 @@ curl -fsSL https://raw.githubusercontent.com/m4d3bug/oh-my-openclaw/master/insta
 
 ## Included skills
 
-| # | Skill | Version | Stars | Installs | Security | What it does |
-|---|-------|---------|-------|----------|----------|-------------|
-| 1 | [skill-vetter](https://clawhub.ai/spclaudehome/skill-vetter) | 1.0.0 | 434 | 2,019 | ✅ Benign | Security-first vetting — review any skill before install |
-| 2 | [self-improving-agent](https://clawhub.ai/pskoett/self-improving-agent) | 3.0.4 | 2.2k | 3,800 | ✅ Benign | Logs errors, corrections, and learnings across sessions |
-| 3 | [github](https://clawhub.ai/steipete/github) | 1.0.0 | 378 | 2,929 | ✅ Benign | Git workflow — PRs, issues, CI runs via `gh` CLI |
-| 4 | [multi-search-engine](https://clawhub.ai/gpyAngyoujun/multi-search-engine) | 2.0.1 | 303 | 819 | ✅ Benign | 17 search engines (8 CN + 9 Global), no API key needed |
-| 5 | [ontology](https://clawhub.ai/oswalpalash/ontology) | 1.0.4 | 296 | 402 | ✅ Benign | Typed knowledge graph for structured agent memory |
-| 6 | [agent-reach](https://clawhub.ai/Panniantong/agent-reach) | 1.1.0 | 7.5k | 251 | ⚠️ Suspicious | Read 14+ platforms (Twitter, Reddit, YouTube, Bilibili, etc.) |
-| 7 | [agent-browser](https://clawhub.ai/TheSethRose/agent-browser) | 0.2.0 | — | — | ⚠️ Suspicious | Headless browser — navigate, click, type, screenshot, record |
-| 8 | [planning-with-files](https://clawhub.ai/OthmanAdi/planning-with-files) | 2.22.0 | 22 | 73 | ⚠️ Suspicious | Task planning — task_plan.md / findings.md / progress.md |
-| 9 | [test-runner](https://clawhub.ai/cmanfre7/test-runner) | 1.0.0 | 10 | 72 | ✅ Benign | Run tests — Jest, pytest, Playwright, XCTest |
-| 10 | [cron-scheduler](https://clawhub.ai/picaye/cron-scheduler) | 1.0.0 | — | — | ⚠️ Suspicious | Schedule and manage recurring tasks with cron |
-| 11 | [summarize](https://clawhub.ai/steipete/summarize) | 1.0.0 | — | — | ✅ Benign | Summarize conversations, code changes, and sessions |
-| 12 | [daily-digest](https://clawhub.ai/pmaeter/daily-digest) | 1.0.0 | 2 | 69 | ✅ Benign | Generate daily journal from memory files |
-| 13 | [proactivity](https://clawhub.ai/ivangdavila/proactivity) | 1.0.1 | 3 | 21 | ✅ Benign | Anticipate needs, keep work moving, improve over time |
-| 14 | [cli-anything](https://github.com/HKUDS/CLI-Anything) | — | 1.3k | — | GitHub | Natural language to CLI commands for any tool |
+| # | Skill | Version | Current Installs | Security | What it does |
+|---|-------|---------|-----------------|----------|-------------|
+| 1 | [skill-vetter](https://clawhub.ai/spclaudehome/skill-vetter) | 1.0.0 | 2,000 | ✅ Benign | Security-first vetting — review any skill before install |
+| 2 | [self-improving-agent](https://clawhub.ai/pskoett/self-improving-agent) | 3.0.4 | 3,700 | ✅ Benign | Logs errors, corrections, and learnings across sessions |
+| 3 | [github](https://clawhub.ai/steipete/github) | 1.0.0 | 2,863 | ✅ Benign | Git workflow — PRs, issues, CI runs via `gh` CLI |
+| 4 | [multi-search-engine](https://clawhub.ai/gpyAngyoujun/multi-search-engine) | 2.0.1 | 796 | ✅ Benign | 17 search engines (8 CN + 9 Global), no API key needed |
+| 5 | [ontology](https://clawhub.ai/oswalpalash/ontology) | 1.0.4 | 388 | ✅ Benign | Typed knowledge graph for structured agent memory |
+| 6 | [agent-reach](https://clawhub.ai/Panniantong/agent-reach) | 1.1.0 | 246 | ⚠️ Suspicious | Read 14+ platforms (Twitter, Reddit, YouTube, Bilibili, etc.) |
+| 7 | [agent-browser](https://clawhub.ai/TheSethRose/agent-browser) | 0.2.0 | — | ⚠️ Suspicious | Headless browser — navigate, click, type, screenshot, record |
+| 8 | [planning-with-files](https://clawhub.ai/OthmanAdi/planning-with-files) | 2.22.0 | 70 | ⚠️ Suspicious | Task planning — task_plan.md / findings.md / progress.md |
+| 9 | [test-runner](https://clawhub.ai/cmanfre7/test-runner) | 1.0.0 | 71 | ✅ Benign | Run tests — Jest, pytest, Playwright, XCTest |
+| 10 | [cron-scheduler](https://clawhub.ai/picaye/cron-scheduler) | 1.0.0 | — | ⚠️ Suspicious | Schedule and manage recurring tasks with cron |
+| 11 | [summarize](https://clawhub.ai/steipete/summarize) | 1.0.0 | — | ✅ Benign | Summarize conversations, code changes, and sessions |
+| 12 | [daily-digest](https://clawhub.ai/pmaeter/daily-digest) | 1.0.0 | 68 | ✅ Benign | Generate daily journal from memory files |
+| 13 | [proactivity](https://clawhub.ai/ivangdavila/proactivity) | 1.0.1 | 18 | ✅ Benign | Anticipate needs, keep work moving, improve over time |
+| 14 | [cli-anything](https://github.com/HKUDS/CLI-Anything) | — | — | GitHub | Natural language to CLI commands for any tool |
 
 > Skills are **not** stored in this repo. They are installed from ClawHub/GitHub at container startup via `skills.txt` and `github-skills.txt`.
 > skill-vetter is installed first to audit all subsequent installs.
