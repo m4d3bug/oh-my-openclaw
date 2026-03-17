@@ -1,31 +1,23 @@
 # oh-my-openclaw skill manifest
 # One slug per line. Lines starting with # are ignored.
 # --force flag is appended for skills marked with [force]
-# Skills are installed in order — skill-vetter first for security auditing.
 # Skills marked [github] are fetched from openclaw/skills repo, not clawhub CLI.
 
 # ── Security ──────────────────────────────────────
 skill-vetter
-anti-injection-skill [force]
 agent-sentinel [force]
-ggshield-scanner [github]
-credential-manager [github]
 arc-skill-scanner [github]
-agentaudit [github]
 
 # ── Memory & Persistence ─────────────────────────
 self-improving-agent
 agent-memory
 ontology
-fractal-memory [github]
 arc-wake-state [github]
 agent-wal [github]
 
 # ── Agent Behavior ───────────────────────────────
 proactivity
 metacognition [github]
-agent-mode-upgrades [github]
-debug-methodology [github]
 runesleo-systematic-debugging
 agent-team-orchestration
 
@@ -34,7 +26,6 @@ smart-context [github]
 summarize
 daily-digest
 alex-session-wrap-up [github]
-buildlog [github]
 buffer-session [github]
 
 # ── Code Intelligence ────────────────────────────
@@ -48,13 +39,11 @@ docsync [github]
 # ── DevOps ───────────────────────────────────────
 cron-mastery [force]
 agentic-devops [github]
-sentry-observability [github]
-arc-metrics-dashboard [github]
 cicd-pipeline [github]
 
 # ── Context & Search ─────────────────────────────
 multi-search-engine
 agent-reach [force]
 agent-browser [force]
-docs-feeder [github]
 cli-anything [github]
+clawddocs [github]

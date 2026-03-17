@@ -14,19 +14,15 @@ openclaw plugins install @m4d3bug/oh-my-openclaw
 curl -fsSL https://raw.githubusercontent.com/m4d3bug/oh-my-openclaw/master/install.sh | bash
 ```
 
-## Included skills (41)
+## Included skills (31)
 
 ### Security
 
 | Skill | Version | Installs | OpenClaw Scan | What it does |
 |-------|---------|----------|---------------|-------------|
 | [skill-vetter](https://clawhub.ai/spclaudehome/skill-vetter) | 1.0.0 | 2,000 | ✅ Benign | Security-first vetting — review any skill before install |
-| [anti-injection-skill](https://clawhub.ai/skills/anti-injection-skill) | 1.1.2 | 3 | ⚠️ Suspicious | Block prompt injection, memory tampering, data leakage |
 | [agent-sentinel](https://clawhub.ai/skills/agent-sentinel) | 0.1.1 | 3 | ✅ Benign | Safety circuit breaker — budget constraints, rate limits |
-| [ggshield-scanner](https://clawskills.sh/skills/amascia-gg-ggshield-scanner) | 1.0.2 | 3 | ⚠️ Suspicious | Detect 500+ types of hardcoded secrets |
-| [credential-manager](https://clawskills.sh/skills/callmedas69-credential-manager) | 1.3.0 | 21 | ⚠️ Suspicious | Unified credential management, enforce security baseline |
 | [arc-skill-scanner](https://clawskills.sh/skills/trypto1019-arc-skill-scanner) | 1.4.0 | 0 | ✅ Benign | Auto-scan skills for vulnerabilities before install |
-| [agentaudit](https://clawskills.sh/skills/starbuck100-agentaudit) | 1.0.0 | 1 | ⚠️ Suspicious | Check vulnerability databases before package install |
 
 ### Memory & Persistence
 
@@ -35,7 +31,6 @@ curl -fsSL https://raw.githubusercontent.com/m4d3bug/oh-my-openclaw/master/insta
 | [self-improving-agent](https://clawhub.ai/pskoett/self-improving-agent) | 3.0.4 | 3,700 | ✅ Benign | Log errors, corrections, and learnings across sessions |
 | [agent-memory](https://clawhub.ai/skills/agent-memory) | 1.0.0 | 262 | ✅ Benign | Persistent SQLite memory — store, recall, track entities |
 | [ontology](https://clawhub.ai/oswalpalash/ontology) | 1.0.4 | 388 | ✅ Benign | Typed knowledge graph for structured agent memory |
-| [fractal-memory](https://clawskills.sh/skills/bugmaker2-fractal-memory) | 1.0.0 | 0 | ⚠️ Suspicious | Hierarchical compression — prevent context overflow |
 | [arc-wake-state](https://clawskills.sh/skills/trypto1019-arc-wake-state) | 1.0.0 | 0 | ✅ Benign | Auto-recover agent state after crash/restart |
 | [agent-wal](https://clawskills.sh/skills/bowen31337-agent-wal) | 1.0.1 | 5 | ✅ Benign | Write-Ahead Log — atomic state change guarantees |
 
@@ -45,8 +40,6 @@ curl -fsSL https://raw.githubusercontent.com/m4d3bug/oh-my-openclaw/master/insta
 |-------|---------|----------|---------------|-------------|
 | [proactivity](https://clawhub.ai/ivangdavila/proactivity) | 1.0.1 | 18 | ✅ Benign | Anticipate needs, keep work moving, improve over time |
 | [metacognition](https://clawskills.sh/skills/meimakes-metacognition) | 1.0.0 | 0 | ✅ Benign | Self-reflection engine — extract patterns into knowledge graph |
-| [agent-mode-upgrades](https://clawskills.sh/skills/maverick-software-agent-mode-upgrades) | 2.3.1 | 2 | ⚠️ Suspicious | Persistent state + auto-planning + pre-execution approval |
-| [debug-methodology](https://clawskills.sh/skills/abczsl520-debug-methodology) | 1.2.0 | 2 | ✅ Benign | Systematic debugging — block patch chains and workarounds |
 | [runesleo-systematic-debugging](https://clawhub.ai/runesleo/runesleo-systematic-debugging) | 3.0.0 | 9 | ✅ Benign | Four-phase systematic debugging framework |
 | [agent-team-orchestration](https://clawhub.ai/arminnaimi/agent-team-orchestration) | 1.0.0 | 125 | ✅ Benign | Multi-agent team coordination — roles, handoffs, reviews |
 
@@ -58,7 +51,6 @@ curl -fsSL https://raw.githubusercontent.com/m4d3bug/oh-my-openclaw/master/insta
 | [summarize](https://clawhub.ai/steipete/summarize) | 1.0.0 | 3,800 | ✅ Benign | Summarize conversations, code changes, and sessions |
 | [daily-digest](https://clawhub.ai/pmaeter/daily-digest) | 1.0.0 | 68 | ✅ Benign | Generate daily journal from memory files |
 | [alex-session-wrap-up](https://clawskills.sh/skills/xbillwatsonx-alex-session-wrap-up) | 1.0.0 | 0 | ✅ Benign | Auto-commit + extract learnings + persist rules |
-| [buildlog](https://clawskills.sh/skills/espetey-buildlog) | 1.0.1 | 7 | ⚠️ Suspicious | Replayable coding session log for auditing |
 | [buffer-session](https://clawskills.sh/skills/waynevaughan-buffer-session) | 1.0.0 | 0 | ✅ Benign | Native session switching with state buffering |
 
 ### Code Intelligence
@@ -78,8 +70,6 @@ curl -fsSL https://raw.githubusercontent.com/m4d3bug/oh-my-openclaw/master/insta
 |-------|---------|----------|---------------|-------------|
 | [cron-mastery](https://clawhub.ai/i-mw/cron-mastery) | 1.0.3 | 103 | ✅ Benign | Cron scheduling and system maintenance |
 | [agentic-devops](https://clawskills.sh/skills/tkuehnl-agentic-devops) | 1.0.0 | 0 | ✅ Benign | Docker + process management + log analysis + health monitoring |
-| [sentry-observability](https://clawskills.sh/skills/sergical-sentry-observability) | 1.1.0 | 0 | ⚠️ Suspicious | Error/log/traces integration with Sentry |
-| [arc-metrics-dashboard](https://clawskills.sh/skills/trypto1019-arc-metrics-dashboard) | 1.0.0 | 0 | ✅ Benign | Agent call volume, error rate, latency, cost visualization |
 | [cicd-pipeline](https://clawskills.sh/skills/gitgoodordietrying-cicd-pipeline) | 1.0.0 | 24 | ✅ Benign | Manage GitHub Actions CI/CD pipelines directly |
 
 ### Context & Search
@@ -89,10 +79,11 @@ curl -fsSL https://raw.githubusercontent.com/m4d3bug/oh-my-openclaw/master/insta
 | [multi-search-engine](https://clawhub.ai/gpyAngyoujun/multi-search-engine) | 2.0.1 | 796 | ✅ Benign | 17 search engines (8 CN + 9 Global), no API key needed |
 | [agent-reach](https://clawhub.ai/Panniantong/agent-reach) | 1.1.0 | 246 | ⚠️ Suspicious | Read 14+ platforms (Twitter, Reddit, YouTube, Bilibili, etc.) |
 | [agent-browser](https://clawhub.ai/TheSethRose/agent-browser) | 0.2.0 | — | ✅ Benign | Headless browser — navigate, click, type, screenshot, record |
-| [docs-feeder](https://clawskills.sh/skills/zerone0x-docs-feeder) | 1.0.0 | 1 | ⚠️ Suspicious | Auto-fetch project docs and feed to agent |
 | [cli-anything](https://github.com/HKUDS/CLI-Anything) | — | — | GitHub | Natural language to CLI commands for any tool |
+| [clawddocs](https://clawskills.sh/skills/nicholasspisak-clawddocs) | 1.2.2 | 413 | ✅ Benign | OpenClaw documentation assistant with decision tree routing |
 
 > skill-vetter is installed first to audit all subsequent installs.
+> Suspicious rate: 6% (2/30) — only agent-reach and planning-with-files, both kept for irreplaceable functionality.
 
 ## Try it — GitHub Actions + Telegram
 
