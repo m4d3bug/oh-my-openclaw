@@ -26,11 +26,11 @@ on:
   workflow_dispatch:
     inputs:
       duration:
-        description: 'How many minutes to keep the bot alive (5–25)'
+        description: 'How many minutes to keep the bot alive (5–350)'
         required: false
         default: '15'
         type: choice
-        options: ['5', '10', '15', '20', '25']
+        options: ['5', '15', '30', '60', '120', '180', '240', '300', '350']
 
 concurrency:
   group: omocw-telegram
@@ -40,7 +40,7 @@ jobs:
   test-drive:
     name: Boot oh-my-openclaw & connect to Telegram
     runs-on: ubuntu-latest
-    timeout-minutes: 35
+    timeout-minutes: 350
 
     steps:
       # ── 1. Checkout ────────────────────────────────────────────────────────
