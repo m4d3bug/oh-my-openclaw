@@ -45,64 +45,18 @@ elif [ "$FETCH_EXIT" -ge 2 ]; then
     exit "$FETCH_EXIT"
 fi
 
-# ── Install ClawHub skills from skills.txt ─────────────────────────────────
+# ── Copy skills from mounted /omocw/skills/ into OpenClaw ──────────────────
+# Skills are pre-installed on the host (by CI or install.sh) and mounted read-only.
 mkdir -p "$OC_SKILLS"
-if [ -f "/omocw/skills.txt" ]; then
-    echo "[omocw] Installing ClawHub skills from skills.txt..."
-    npm install -g clawhub 2>/dev/null || true
-    SKILL_COUNT=0
-    while IFS= read -r line; do
-        line="${line%%#*}"           # strip comments
-        line="$(echo "$line" | xargs)" # trim whitespace
-        [ -z "$line" ] && continue
-
-        FORCE_FLAG=""
-        if echo "$line" | grep -q '\[force\]'; then
-            FORCE_FLAG="--force"
-            line="$(echo "$line" | sed 's/\[force\]//' | xargs)"
-        fi
-
-        echo "[omocw]   Installing: $line"
-        clawhub install "$line" $FORCE_FLAG --workdir /tmp/omocw-skills --no-input 2>/dev/null || true
-
-        # Copy to OpenClaw skills dir
-        if [ -f "/tmp/omocw-skills/skills/$line/SKILL.md" ]; then
-            cp -r "/tmp/omocw-skills/skills/$line" "$OC_SKILLS/$line"
-            echo "[omocw]   OK: $line"
-            SKILL_COUNT=$((SKILL_COUNT + 1))
-        else
-            echo "[omocw]   SKIP: $line (no SKILL.md)"
-        fi
-    done < /omocw/skills.txt
-    echo "[omocw] $SKILL_COUNT ClawHub skill(s) installed"
-fi
-
-# ── Install GitHub-sourced skills from github-skills.txt ───────────────────
-if [ -f "/omocw/github-skills.txt" ]; then
-    echo "[omocw] Installing GitHub skills..."
-    while IFS= read -r line; do
-        line="${line%%#*}"
-        line="$(echo "$line" | xargs)"
-        [ -z "$line" ] && continue
-
-        REPO_URL="$(echo "$line" | awk '{print $1}')"
-        SKILL_PATH="$(echo "$line" | awk '{print $2}')"
-        SKILL_NAME="$(echo "$line" | awk '{print $3}')"
-
-        echo "[omocw]   Cloning: $SKILL_NAME from $REPO_URL"
-        TMPDIR="/tmp/gh-skill-$SKILL_NAME"
-        git clone --depth 1 "$REPO_URL" "$TMPDIR" 2>/dev/null || true
-
-        if [ -f "$TMPDIR/$SKILL_PATH" ]; then
-            mkdir -p "$OC_SKILLS/$SKILL_NAME"
-            cp "$TMPDIR/$SKILL_PATH" "$OC_SKILLS/$SKILL_NAME/SKILL.md"
-            echo "[omocw]   OK: $SKILL_NAME"
-        else
-            echo "[omocw]   SKIP: $SKILL_NAME (SKILL.md not found at $SKILL_PATH)"
-        fi
-        rm -rf "$TMPDIR"
-    done < /omocw/github-skills.txt
-fi
+SKILL_COUNT=0
+for skill_dir in /omocw/skills/*/; do
+    [ -f "${skill_dir}SKILL.md" ] || continue
+    skill_name="$(basename "$skill_dir")"
+    cp -r "$skill_dir" "$OC_SKILLS/$skill_name"
+    echo "[omocw]   Loaded skill: $skill_name"
+    SKILL_COUNT=$((SKILL_COUNT + 1))
+done
+echo "[omocw] $SKILL_COUNT skill(s) loaded"
 
 # Create .learnings/ in workspace for self-improving-agent
 mkdir -p /home/node/.openclaw/workspace/.learnings

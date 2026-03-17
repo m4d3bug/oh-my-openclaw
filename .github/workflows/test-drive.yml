@@ -47,25 +47,56 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      # ── 2. Pull official OpenClaw images ───────────────────────────────────
-      - name: Pull OpenClaw images
+      # ── 2. Pull official OpenClaw image ──────────────────────────────────
+      - name: Pull OpenClaw image
+        run: docker pull ghcr.io/openclaw/openclaw
+
+      # ── 3. Install ClawHub skills on host ────────────────────────────────
+      - name: Install ClawHub skills
         run: |
-          docker pull ghcr.io/openclaw/openclaw
-          docker pull alpine/openclaw:latest
+          npm install -g clawhub
+          mkdir -p skills
+          while IFS= read -r line; do
+            line="${line%%#*}"
+            line="$(echo "$line" | xargs)"
+            [ -z "$line" ] && continue
+            FORCE_FLAG=""
+            if echo "$line" | grep -q '\[force\]'; then
+              FORCE_FLAG="--force"
+              line="$(echo "$line" | sed 's/\[force\]//' | xargs)"
+            fi
+            echo "::group::Installing $line"
+            clawhub install "$line" $FORCE_FLAG --no-input || true
+            echo "::endgroup::"
+          done < skills.txt
+          clawhub list || true
+          echo ""
+          echo "Installed skill directories:"
+          ls -d skills/*/ 2>/dev/null || echo "(none)"
 
-      # ── 3. Install @goplus/agentguard ──────────────────────────────────────
-      - name: Install @goplus/agentguard
-        run: npm install @goplus/agentguard
-
-      # ── 4. Validate skills with AgentGuard ─────────────────────────────────
-      - name: Validate skills with AgentGuard
+      # ── 4. Install GitHub-sourced skills on host ─────────────────────────
+      - name: Install GitHub skills
         run: |
-          npm install
-          node scripts/validate.js --all --strict || true
-
-      # ── 4.5. Test config generation with alpine/openclaw ───────────────────
-      - name: Test config generation
-        run: bash scripts/test-config.sh --quick
+          while IFS= read -r line; do
+            line="${line%%#*}"
+            line="$(echo "$line" | xargs)"
+            [ -z "$line" ] && continue
+            REPO_URL="$(echo "$line" | awk '{print $1}')"
+            SKILL_PATH="$(echo "$line" | awk '{print $2}')"
+            SKILL_NAME="$(echo "$line" | awk '{print $3}')"
+            echo "::group::Cloning $SKILL_NAME"
+            TMPDIR="/tmp/gh-skill-$SKILL_NAME"
+            git clone --depth 1 "$REPO_URL" "$TMPDIR" || true
+            if [ -f "$TMPDIR/$SKILL_PATH" ]; then
+              mkdir -p "skills/$SKILL_NAME"
+              cp "$TMPDIR/$SKILL_PATH" "skills/$SKILL_NAME/SKILL.md"
+              echo "OK: $SKILL_NAME"
+            else
+              echo "SKIP: $SKILL_NAME (SKILL.md not found)"
+            fi
+            rm -rf "$TMPDIR"
+            echo "::endgroup::"
+          done < github-skills.txt
 
       # ── 5. Start oh-my-openclaw ────────────────────────────────────────────
       - name: Start oh-my-openclaw
@@ -97,7 +128,7 @@ jobs:
       - name: Wait for bot startup
         run: |
           sleep 20
-          docker logs omocw 2>&1 | grep -v $'\x1b' | grep -E "gateway.listen|telegram.*provider|model:|error" || true
+          docker logs omocw 2>&1 | grep -v $'\x1b' | grep -E "gateway.listen|telegram.*provider|model:|error|skill" || true
           echo ""
           echo "============================================"
           echo "  Bot is LIVE — chat on Telegram now!"
@@ -122,7 +153,7 @@ jobs:
       # ── 8. Final logs ───────────────────────────────────────────────────────
       - name: Show bot logs
         if: always()
-        run: docker logs --tail 150 omocw 2>&1 | grep -v $'\x1b' || true
+        run: docker logs --tail 200 omocw 2>&1 | grep -v $'\x1b' || true
 
       # ── 9. Cleanup ─────────────────────────────────────────────────────────
       - name: Stop container
