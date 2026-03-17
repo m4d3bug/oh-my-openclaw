@@ -1,6 +1,6 @@
 {
   "name": "@m4d3bug/oh-my-openclaw",
-  "version": "0.9.0",
+  "version": "0.11.0",
   "description": "Curated ClawHub skills for OpenClaw — Claude Code level experience",
   "type": "module",
   "main": "./plugin.js",
@@ -40,6 +40,9 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/m4d3bug/oh-my-openclaw.git"
+  },
+  "openclaw": {
+    "extensions": ["./plugin.js"]
   },
   "license": "MIT"
 }
