@@ -1,0 +1,18 @@
+# oh-my-openclaw skill manifest
+# One slug per line. Lines starting with # are ignored.
+# --force flag is appended for skills marked with [force]
+# Skills are installed in order — skill-vetter first for security auditing.
+
+skill-vetter
+self-improving-agent
+github
+multi-search-engine
+agent-reach [force]
+agent-browser [force]
+planning-with-files [force]
+test-runner
+cron-scheduler [force]
+summarize
+ontology
+daily-digest
+proactivity

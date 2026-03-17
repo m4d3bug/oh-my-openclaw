@@ -8,3 +8,5 @@ config/openclaw.local.yml
 .DS_Store
 test-results/
 /.learnings/
+.clawhub/
+skills/*/
