@@ -10,6 +10,6 @@ export default {
   name: 'oh-my-openclaw',
 
   register(api) {
-    console.log('[oh-my-openclaw] Plugin loaded — 14 curated skills registered');
+    console.log('[oh-my-openclaw] Plugin loaded — 37 curated skills registered');
   },
 };
