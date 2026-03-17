@@ -91,7 +91,54 @@ curl -fsSL https://raw.githubusercontent.com/m4d3bug/oh-my-openclaw/master/insta
 > skill-vetter is installed first to audit all subsequent installs.
 > Suspicious rate: 6% (2/30) — only agent-reach and planning-with-files, both kept for irreplaceable functionality.
 
-## Try it — GitHub Actions + Telegram
+## Local setup
+
+### 1. Install OpenClaw + plugin
+
+```bash
+npm install -g openclaw
+openclaw plugins install @m4d3bug/oh-my-openclaw
+```
+
+### 2. Configure model + Telegram
+
+Pick **one** model backend:
+
+**OpenAI-compatible** (e.g. Aliyun DashScope):
+```bash
+openclaw config set models.providers.custom-openai.baseUrl "https://coding.dashscope.aliyuncs.com/v1"
+openclaw config set models.providers.custom-openai.apiKey "your-key"
+openclaw config set models.providers.custom-openai.api "openai-completions"
+openclaw config set agents.defaults.model.primary "custom-openai/MiniMax-M2.5"
+```
+
+**Anthropic-compatible** (e.g. SiliconFlow):
+```bash
+openclaw config set models.providers.custom-anthropic.baseUrl "https://api.siliconflow.cn/v1"
+openclaw config set models.providers.custom-anthropic.apiKey "your-key"
+openclaw config set models.providers.custom-anthropic.api "anthropic-messages"
+openclaw config set agents.defaults.model.primary "custom-anthropic/Pro/MiniMaxAI/MiniMax-M2.5"
+```
+
+**Telegram** (get token from [@BotFather](https://t.me/BotFather)):
+```bash
+openclaw config set channels.telegram.enabled true
+openclaw config set channels.telegram.dmPolicy open
+openclaw config set channels.telegram.allowFrom '["*"]'
+```
+
+### 3. Enable full tools + start
+
+```bash
+openclaw config set tools.profile full
+TELEGRAM_BOT_TOKEN="your-bot-token" openclaw gateway run --verbose
+```
+
+Chat with your bot on Telegram. Skills are loaded automatically from the plugin.
+
+---
+
+## GitHub Actions + Telegram
 
 1. **Fork** this repo
 2. **Set Secrets** (Settings > Secrets > Actions):
