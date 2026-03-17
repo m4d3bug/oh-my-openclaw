@@ -1,22 +1,45 @@
 {
-  "name": "oh-my-openclaw",
-  "version": "0.1.0",
-  "description": "Automatically test and iterate OpenCLAW skills via GitHub Actions with best practices",
+  "name": "@m4d3bug/oh-my-openclaw",
+  "version": "0.2.0",
+  "description": "Curated ClawHub skills for OpenClaw — Claude Code level experience",
   "type": "module",
+  "main": "./plugin.js",
   "bin": {
     "omocw": "./scripts/omocw.js"
   },
   "scripts": {
+    "postinstall": "node scripts/postinstall.js",
     "setup": "node scripts/setup.js",
     "validate": "node scripts/validate.js",
-    "update": "bash scripts/update.sh",
-    "install-skill": "node scripts/install-skill.js"
+    "update": "bash scripts/update.sh"
   },
   "dependencies": {
     "@goplus/agentguard": "latest"
   },
   "engines": {
     "node": ">=22"
+  },
+  "files": [
+    "plugin.js",
+    "openclaw.plugin.json",
+    "skills.txt",
+    "github-skills.txt",
+    "scripts/",
+    "skills/",
+    "agents/",
+    "config/",
+    "docker/"
+  ],
+  "keywords": [
+    "openclaw",
+    "openclaw-plugin",
+    "clawhub",
+    "skills",
+    "ai-agent"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/m4d3bug/oh-my-openclaw.git"
   },
   "license": "MIT"
 }

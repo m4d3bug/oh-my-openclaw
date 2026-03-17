@@ -9,4 +9,3 @@ config/openclaw.local.yml
 test-results/
 /.learnings/
 .clawhub/
-skills/*/

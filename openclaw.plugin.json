@@ -1,0 +1,33 @@
+{
+  "id": "oh-my-openclaw",
+  "name": "oh-my-openclaw",
+  "description": "Curated ClawHub skills for OpenClaw — Claude Code level experience",
+  "version": "0.2.0",
+  "skills": [
+    "./skills/skill-vetter",
+    "./skills/self-improving-agent",
+    "./skills/github",
+    "./skills/multi-search-engine",
+    "./skills/ontology",
+    "./skills/agent-reach",
+    "./skills/agent-browser",
+    "./skills/planning-with-files",
+    "./skills/test-runner",
+    "./skills/cron-mastery",
+    "./skills/summarize",
+    "./skills/daily-digest",
+    "./skills/proactivity",
+    "./skills/cli-anything"
+  ],
+  "configSchema": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+      "enableAllSkills": {
+        "type": "boolean",
+        "default": true,
+        "description": "Load all bundled ClawHub skills"
+      }
+    }
+  }
+}

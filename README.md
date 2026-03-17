@@ -2,8 +2,14 @@
 
 Curated [ClawHub](https://clawhub.ai) skills for [OpenClaw](https://openclaw.ai), tested via GitHub Actions + Telegram.
 
-## One-line install
+## Install
 
+**As OpenClaw plugin (recommended):**
+```bash
+openclaw plugins install @m4d3bug/oh-my-openclaw
+```
+
+**Or one-line script:**
 ```bash
 curl -fsSL https://raw.githubusercontent.com/m4d3bug/oh-my-openclaw/master/install.sh | bash
 ```
