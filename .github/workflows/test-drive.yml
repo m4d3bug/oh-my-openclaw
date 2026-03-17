@@ -28,7 +28,7 @@ on:
       duration:
         description: 'How many minutes to keep the bot alive (5–25)'
         required: false
-        default: '5'
+        default: '15'
         type: choice
         options: ['5', '10', '15', '20', '25']
 
@@ -132,14 +132,14 @@ jobs:
           echo ""
           echo "============================================"
           echo "  Bot is LIVE — chat on Telegram now!"
-          echo "  Running for ${DURATION:-5} minutes."
+          echo "  Running for ${DURATION:-15} minutes."
           echo "============================================"
 
       # ── 7. Keep alive ───────────────────────────────────────────────────────
       - name: Keep alive for testing
         run: |
           DURATION="${{ github.event.inputs.duration }}"
-          SECS=$(( ${DURATION:-5} * 60 ))
+          SECS=$(( ${DURATION:-15} * 60 ))
           STEP=30
           ELAPSED=0
           while [ $ELAPSED -lt $SECS ]; do
