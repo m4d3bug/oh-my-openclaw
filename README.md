@@ -14,7 +14,7 @@ openclaw plugins install @m4d3bug/oh-my-openclaw
 curl -fsSL https://raw.githubusercontent.com/m4d3bug/oh-my-openclaw/master/install.sh | bash
 ```
 
-## Included skills (33)
+## Included skills (37)
 
 ### Security
 
@@ -83,6 +83,10 @@ curl -fsSL https://raw.githubusercontent.com/m4d3bug/oh-my-openclaw/master/insta
 | [agent-browser](https://clawhub.ai/TheSethRose/agent-browser) | 0.2.0 | — | ✅ Benign | Headless browser — navigate, click, type, screenshot, record |
 | [cli-anything](https://github.com/HKUDS/CLI-Anything) | — | — | GitHub | Natural language to CLI commands for any tool |
 | [clawddocs](https://clawskills.sh/skills/nicholasspisak-clawddocs) | 1.2.2 | 413 | ✅ Benign | OpenClaw documentation assistant with decision tree routing |
+| [find-skills](https://clawhub.ai/JimLiuxinghai/find-skills) | — | 3,496 | ⚠️ Suspicious | Find and install skills from ClawHub ecosystem |
+| [auto-updater](https://clawhub.ai/maximeprades/auto-updater) | — | 779 | ✅ Benign | Auto-update OpenClaw and skills via daily cron |
+| [openclaw-youtube-transcript](https://clawhub.ai/YoavRez/openclaw-youtube-transcript) | — | 25 | ⚠️ Suspicious | Transcribe YouTube videos via yt-dlp |
+| [humanizer](https://clawhub.ai/biostartechnology/humanizer) | 1.0.0 | 760 | ✅ Benign | Remove AI writing patterns — make text sound human |
 
 > skill-vetter is installed first to audit all subsequent installs.
 > Suspicious rate: 6% (2/30) — only agent-reach and planning-with-files, both kept for irreplaceable functionality.
