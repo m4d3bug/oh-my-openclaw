@@ -124,8 +124,12 @@ openclaw config set agents.defaults.model.primary "custom-anthropic/Pro/MiniMaxA
 ```bash
 openclaw config set channels.telegram.enabled true
 openclaw config set channels.telegram.dmPolicy open
-openclaw config set channels.telegram.allowFrom '["*"]'
+openclaw config set channels.telegram.allowFrom '["*"]'   # skip pairing, anyone can chat
+# or restrict to your Telegram ID only:
+# openclaw config set channels.telegram.allowFrom '["YOUR_TELEGRAM_ID"]'
 ```
+
+> Both local and GitHub Actions use `dmPolicy: open` + `allowFrom: ["*"]` to skip device pairing. Change `["*"]` to your Telegram user ID for production use.
 
 ### 3. Enable full tools + start
 
