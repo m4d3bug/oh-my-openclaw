@@ -21,3 +21,5 @@ runesleo-systematic-debugging
 agent-memory
 anti-injection-skill [force]
 agent-sentinel [force]
+smart-context
+metacognition

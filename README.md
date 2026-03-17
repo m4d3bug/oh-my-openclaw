@@ -37,6 +37,8 @@ curl -fsSL https://raw.githubusercontent.com/m4d3bug/oh-my-openclaw/master/insta
 | 17 | [agent-memory](https://clawhub.ai/skills/agent-memory) | 1.0.0 | 262 | ✅ Benign | Persistent SQLite memory — store, recall, track entities |
 | 18 | [anti-injection-skill](https://clawhub.ai/skills/anti-injection-skill) | 3 | ⚠️ Suspicious | Block prompt injection, memory tampering, data leakage |
 | 19 | [agent-sentinel](https://clawhub.ai/skills/agent-sentinel) | 3 | ✅ Benign | Safety circuit breaker — budget constraints, rate limits |
+| 20 | [smart-context](https://clawskills.sh/skills/joe3112-smart-context) | 1.0.0 | 0 | ✅ Benign | Token-efficient context pruning, response sizing, delegation |
+| 21 | [metacognition](https://clawskills.sh/skills/meimakes-metacognition) | 1.0.0 | 0 | ✅ Benign | Self-reflection engine — extract patterns into knowledge graph |
 
 > Skills are **not** stored in this repo. They are installed from ClawHub/GitHub at container startup via `skills.txt` and `github-skills.txt`.
 > skill-vetter is installed first to audit all subsequent installs.
