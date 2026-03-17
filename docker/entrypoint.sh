@@ -66,5 +66,9 @@ echo "[omocw] $SKILL_COUNT ClawHub skill(s) loaded"
 # Create .learnings/ in workspace for self-improving-agent
 mkdir -p /home/node/.openclaw/workspace/.learnings
 
+# Enable full tools profile (web fetch, file operations, shell, etc.)
+echo "[omocw] Setting tools.profile = full..."
+openclaw config set tools.profile full 2>/dev/null || true
+
 echo "[omocw] Starting gateway..."
 exec openclaw gateway run --port "${OPENCLAW_GATEWAY_PORT:-18789}" --verbose

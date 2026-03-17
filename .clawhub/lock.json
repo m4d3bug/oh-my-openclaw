@@ -12,6 +12,10 @@
     "summarize": {
       "version": "1.0.0",
       "installedAt": 1773715742561
+    },
+    "agent-browser": {
+      "version": "0.2.0",
+      "installedAt": 1773716133825
     }
   }
 }

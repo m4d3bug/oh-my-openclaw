@@ -1,147 +1,94 @@
 # oh-my-openclaw
 
-> Automatically test and iterate OpenCLAW skills via GitHub Actions with best practices.
+Curated [ClawHub](https://clawhub.ai) skills for [OpenClaw](https://openclaw.ai), tested via GitHub Actions + Telegram.
 
-## Features
-
-- **GitHub Actions Testing**: Automatically test skills on push/PR
-- **One-command Install**: Install skills from remote URLs (like wechat-to-obsidian)
-- **AgentGuard Validation**: All skills validated with @goplus/agentguard
-- **Best Practices**: Provide OpenCLAW configuration patterns
-
-## Quick Start
-
-### 1. Clone & Setup
+## One-line install
 
 ```bash
-git clone https://github.com/m4d3bug/oh-my-openclaw.git
-cd oh-my-openclaw
-npm install
+curl -fsSL https://raw.githubusercontent.com/m4d3bug/oh-my-openclaw/master/install.sh | bash
 ```
 
-### 2. Configure Environment
+## Included skills
 
-Copy `.env.example` to `.env` and add your API keys:
+| Skill | Version | What it does |
+|-------|---------|-------------|
+| [self-improving-agent](https://clawhub.ai/pskoett/self-improving-agent) | 3.0.4 | Logs errors, corrections, and learnings for continuous improvement across sessions |
+| [agent-reach](https://clawhub.ai/Panniantong/agent-reach) | 1.1.0 | Search and read 14+ platforms (Twitter, Reddit, YouTube, GitHub, Bilibili, etc.) |
+| [summarize](https://clawhub.ai/steipete/summarize) | 1.0.0 | Summarize conversations, code changes, and sessions |
+| [agent-browser](https://clawhub.ai/TheSethRose/agent-browser) | 0.2.0 | Headless browser automation — navigate, click, type, screenshot, record |
+
+## Try it — GitHub Actions + Telegram
+
+1. **Fork** this repo
+2. **Set Secrets** (Settings > Secrets > Actions):
+
+   | Secret | How to get it |
+   |--------|--------------|
+   | `TELEGRAM_BOT_TOKEN` | [@BotFather](https://t.me/BotFather) > `/newbot` |
+
+   Pick **one** model backend (or both — OpenAI takes priority):
+
+   **OpenAI-compatible** (e.g. Aliyun DashScope):
+   | Secret | Example |
+   |--------|---------|
+   | `OPENAI_API_KEY` | your key |
+   | `OPENAI_BASE_URL` | `https://coding.dashscope.aliyuncs.com/v1` |
+   | `OPENAI_MODEL` | `MiniMax-M2.5` |
+
+   **Anthropic-compatible** (e.g. SiliconFlow):
+   | Secret | Example |
+   |--------|---------|
+   | `ANTHROPIC_API_KEY` | your key |
+   | `ANTHROPIC_BASE_URL` | `https://api.siliconflow.cn/v1` |
+   | `ANTHROPIC_MODEL` | `Pro/MiniMaxAI/MiniMax-M2.5` |
+
+3. **Push** any commit or run workflow manually (Actions > Test Drive > Run workflow)
+4. **Chat** with your bot on Telegram
+
+New runs automatically cancel previous ones.
+
+## Default configuration
+
+The container starts with:
+
+```
+tools.profile = full
+```
+
+This enables all OpenClaw tools (web fetch, file operations, shell, etc.) for maximum skill compatibility.
+
+## Managing skills
 
 ```bash
-cp .env.example .env
+# Install a skill
+clawhub install <slug>
+
+# Search ClawHub
+clawhub search "keyword"
+
+# List installed
+clawhub list
+
+# Update all
+clawhub update --all
 ```
 
-Required secrets (for GitHub Actions):
-- `TELEGRAM_BOT_TOKEN` - from @BotFather
-- `ANTHROPIC_API_KEY` - or OpenAI compatible
-- `ANTHROPIC_BASE_URL` - e.g., https://api.siliconflow.cn/v1
+Skills are tracked in `.clawhub/lock.json` and stored in `skills/`.
 
-### 3. Start Testing
-
-```bash
-# Validate all skills
-omc validate --all --strict
-
-# Test skills in Docker
-omc test
-
-# Or use GitHub Actions
-# Fork this repo → add secrets → run workflow
-```
-
-## Installing Skills
-
-### One-command Install
-
-Install skills from a remote install.md URL:
-
-```bash
-omc install https://raw.githubusercontent.com/m4d3bug/wechat-to-obsidian/main/install.md
-```
-
-This will:
-1. Fetch the install.md from the URL
-2. Parse and execute installation steps
-3. Validate with AgentGuard
-4. Save to skills directory
-
-### Manual Installation
-
-```bash
-# Create skill directory
-mkdir skills/my-skill
-
-# Add skill files
-echo 'export default { name: "my-skill", ... }' > skills/my-skill/index.js
-
-# Validate
-omc validate --dir skills/my-skill --strict
-```
-
-## Available Commands
-
-| Command | Description |
-|---------|-------------|
-| `omc setup` | Interactive setup wizard |
-| `omc validate` | Run AgentGuard on skills |
-| `omc start` | Start OpenCLAW container |
-| `omc install <url>` | Install skill from URL |
-| `omc test [skill]` | Test skill in Docker |
-| `omc agent <name>` | Show agent prompt |
-
-## GitHub Actions Workflows
-
-### test-drive.yml
-Tests the entire environment with Telegram integration. Sets up:
-- Telegram bot with your token
-- OpenAI or Anthropic compatible API
-- Runs for configurable duration
-
-### skill-test.yml
-Automatically validates skills on:
-- Push to `skills/` directory
-- Pull requests
-- Manual workflow dispatch
-
-## Environment Variables
-
-| Variable | Description | Required |
-|----------|-------------|----------|
-| `TELEGRAM_BOT_TOKEN` | Telegram bot token | For test-drive |
-| `TELEGRAM_CHAT_ID` | Your Telegram chat ID | For test-drive |
-| `ANTHROPIC_API_KEY` | Anthropic API key | For testing |
-| `ANTHROPIC_BASE_URL` | Anthropic-compatible API URL | For testing |
-| `ANTHROPIC_MODEL` | Model name (e.g., Pro/MiniMax-M2.5) | For testing |
-| `OPENAI_API_KEY` | OpenAI API key | Optional |
-| `OPENAI_BASE_URL` | OpenAI-compatible API URL | Optional |
-| `OPENAI_MODEL` | Model name | Optional |
-
-## Project Structure
+## How it works
 
 ```
-oh-my-openclaw/
-├── .github/workflows/   # GitHub Actions workflows
-│   ├── test-drive.yml  # Full environment test
-│   └── skill-test.yml  # Skill validation
-├── agents/              # Agent prompts
-├── config/              # Configuration files
-├── docker/              # Docker files
-├── scripts/             # CLI scripts
-│   ├── validate.js     # AgentGuard validation
-│   ├── install-skill.js # Remote skill installer
-│   └── omc.js          # CLI entry point
-├── skills/              # Skill modules
-└── package.json
+Push / Manual trigger
+  └─ GitHub Actions
+       ├─ docker pull ghcr.io/openclaw/openclaw
+       ├─ docker run ... bash /omocw/docker/entrypoint.sh
+       │    ├─ gen-config.py       → ~/.openclaw/openclaw.json
+       │    ├─ fetch-sources.py    → agents + .js skills
+       │    ├─ copy SKILL.md dirs  → ~/.openclaw/skills/
+       │    ├─ openclaw config set tools.profile full
+       │    └─ openclaw gateway run (Telegram polling)
+       └─ Keep alive 5–25 min, then cleanup
 ```
-
-## Best Practices
-
-### Skill Development
-
-1. **Always validate** with AgentGuard before submitting
-2. **Use ES modules** (`export default`)
-3. **Follow naming**: `skills/<skill-name>/index.js`
-4. **Include metadata**: name, version, description
-
-### Configuration
-
-See `config/openclaw.example.yml` for recommended settings.
 
 ## License
 
