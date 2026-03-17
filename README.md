@@ -21,7 +21,7 @@ curl -fsSL https://raw.githubusercontent.com/m4d3bug/oh-my-openclaw/master/insta
 | 7 | [agent-browser](https://clawhub.ai/TheSethRose/agent-browser) | 0.2.0 | — | ✅ Benign | Headless browser — navigate, click, type, screenshot, record |
 | 8 | [planning-with-files](https://clawhub.ai/OthmanAdi/planning-with-files) | 2.22.0 | 70 | ⚠️ Suspicious | Task planning — task_plan.md / findings.md / progress.md |
 | 9 | [test-runner](https://clawhub.ai/cmanfre7/test-runner) | 1.0.0 | 71 | ✅ Benign | Run tests — Jest, pytest, Playwright, XCTest |
-| 10 | [cron-scheduler](https://clawhub.ai/picaye/cron-scheduler) | 1.0.0 | — | ✅ Benign | Schedule and manage recurring tasks with cron |
+| 10 | [cron-mastery](https://clawhub.ai/i-mw/cron-mastery) | 1.0.3 | 103 | ✅ Benign | Cron scheduling and system maintenance for OpenClaw |
 | 11 | [summarize](https://clawhub.ai/steipete/summarize) | 1.0.0 | — | ✅ Benign | Summarize conversations, code changes, and sessions |
 | 12 | [daily-digest](https://clawhub.ai/pmaeter/daily-digest) | 1.0.0 | 68 | ✅ Benign | Generate daily journal from memory files |
 | 13 | [proactivity](https://clawhub.ai/ivangdavila/proactivity) | 1.0.1 | 18 | ✅ Benign | Anticipate needs, keep work moving, improve over time |

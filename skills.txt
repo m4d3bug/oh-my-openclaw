@@ -11,7 +11,7 @@ agent-reach [force]
 agent-browser [force]
 planning-with-files [force]
 test-runner
-cron-scheduler [force]
+cron-mastery
 summarize
 ontology
 daily-digest
