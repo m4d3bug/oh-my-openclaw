@@ -32,6 +32,10 @@ on:
         type: choice
         options: ['5', '10', '15', '20', '25']
 
+concurrency:
+  group: omocw-telegram
+  cancel-in-progress: true
+
 jobs:
   test-drive:
     name: Boot oh-my-openclaw & connect to Telegram
