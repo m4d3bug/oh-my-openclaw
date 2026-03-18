@@ -98,17 +98,9 @@ curl -fsSL https://raw.githubusercontent.com/m4d3bug/oh-my-openclaw/master/insta
 | [better-ralph](https://clawskills.sh/skills/runeweaverstudios-better-ralph) | 1.0.0 | — | ✅ Benign | PRD-driven autonomous coding iteration |
 | [agent-weave](https://clawskills.sh/skills/gl813788-byte-agent-weave) | 1.0.0 | — | ✅ Benign | Master-Worker parallel task execution cluster |
 | [forge](https://clawskills.sh/skills/ikennaokpala-forge) | 1.0.0 | — | ✅ Benign | Autonomous QA swarm — E2E testing, self-healing fix loops |
-| [autopilot](https://github.com/Yeachan-Heo/oh-my-claudecode) | — | — | omc | Full autonomous execution from idea to working code |
-
-### From oh-my-claudecode
-
-| Skill | What it does |
-|-------|-------------|
-| [deepinit](https://github.com/Yeachan-Heo/oh-my-claudecode) | Deep codebase initialization with AGENTS.md generation |
-| [trace](https://github.com/Yeachan-Heo/oh-my-claudecode) | Evidence-driven causal tracing with competing hypotheses |
-| [writer-memory](https://github.com/Yeachan-Heo/oh-my-claudecode) | Writing memory — track characters, relationships, scenes |
-| [mcp-setup](https://github.com/Yeachan-Heo/oh-my-claudecode) | Configure popular MCP servers for enhanced agent capabilities |
-| [skill](https://github.com/Yeachan-Heo/oh-my-claudecode) | Manage local skills — list, add, remove, search, edit |
+| [agent-autonomy-kit](https://clawhub.ai/ryancampbell/agent-autonomy-kit) | 1.0.0 | 121 | ✅ Benign | Stop waiting for prompts — keep working autonomously |
+| [codebase-documenter](https://clawhub.ai/Veeramanikandanr48/codebase-documenter) | 0.1.0 | 5 | ✅ Benign | Generate README, architecture docs, API docs from codebase |
+| [debug-pro](https://clawhub.ai/cmanfre7/debug-pro) | 1.0.0 | 114 | ✅ Benign | 7-step debugging protocol with multi-language support |
 
 > skill-vetter is installed first to audit all subsequent installs.
 
