@@ -82,6 +82,9 @@ function syncAgents() {
         }
       }
     }
+
+    // Register agent with openclaw
+    run(`openclaw agents add "${agent.name}" --workspace "${workspace}"`);
   }
   return count;
 }
