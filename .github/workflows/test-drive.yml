@@ -60,6 +60,13 @@ jobs:
             line="${line%%#*}"
             line="$(echo "$line" | xargs)"
             [ -z "$line" ] && continue
+            # Skip [github] tagged skills — they're already in the repo
+            if echo "$line" | grep -q '\[github\]'; then
+              line="$(echo "$line" | sed 's/\[github\]//' | xargs)"
+              echo "::group::Skipping $line (bundled from GitHub)"
+              echo "::endgroup::"
+              continue
+            fi
             FORCE_FLAG=""
             if echo "$line" | grep -q '\[force\]'; then
               FORCE_FLAG="--force"
