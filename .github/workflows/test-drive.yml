@@ -78,8 +78,12 @@ jobs:
               FORCE_FLAG="--force"
               line="$(echo "$line" | sed 's/\[force\]//' | xargs)"
             fi
-            echo "::group::Installing $line (clawhub)"
-            clawhub install "$line" $FORCE_FLAG --no-input || true
+            echo "::group::Installing $line"
+            # Try clawhub first, fallback to skillhub on failure
+            if ! clawhub install "$line" $FORCE_FLAG --no-input 2>/dev/null; then
+              echo "clawhub failed, trying skillhub..."
+              skillhub --dir skills install "$line" --force 2>/dev/null || echo "Both sources failed for $line"
+            fi
             echo "::endgroup::"
           done < skills.txt
           clawhub list || true
