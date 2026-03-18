@@ -56,3 +56,4 @@ writing-plans [force]
 executing-plans [force]
 copywriting
 content-strategy
+become-ceo [force]

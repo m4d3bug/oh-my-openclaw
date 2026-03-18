@@ -43,7 +43,8 @@
     "./skills/writing-plans",
     "./skills/executing-plans",
     "./skills/copywriting",
-    "./skills/content-strategy"
+    "./skills/content-strategy",
+    "./skills/become-ceo"
   ],
   "configSchema": {
     "type": "object",
