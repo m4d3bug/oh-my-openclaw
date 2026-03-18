@@ -127,6 +127,12 @@ config = {
             'groupPolicy':  'open',
             'groupAllowFrom': ['*'],
             'streaming':    'partial',
+            'groups': {
+                '*': {
+                    'requireMention': False,
+                    'allowFrom': ['*'],
+                }
+            },
         }
     },
     'messages': {'ackReactionScope': 'group-mentions'},
