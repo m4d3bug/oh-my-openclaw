@@ -3,9 +3,16 @@
 
   "agents": [
     {
+      "name": "main",
+      "emoji": "🦞",
+      "default": true,
+      "files": {
+        "BOOTSTRAP.md": { "local": "agents/main.md" }
+      }
+    },
+    {
       "name": "architect",
       "emoji": "🏗️",
-      "default": true,
       "files": {
         "BOOTSTRAP.md": { "local": "agents/architect.md" }
       }
