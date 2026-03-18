@@ -42,12 +42,6 @@
     "./skills/better-ralph",
     "./skills/agent-weave",
     "./skills/forge",
-    "./skills/autopilot",
-    "./skills/deepinit",
-    "./skills/trace",
-    "./skills/writer-memory",
-    "./skills/mcp-setup",
-    "./skills/skill"
   ],
   "configSchema": {
     "type": "object",

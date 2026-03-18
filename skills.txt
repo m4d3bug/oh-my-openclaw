@@ -55,9 +55,3 @@ better-ralph [force]
 agent-weave
 forge [force]
 
-# ── From oh-my-claudecode ────────────────────────
-# autopilot  # conflicts with skills/autopilot.js, use dir version
-deepinit [github]
-trace [github]
-writer-memory [github]
-mcp-setup [github]
