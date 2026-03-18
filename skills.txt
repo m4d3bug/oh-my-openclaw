@@ -65,3 +65,4 @@ debug-pro
 amap-jsapi-skill
 amap-lbs-skill
 travel-cn [force]
+using-superpowers [force]

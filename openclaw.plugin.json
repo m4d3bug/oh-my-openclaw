@@ -46,6 +46,7 @@
     "./skills/summarize",
     "./skills/test-runner",
     "./skills/travel-cn",
+    "./skills/using-superpowers",
     "./skills/writing-plans"
   ],
   "configSchema": {
