@@ -99,8 +99,17 @@ config = {
             'compaction':     {'mode': 'safeguard'},
             'heartbeat':      {'every': '30m'},
             'maxConcurrent':  4,
-            'subagents':      {'maxConcurrent': 8},
-        }
+            'subagents':      {'maxConcurrent': 8, 'maxSpawnDepth': 2},
+        },
+        'list': [
+            {
+                'id': 'main',
+                'subagents': {
+                    'allowAgents': ['architect', 'backend', 'frontend', 'devops',
+                                   'security', 'tester', 'product', 'researcher', 'data']
+                }
+            }
+        ]
     },
     'channels': {
         'telegram': {
