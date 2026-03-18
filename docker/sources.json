@@ -1,76 +1,55 @@
 {
-  "_comment": "oh-my-openclaw sources manifest. Local agent files loaded at startup.",
+  "_comment": "oh-my-openclaw sources manifest. CEO mode: 7 agents.",
 
   "agents": [
     {
       "name": "main",
-      "emoji": "🦞",
+      "emoji": "⚡",
       "default": true,
       "files": {
         "BOOTSTRAP.md": { "local": "agents/main.md" }
       }
     },
     {
-      "name": "architect",
-      "emoji": "🏗️",
+      "name": "engineering",
+      "emoji": "⚔️",
       "files": {
-        "BOOTSTRAP.md": { "local": "agents/architect.md" }
+        "BOOTSTRAP.md": { "local": "agents/engineering.md" }
       }
     },
     {
-      "name": "backend",
-      "emoji": "⚙️",
+      "name": "finance",
+      "emoji": "💰",
       "files": {
-        "BOOTSTRAP.md": { "local": "agents/backend.md" }
+        "BOOTSTRAP.md": { "local": "agents/finance.md" }
       }
     },
     {
-      "name": "frontend",
-      "emoji": "🎨",
+      "name": "marketing",
+      "emoji": "🎭",
       "files": {
-        "BOOTSTRAP.md": { "local": "agents/frontend.md" }
+        "BOOTSTRAP.md": { "local": "agents/marketing.md" }
       }
     },
     {
       "name": "devops",
-      "emoji": "🛠️",
+      "emoji": "🔧",
       "files": {
         "BOOTSTRAP.md": { "local": "agents/devops.md" }
       }
     },
     {
-      "name": "security",
-      "emoji": "🔒",
+      "name": "management",
+      "emoji": "👔",
       "files": {
-        "BOOTSTRAP.md": { "local": "agents/security.md" }
+        "BOOTSTRAP.md": { "local": "agents/management.md" }
       }
     },
     {
-      "name": "tester",
-      "emoji": "🧪",
+      "name": "legal",
+      "emoji": "⚖️",
       "files": {
-        "BOOTSTRAP.md": { "local": "agents/tester.md" }
-      }
-    },
-    {
-      "name": "product",
-      "emoji": "📋",
-      "files": {
-        "BOOTSTRAP.md": { "local": "agents/product.md" }
-      }
-    },
-    {
-      "name": "researcher",
-      "emoji": "🔬",
-      "files": {
-        "BOOTSTRAP.md": { "local": "agents/researcher.md" }
-      }
-    },
-    {
-      "name": "data",
-      "emoji": "📊",
-      "files": {
-        "BOOTSTRAP.md": { "local": "agents/data.md" }
+        "BOOTSTRAP.md": { "local": "agents/legal.md" }
       }
     }
   ],
@@ -83,6 +62,5 @@
     { "name": "notify.js",    "local": "skills/notify.js" }
   ],
 
-  "workspace": [
-  ]
+  "workspace": []
 }

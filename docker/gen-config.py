@@ -104,22 +104,19 @@ config = {
         'list': [
             {
                 'id': 'main',
-                'identity': {'name': 'Orchestrator', 'emoji': '🦞',
-                             'theme': 'You are the orchestrator. Route tasks to specialist agents. Never implement code yourself.'},
+                'identity': {'name': 'Chief of Staff', 'emoji': '⚡',
+                             'theme': 'Route tasks to the right specialist. Keep it short and decisive.'},
                 'subagents': {
-                    'allowAgents': ['architect', 'backend', 'frontend', 'devops',
-                                   'security', 'tester', 'product', 'researcher', 'data']
+                    'allowAgents': ['engineering', 'finance', 'marketing', 'devops',
+                                   'management', 'legal']
                 }
             },
-            {'id': 'architect', 'identity': {'name': 'Architect',  'emoji': '🏗️', 'theme': 'System design and task decomposition.'}},
-            {'id': 'backend',   'identity': {'name': 'Backend',    'emoji': '⚙️',  'theme': 'APIs, databases, server logic.'}},
-            {'id': 'frontend',  'identity': {'name': 'Frontend',   'emoji': '🎨', 'theme': 'UI, components, client code.'}},
-            {'id': 'devops',    'identity': {'name': 'DevOps',     'emoji': '🛠️', 'theme': 'Docker, CI/CD, infrastructure.'}},
-            {'id': 'security',  'identity': {'name': 'Security',   'emoji': '🔒', 'theme': 'Threat modeling, vulnerability audit.'}},
-            {'id': 'tester',    'identity': {'name': 'Tester',     'emoji': '🧪', 'theme': 'Test strategy, automated testing.'}},
-            {'id': 'product',   'identity': {'name': 'Product',    'emoji': '📋', 'theme': 'PRDs, user stories, prioritization.'}},
-            {'id': 'researcher','identity': {'name': 'Researcher', 'emoji': '🔬', 'theme': 'Tech evaluation, documentation.'}},
-            {'id': 'data',      'identity': {'name': 'Data',       'emoji': '📊', 'theme': 'Data pipelines, analytics, ML.'}},
+            {'id': 'engineering','identity': {'name': 'Engineering','emoji': '⚔️', 'theme': 'Software architecture, code, system design. Be direct, give working solutions.'}},
+            {'id': 'finance',    'identity': {'name': 'Finance',   'emoji': '💰', 'theme': 'Budgets, cost analysis, spend tracking. Numbers first, opinions second.'}},
+            {'id': 'marketing',  'identity': {'name': 'Marketing', 'emoji': '🎭', 'theme': 'Branding, content, social media. Creative but practical.'}},
+            {'id': 'devops',     'identity': {'name': 'DevOps',    'emoji': '🔧', 'theme': 'Servers, CI/CD, infrastructure. Hands-on, automate everything.'}},
+            {'id': 'management', 'identity': {'name': 'Management','emoji': '👔', 'theme': 'Project coordination, hiring, team ops. Keep things organized.'}},
+            {'id': 'legal',      'identity': {'name': 'Legal',     'emoji': '⚖️', 'theme': 'Compliance, contracts, IP. Precise, flag real risks.'}},
         ]
     },
     'channels': {
