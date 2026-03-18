@@ -105,8 +105,11 @@ config = {
             {
                 'id': 'main',
                 'subagents': {
-                    'allowAgents': ['architect', 'backend', 'frontend', 'devops',
-                                   'security', 'tester', 'product', 'researcher', 'data']
+                    'allowAgents': ['analyst', 'architect', 'code-reviewer', 'code-simplifier',
+                                   'critic', 'debugger', 'designer', 'document-specialist',
+                                   'executor', 'explore', 'git-master', 'planner',
+                                   'qa-tester', 'scientist', 'security-reviewer',
+                                   'test-engineer', 'tracer', 'verifier', 'writer']
                 }
             }
         ]
@@ -119,6 +122,12 @@ config = {
             'groupPolicy':  'open',
             'groupAllowFrom': ['*'],
             'streaming':    'partial',
+            'groups': {
+                '*': {
+                    'requireMention': False,
+                    'allowFrom': ['*'],
+                }
+            },
         }
     },
     'messages': {'ackReactionScope': 'group-mentions'},

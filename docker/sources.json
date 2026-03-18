@@ -1,88 +1,36 @@
 {
-  "_comment": "oh-my-openclaw sources manifest. Local agent files loaded at startup.",
+  "_comment": "oh-my-openclaw sources manifest. oh-my-claudecode 20 agents.",
 
   "agents": [
-    {
-      "name": "main",
-      "emoji": "🦞",
-      "default": true,
-      "files": {
-        "BOOTSTRAP.md": { "local": "agents/main.md" }
-      }
-    },
-    {
-      "name": "architect",
-      "emoji": "🏗️",
-      "files": {
-        "BOOTSTRAP.md": { "local": "agents/architect.md" }
-      }
-    },
-    {
-      "name": "backend",
-      "emoji": "⚙️",
-      "files": {
-        "BOOTSTRAP.md": { "local": "agents/backend.md" }
-      }
-    },
-    {
-      "name": "frontend",
-      "emoji": "🎨",
-      "files": {
-        "BOOTSTRAP.md": { "local": "agents/frontend.md" }
-      }
-    },
-    {
-      "name": "devops",
-      "emoji": "🛠️",
-      "files": {
-        "BOOTSTRAP.md": { "local": "agents/devops.md" }
-      }
-    },
-    {
-      "name": "security",
-      "emoji": "🔒",
-      "files": {
-        "BOOTSTRAP.md": { "local": "agents/security.md" }
-      }
-    },
-    {
-      "name": "tester",
-      "emoji": "🧪",
-      "files": {
-        "BOOTSTRAP.md": { "local": "agents/tester.md" }
-      }
-    },
-    {
-      "name": "product",
-      "emoji": "📋",
-      "files": {
-        "BOOTSTRAP.md": { "local": "agents/product.md" }
-      }
-    },
-    {
-      "name": "researcher",
-      "emoji": "🔬",
-      "files": {
-        "BOOTSTRAP.md": { "local": "agents/researcher.md" }
-      }
-    },
-    {
-      "name": "data",
-      "emoji": "📊",
-      "files": {
-        "BOOTSTRAP.md": { "local": "agents/data.md" }
-      }
-    }
+    {"name": "main",                "emoji": "⚡", "default": true, "files": {"BOOTSTRAP.md": {"local": "agents/main.md"}}},
+    {"name": "analyst",             "emoji": "📊", "files": {"BOOTSTRAP.md": {"local": "agents/analyst.md"}}},
+    {"name": "architect",           "emoji": "🏗️", "files": {"BOOTSTRAP.md": {"local": "agents/architect.md"}}},
+    {"name": "code-reviewer",       "emoji": "🔍", "files": {"BOOTSTRAP.md": {"local": "agents/code-reviewer.md"}}},
+    {"name": "code-simplifier",     "emoji": "✂️",  "files": {"BOOTSTRAP.md": {"local": "agents/code-simplifier.md"}}},
+    {"name": "critic",              "emoji": "🎯", "files": {"BOOTSTRAP.md": {"local": "agents/critic.md"}}},
+    {"name": "debugger",            "emoji": "🐛", "files": {"BOOTSTRAP.md": {"local": "agents/debugger.md"}}},
+    {"name": "designer",            "emoji": "🎨", "files": {"BOOTSTRAP.md": {"local": "agents/designer.md"}}},
+    {"name": "document-specialist", "emoji": "📖", "files": {"BOOTSTRAP.md": {"local": "agents/document-specialist.md"}}},
+    {"name": "executor",            "emoji": "⚙️",  "files": {"BOOTSTRAP.md": {"local": "agents/executor.md"}}},
+    {"name": "explore",             "emoji": "🔎", "files": {"BOOTSTRAP.md": {"local": "agents/explore.md"}}},
+    {"name": "git-master",          "emoji": "🌿", "files": {"BOOTSTRAP.md": {"local": "agents/git-master.md"}}},
+    {"name": "planner",             "emoji": "📋", "files": {"BOOTSTRAP.md": {"local": "agents/planner.md"}}},
+    {"name": "qa-tester",           "emoji": "🧪", "files": {"BOOTSTRAP.md": {"local": "agents/qa-tester.md"}}},
+    {"name": "scientist",           "emoji": "🔬", "files": {"BOOTSTRAP.md": {"local": "agents/scientist.md"}}},
+    {"name": "security-reviewer",   "emoji": "🔒", "files": {"BOOTSTRAP.md": {"local": "agents/security-reviewer.md"}}},
+    {"name": "test-engineer",       "emoji": "🧪", "files": {"BOOTSTRAP.md": {"local": "agents/test-engineer.md"}}},
+    {"name": "tracer",              "emoji": "🔗", "files": {"BOOTSTRAP.md": {"local": "agents/tracer.md"}}},
+    {"name": "verifier",            "emoji": "✅", "files": {"BOOTSTRAP.md": {"local": "agents/verifier.md"}}},
+    {"name": "writer",              "emoji": "✍️",  "files": {"BOOTSTRAP.md": {"local": "agents/writer.md"}}}
   ],
 
   "skills": [
-    { "name": "autopilot.js", "local": "skills/autopilot.js" },
-    { "name": "team.js",      "local": "skills/team.js" },
-    { "name": "git.js",       "local": "skills/git.js" },
-    { "name": "code.js",      "local": "skills/code.js" },
-    { "name": "notify.js",    "local": "skills/notify.js" }
+    {"name": "autopilot.js", "local": "skills/autopilot.js"},
+    {"name": "team.js",      "local": "skills/team.js"},
+    {"name": "git.js",       "local": "skills/git.js"},
+    {"name": "code.js",      "local": "skills/code.js"},
+    {"name": "notify.js",    "local": "skills/notify.js"}
   ],
 
-  "workspace": [
-  ]
+  "workspace": []
 }
