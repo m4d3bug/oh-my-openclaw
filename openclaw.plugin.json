@@ -19,7 +19,6 @@
     "./skills/smart-context",
     "./skills/summarize",
     "./skills/daily-digest",
-    "./skills/buffer-session",
     "./skills/github",
     "./skills/test-runner",
     "./skills/planning-with-files",
