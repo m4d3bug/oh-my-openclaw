@@ -60,7 +60,7 @@ function syncJsSkills() {
 }
 
 // ── 3. Agents from sources.json ───────────────────────────────────────────
-async function syncAgents() {
+function syncAgents() {
   const sourcesPath = resolve(__dirname, 'docker', 'sources.json');
   if (!existsSync(sourcesPath)) return 0;
 
@@ -74,21 +74,6 @@ async function syncAgents() {
 
     for (const [filename, src] of Object.entries(agent.files || {})) {
       const dest = resolve(workspace, filename);
-      if (existsSync(dest)) { count++; continue; } // don't overwrite
-
-      // Try URL first
-      if (src.url) {
-        try {
-          const resp = await fetch(src.url, { signal: AbortSignal.timeout(10000) });
-          if (resp.ok) {
-            writeFileSync(dest, await resp.text());
-            count++;
-            continue;
-          }
-        } catch {}
-      }
-
-      // Fallback to local
       if (src.local) {
         const localPath = resolve(__dirname, src.local);
         if (existsSync(localPath)) {
@@ -153,10 +138,10 @@ export default {
   id: 'oh-my-openclaw',
   name: 'oh-my-openclaw',
 
-  async register(api) {
+  register(api) {
     const skills = syncSkillDirs();
     const jsSkills = syncJsSkills();
-    const agents = await syncAgents();
+    const agents = syncAgents();
     mkdirSync(LEARNINGS, { recursive: true });
 
     console.log(`[oh-my-openclaw] Synced: ${skills} skills, ${jsSkills} .js skills, ${agents} agents`);

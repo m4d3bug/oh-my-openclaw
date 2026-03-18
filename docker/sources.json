@@ -1,46 +1,69 @@
 {
-  "_comment": "oh-my-openclaw sources manifest. All URLs fetched at startup; local paths are fallback.",
+  "_comment": "oh-my-openclaw sources manifest. Local agent files loaded at startup.",
 
   "agents": [
     {
-      "name": "planner",
-      "emoji": "🧠",
+      "name": "architect",
+      "emoji": "🏗️",
       "default": true,
       "files": {
-        "BOOTSTRAP.md": {
-          "url": "https://raw.githubusercontent.com/uluckyXH/OpenMOSS/main/prompts/templates/task-planner.md",
-          "local": "agents/planner.md"
-        }
+        "BOOTSTRAP.md": { "local": "agents/architect.md" }
       }
     },
     {
-      "name": "executor",
-      "emoji": "💻",
+      "name": "backend",
+      "emoji": "⚙️",
       "files": {
-        "BOOTSTRAP.md": {
-          "url": "https://raw.githubusercontent.com/uluckyXH/OpenMOSS/main/prompts/templates/executor.md",
-          "local": "agents/executor.md"
-        }
+        "BOOTSTRAP.md": { "local": "agents/backend.md" }
       }
     },
     {
-      "name": "reviewer",
-      "emoji": "🔍",
+      "name": "frontend",
+      "emoji": "🎨",
       "files": {
-        "BOOTSTRAP.md": {
-          "url": "https://raw.githubusercontent.com/uluckyXH/OpenMOSS/main/prompts/templates/task-reviewer.md",
-          "local": "agents/reviewer.md"
-        }
+        "BOOTSTRAP.md": { "local": "agents/frontend.md" }
       }
     },
     {
-      "name": "patrol",
-      "emoji": "🛡️",
+      "name": "devops",
+      "emoji": "🛠️",
       "files": {
-        "BOOTSTRAP.md": {
-          "url": "https://raw.githubusercontent.com/uluckyXH/OpenMOSS/main/prompts/templates/task-patrol.md",
-          "local": "agents/patrol.md"
-        }
+        "BOOTSTRAP.md": { "local": "agents/devops.md" }
+      }
+    },
+    {
+      "name": "security",
+      "emoji": "🔒",
+      "files": {
+        "BOOTSTRAP.md": { "local": "agents/security.md" }
+      }
+    },
+    {
+      "name": "tester",
+      "emoji": "🧪",
+      "files": {
+        "BOOTSTRAP.md": { "local": "agents/tester.md" }
+      }
+    },
+    {
+      "name": "product",
+      "emoji": "📋",
+      "files": {
+        "BOOTSTRAP.md": { "local": "agents/product.md" }
+      }
+    },
+    {
+      "name": "researcher",
+      "emoji": "🔬",
+      "files": {
+        "BOOTSTRAP.md": { "local": "agents/researcher.md" }
+      }
+    },
+    {
+      "name": "data",
+      "emoji": "📊",
+      "files": {
+        "BOOTSTRAP.md": { "local": "agents/data.md" }
       }
     }
   ],
