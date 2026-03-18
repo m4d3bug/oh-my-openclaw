@@ -49,7 +49,6 @@ clawddocs [github]
 humanizer
 brainstorming [force]
 writing-plans [force]
-executing-plans [force]
 copywriting
 content-strategy
 better-ralph [force]

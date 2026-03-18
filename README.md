@@ -14,7 +14,7 @@ openclaw plugins install @m4d3bug/oh-my-openclaw
 curl -fsSL https://raw.githubusercontent.com/m4d3bug/oh-my-openclaw/master/install.sh | bash
 ```
 
-## Included skills (45)
+## Included skills (44)
 
 ### Security
 
@@ -88,7 +88,6 @@ curl -fsSL https://raw.githubusercontent.com/m4d3bug/oh-my-openclaw/master/insta
 |-------|---------|----------|---------------|-------------|
 | [brainstorming](https://clawhub.ai/zlc000190/brainstorming) | 0.1.0 | 88 | ✅ Benign | Explore intent, requirements and design before implementation |
 | [writing-plans](https://clawhub.ai/zlc000190/writing-plans) | 0.1.0 | 43 | ✅ Benign | Generate multi-step implementation plans from specs |
-| [executing-plans](https://clawhub.ai/chenleiyanquan/executing-plans) | 0.1.0 | 51 | ⚠️ Suspicious | Execute plans step-by-step with review checkpoints |
 | [copywriting](https://clawhub.ai/JK-0001/copywriting) | 0.1.0 | 124 | ✅ Benign | Marketing copy — AIDA/PAS/FAB, headlines, CTAs, ad copy |
 | [content-strategy](https://clawhub.ai/JK-0001/content-strategy) | 0.1.0 | 45 | ✅ Benign | Content marketing strategy, calendar, distribution, metrics |
 
