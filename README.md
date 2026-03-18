@@ -14,7 +14,7 @@ openclaw plugins install @m4d3bug/oh-my-openclaw
 curl -fsSL https://raw.githubusercontent.com/m4d3bug/oh-my-openclaw/master/install.sh | bash
 ```
 
-## Included skills (47)
+## Included skills (46)
 
 ### Security
 
@@ -50,7 +50,6 @@ curl -fsSL https://raw.githubusercontent.com/m4d3bug/oh-my-openclaw/master/insta
 | [smart-context](https://clawskills.sh/skills/joe3112-smart-context) | 1.0.0 | 0 | ✅ Benign | Token-efficient context pruning, response sizing, delegation |
 | [summarize](https://clawhub.ai/steipete/summarize) | 1.0.0 | 3,800 | ✅ Benign | Summarize conversations, code changes, and sessions |
 | [daily-digest](https://clawhub.ai/pmaeter/daily-digest) | 1.0.0 | 68 | ✅ Benign | Generate daily journal from memory files |
-| [alex-session-wrap-up](https://clawskills.sh/skills/xbillwatsonx-alex-session-wrap-up) | 1.0.0 | 0 | ✅ Benign | Auto-commit + extract learnings + persist rules |
 | [buffer-session](https://clawskills.sh/skills/waynevaughan-buffer-session) | 1.0.0 | 0 | ✅ Benign | Native session switching with state buffering |
 
 ### Code Intelligence

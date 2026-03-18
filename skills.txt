@@ -25,7 +25,6 @@ reflection
 smart-context [github]
 summarize
 daily-digest
-alex-session-wrap-up [github]
 buffer-session [github]
 
 # ── Code Intelligence ────────────────────────────
