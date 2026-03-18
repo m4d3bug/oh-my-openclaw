@@ -14,7 +14,7 @@ openclaw plugins install @m4d3bug/oh-my-openclaw
 curl -fsSL https://raw.githubusercontent.com/m4d3bug/oh-my-openclaw/master/install.sh | bash
 ```
 
-## Included skills (52)
+## Included skills (49)
 
 ### Security
 
@@ -60,7 +60,6 @@ curl -fsSL https://raw.githubusercontent.com/m4d3bug/oh-my-openclaw/master/insta
 | [github](https://clawhub.ai/steipete/github) | 1.0.0 | 2,863 | ✅ Benign | Git workflow — PRs, issues, CI runs via `gh` CLI |
 | [test-runner](https://clawhub.ai/cmanfre7/test-runner) | 1.0.0 | 71 | ✅ Benign | Run tests — Jest, pytest, Playwright, XCTest |
 | [planning-with-files](https://clawhub.ai/OthmanAdi/planning-with-files) | 2.22.0 | 70 | ⚠️ Suspicious | Task planning — task_plan.md / findings.md / progress.md |
-| [pyright-lsp](https://clawskills.sh/skills/bowen31337-pyright-lsp) | 1.0.0 | 1 | ✅ Benign | Python language server — static type checking |
 | [cacheforge-vibe-check](https://clawskills.sh/skills/tkuehnl-cacheforge-vibe-check) | 1.0.0 | 0 | ✅ Benign | Detect AI-generated code quality issues |
 | [docsync](https://clawskills.sh/skills/suhteevah-docsync) | 1.0.1 | 0 | ✅ Benign | Auto-generate docs from code, detect doc drift |
 | [simplify-and-harden](https://clawhub.ai/pskoett/simplify-and-harden) | 1.0.1 | 6 | ✅ Benign | Post-completion self-review — simplify, harden, micro-doc |
@@ -103,7 +102,6 @@ curl -fsSL https://raw.githubusercontent.com/m4d3bug/oh-my-openclaw/master/insta
 | [better-ralph](https://clawskills.sh/skills/runeweaverstudios-better-ralph) | 1.0.0 | — | ✅ Benign | PRD-driven autonomous coding iteration |
 | [agent-weave](https://clawskills.sh/skills/gl813788-byte-agent-weave) | 1.0.0 | — | ✅ Benign | Master-Worker parallel task execution cluster |
 | [forge](https://clawskills.sh/skills/ikennaokpala-forge) | 1.0.0 | — | ✅ Benign | Autonomous QA swarm — E2E testing, self-healing fix loops |
-| [cli-worker](https://clawskills.sh/skills/quratus-cli-worker) | 0.3.0 | — | ✅ Benign | Git worktree isolated task delegation |
 | [autopilot](https://github.com/Yeachan-Heo/oh-my-claudecode) | — | — | omc | Full autonomous execution from idea to working code |
 
 ### From oh-my-claudecode
@@ -113,7 +111,6 @@ curl -fsSL https://raw.githubusercontent.com/m4d3bug/oh-my-openclaw/master/insta
 | [deepinit](https://github.com/Yeachan-Heo/oh-my-claudecode) | Deep codebase initialization with AGENTS.md generation |
 | [trace](https://github.com/Yeachan-Heo/oh-my-claudecode) | Evidence-driven causal tracing with competing hypotheses |
 | [writer-memory](https://github.com/Yeachan-Heo/oh-my-claudecode) | Writing memory — track characters, relationships, scenes |
-| [configure-notifications](https://github.com/Yeachan-Heo/oh-my-claudecode) | Configure TG/Discord/Slack notifications via natural language |
 | [mcp-setup](https://github.com/Yeachan-Heo/oh-my-claudecode) | Configure popular MCP servers for enhanced agent capabilities |
 | [skill](https://github.com/Yeachan-Heo/oh-my-claudecode) | Manage local skills — list, add, remove, search, edit |
 
