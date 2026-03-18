@@ -55,3 +55,6 @@ better-ralph [force]
 agent-weave
 forge [force]
 
+agent-autonomy-kit
+codebase-documenter
+debug-pro

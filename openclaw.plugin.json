@@ -39,9 +39,12 @@
     "./skills/writing-plans",
     "./skills/copywriting",
     "./skills/content-strategy",
+    "./skills/agent-autonomy-kit",
+    "./skills/codebase-documenter",
+    "./skills/debug-pro",
     "./skills/better-ralph",
     "./skills/agent-weave",
-    "./skills/forge",
+    "./skills/forge"
   ],
   "configSchema": {
     "type": "object",
