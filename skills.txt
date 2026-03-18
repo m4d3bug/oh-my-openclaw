@@ -56,3 +56,7 @@ writing-plans [force]
 executing-plans [force]
 copywriting
 content-strategy
+better-ralph [force]
+agent-weave
+forge [force]
+cli-worker [force]

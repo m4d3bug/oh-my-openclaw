@@ -43,7 +43,11 @@
     "./skills/writing-plans",
     "./skills/executing-plans",
     "./skills/copywriting",
-    "./skills/content-strategy"
+    "./skills/content-strategy",
+    "./skills/better-ralph",
+    "./skills/agent-weave",
+    "./skills/forge",
+    "./skills/cli-worker"
   ],
   "configSchema": {
     "type": "object",
