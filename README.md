@@ -14,7 +14,7 @@ openclaw plugins install @m4d3bug/oh-my-openclaw
 curl -fsSL https://raw.githubusercontent.com/m4d3bug/oh-my-openclaw/master/install.sh | bash
 ```
 
-## Included skills (41)
+## Included skills (40)
 
 ### Security
 
@@ -39,7 +39,7 @@ curl -fsSL https://raw.githubusercontent.com/m4d3bug/oh-my-openclaw/master/insta
 | Skill | Version | Installs | OpenClaw Scan | What it does |
 |-------|---------|----------|---------------|-------------|
 | [proactivity](https://clawhub.ai/ivangdavila/proactivity) | 1.0.1 | 18 | ✅ Benign | Anticipate needs, keep work moving, improve over time |
-| [metacognition](https://clawskills.sh/skills/meimakes-metacognition) | 1.0.0 | 0 | ✅ Benign | Self-reflection engine — extract patterns into knowledge graph |
+| [self-reflection](https://clawhub.ai/hopyky/self-reflection) | 1.1.1 | 106 | ✅ Benign | Continuous self-improvement through structured reflection |
 | [agent-team-orchestration](https://clawhub.ai/arminnaimi/agent-team-orchestration) | 1.0.0 | 125 | ✅ Benign | Multi-agent team coordination — roles, handoffs, reviews |
 | [reflection](https://clawhub.ai/ivangdavila/reflection) | 1.1.0 | 23 | ✅ Benign | Self-critique before responding — fewer revision rounds |
 
@@ -58,7 +58,6 @@ curl -fsSL https://raw.githubusercontent.com/m4d3bug/oh-my-openclaw/master/insta
 | [github](https://clawhub.ai/steipete/github) | 1.0.0 | 2,863 | ✅ Benign | Git workflow — PRs, issues, CI runs via `gh` CLI |
 | [test-runner](https://clawhub.ai/cmanfre7/test-runner) | 1.0.0 | 71 | ✅ Benign | Run tests — Jest, pytest, Playwright, XCTest |
 | [planning-with-files](https://clawhub.ai/OthmanAdi/planning-with-files) | 2.22.0 | 70 | ⚠️ Suspicious | Task planning — task_plan.md / findings.md / progress.md |
-| [cacheforge-vibe-check](https://clawskills.sh/skills/tkuehnl-cacheforge-vibe-check) | 1.0.0 | 0 | ✅ Benign | Detect AI-generated code quality issues |
 | [docsync](https://clawskills.sh/skills/suhteevah-docsync) | 1.0.1 | 0 | ✅ Benign | Auto-generate docs from code, detect doc drift |
 | [simplify-and-harden](https://clawhub.ai/pskoett/simplify-and-harden) | 1.0.1 | 6 | ✅ Benign | Post-completion self-review — simplify, harden, micro-doc |
 | [env-setup](https://clawhub.ai/Fratua/env-setup) | 1.0.0 | 2 | ✅ Benign | Scan env vars, generate .env.example, validate .gitignore |
@@ -68,7 +67,7 @@ curl -fsSL https://raw.githubusercontent.com/m4d3bug/oh-my-openclaw/master/insta
 | Skill | Version | Installs | OpenClaw Scan | What it does |
 |-------|---------|----------|---------------|-------------|
 | [cron-mastery](https://clawhub.ai/i-mw/cron-mastery) | 1.0.3 | 103 | ✅ Benign | Cron scheduling and system maintenance |
-| [agentic-devops](https://clawskills.sh/skills/tkuehnl-agentic-devops) | 1.0.0 | 0 | ✅ Benign | Docker + process management + log analysis + health monitoring |
+| [docker-essentials](https://clawhub.ai/Arnarsson/docker-essentials) | 1.0.0 | 209 | ✅ Benign | Docker commands, container management, debugging |
 | [cicd-pipeline](https://clawskills.sh/skills/gitgoodordietrying-cicd-pipeline) | 1.0.0 | 24 | ✅ Benign | Manage GitHub Actions CI/CD pipelines directly |
 
 ### Context & Search

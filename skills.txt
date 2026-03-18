@@ -1,23 +1,23 @@
 # oh-my-openclaw skill manifest
 # One slug per line. Lines starting with # are ignored.
-# --force flag is appended for skills marked with [force]
-# Skills marked [github] are fetched from openclaw/skills repo, not clawhub CLI.
+# [force] = clawhub install --force (VirusTotal flagged but OpenClaw Benign)
+# [github] = not on clawhub CLI, SKILL.md bundled in repo
 
 # ── Security ──────────────────────────────────────
 skill-vetter
 agent-sentinel [force]
-arc-skill-scanner [github]
+arc-skill-scanner [force]
 
 # ── Memory & Persistence ─────────────────────────
 self-improving-agent
 agent-memory
 ontology
-arc-wake-state [github]
-agent-wal [github]
+arc-wake-state [force]
+agent-wal [force]
 
 # ── Agent Behavior ───────────────────────────────
 proactivity
-metacognition [github]
+self-reflection
 agent-team-orchestration
 reflection
 
@@ -30,31 +30,33 @@ daily-digest
 github
 test-runner
 planning-with-files [force]
-cacheforge-vibe-check [github]
-docsync [github]
+docsync [force]
 simplify-and-harden
 env-setup
 
 # ── DevOps ───────────────────────────────────────
 cron-mastery [force]
-agentic-devops [github]
-cicd-pipeline [github]
+docker-essentials
+cicd-pipeline
 
 # ── Context & Search ─────────────────────────────
 multi-search-engine
 agent-reach [force]
 agent-browser [force]
 cli-anything [github]
-clawddocs [github]
+clawddocs
 humanizer
+
+# ── Creative & Planning ──────────────────────────
 brainstorming [force]
 writing-plans [force]
 copywriting
 content-strategy
+
+# ── Autonomous Execution ─────────────────────────
 better-ralph [force]
 agent-weave
 forge [force]
-
 agent-autonomy-kit
 codebase-documenter
 debug-pro
