@@ -48,7 +48,6 @@ agent-reach [force]
 agent-browser [force]
 cli-anything [github]
 clawddocs [github]
-auto-updater
 humanizer
 brainstorming [force]
 writing-plans [force]

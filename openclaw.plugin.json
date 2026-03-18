@@ -36,7 +36,6 @@
     "./skills/agent-browser",
     "./skills/cli-anything",
     "./skills/clawddocs",
-    "./skills/auto-updater",
     "./skills/humanizer",
     "./skills/brainstorming",
     "./skills/writing-plans",

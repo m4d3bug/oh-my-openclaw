@@ -14,7 +14,7 @@ openclaw plugins install @m4d3bug/oh-my-openclaw
 curl -fsSL https://raw.githubusercontent.com/m4d3bug/oh-my-openclaw/master/install.sh | bash
 ```
 
-## Included skills (49)
+## Included skills (47)
 
 ### Security
 
@@ -82,7 +82,6 @@ curl -fsSL https://raw.githubusercontent.com/m4d3bug/oh-my-openclaw/master/insta
 | [agent-browser](https://clawhub.ai/TheSethRose/agent-browser) | 0.2.0 | 2,588 | ✅ Benign | Headless browser — navigate, click, type, screenshot, record |
 | [cli-anything](https://github.com/HKUDS/CLI-Anything) | 2026-03-17 | — | GitHub | Natural language to CLI commands for any tool |
 | [clawddocs](https://clawskills.sh/skills/nicholasspisak-clawddocs) | 1.2.2 | 413 | ✅ Benign | OpenClaw documentation assistant with decision tree routing |
-| [auto-updater](https://clawhub.ai/maximeprades/auto-updater) | 1.0.0 | 779 | ✅ Benign | Auto-update OpenClaw and skills via daily cron |
 | [humanizer](https://clawhub.ai/biostartechnology/humanizer) | 1.0.0 | 760 | ✅ Benign | Remove AI writing patterns — make text sound human |
 
 ### Creative & Planning
