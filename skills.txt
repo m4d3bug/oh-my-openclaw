@@ -64,3 +64,4 @@ debug-pro
 # ── Location & Maps ──────────────────────────────
 amap-jsapi-skill
 amap-lbs-skill
+travel-cn [force]

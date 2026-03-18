@@ -45,6 +45,7 @@
     "./skills/smart-context",
     "./skills/summarize",
     "./skills/test-runner",
+    "./skills/travel-cn",
     "./skills/writing-plans"
   ],
   "configSchema": {
