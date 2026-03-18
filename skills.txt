@@ -22,7 +22,7 @@ agent-team-orchestration
 reflection
 
 # ── Session Management ───────────────────────────
-smart-context [github]
+smart-context [skillhub]
 summarize
 daily-digest
 

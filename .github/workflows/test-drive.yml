@@ -52,18 +52,24 @@ jobs:
         run: docker pull ghcr.io/openclaw/openclaw
 
       # ── 3. Install ClawHub skills on host ────────────────────────────────
-      - name: Install ClawHub skills
+      - name: Install skills (ClawHub + SkillHub)
         run: |
           npm install -g clawhub
+          curl -fsSL https://skillhub-1251783334.cos.ap-guangzhou.myqcloud.com/install/install.sh | bash || true
           mkdir -p skills
           while IFS= read -r line; do
             line="${line%%#*}"
             line="$(echo "$line" | xargs)"
             [ -z "$line" ] && continue
-            # Skip [github] tagged skills — they're already in the repo
+            # [github] tagged skills — already bundled in repo
             if echo "$line" | grep -q '\[github\]'; then
-              line="$(echo "$line" | sed 's/\[github\]//' | xargs)"
-              echo "::group::Skipping $line (bundled from GitHub)"
+              continue
+            fi
+            # [skillhub] tagged — install from Tencent SkillHub
+            if echo "$line" | grep -q '\[skillhub\]'; then
+              slug="$(echo "$line" | sed 's/\[skillhub\]//' | xargs)"
+              echo "::group::Installing $slug (skillhub)"
+              skillhub --dir skills install "$slug" --force 2>/dev/null || true
               echo "::endgroup::"
               continue
             fi
@@ -72,7 +78,7 @@ jobs:
               FORCE_FLAG="--force"
               line="$(echo "$line" | sed 's/\[force\]//' | xargs)"
             fi
-            echo "::group::Installing $line"
+            echo "::group::Installing $line (clawhub)"
             clawhub install "$line" $FORCE_FLAG --no-input || true
             echo "::endgroup::"
           done < skills.txt
