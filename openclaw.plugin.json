@@ -12,6 +12,8 @@
     "./skills/agent-team-orchestration",
     "./skills/agent-wal",
     "./skills/agent-weave",
+    "./skills/amap-jsapi-skill",
+    "./skills/amap-lbs-skill",
     "./skills/arc-skill-scanner",
     "./skills/arc-wake-state",
     "./skills/better-ralph",

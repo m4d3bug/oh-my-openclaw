@@ -60,3 +60,7 @@ forge [force]
 agent-autonomy-kit
 codebase-documenter
 debug-pro
+
+# ── Location & Maps ──────────────────────────────
+amap-jsapi-skill
+amap-lbs-skill
