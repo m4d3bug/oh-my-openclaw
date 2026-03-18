@@ -49,9 +49,7 @@ agent-reach [force]
 agent-browser [force]
 cli-anything [github]
 clawddocs [github]
-find-skills
 auto-updater
-openclaw-youtube-transcript [force]
 humanizer
 brainstorming [force]
 writing-plans [force]
