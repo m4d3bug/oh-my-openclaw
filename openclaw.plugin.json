@@ -2,7 +2,7 @@
   "id": "oh-my-openclaw",
   "name": "oh-my-openclaw",
   "description": "Curated ClawHub skills for OpenClaw \u2014 Claude Code level experience",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "skills": [
     "./skills/agent-autonomy-kit",
     "./skills/agent-browser",

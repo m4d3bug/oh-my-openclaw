@@ -1,6 +1,6 @@
 {
   "name": "@m4d3bug/oh-my-openclaw",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "Curated ClawHub skills for OpenClaw — Claude Code level experience",
   "type": "module",
   "main": "./plugin.js",
