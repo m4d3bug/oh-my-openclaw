@@ -60,3 +60,11 @@ better-ralph [force]
 agent-weave
 forge [force]
 cli-worker [force]
+
+# ── From oh-my-claudecode ────────────────────────
+# autopilot  # conflicts with skills/autopilot.js, use dir version
+deepinit [github]
+trace [github]
+writer-memory [github]
+configure-notifications [github]
+mcp-setup [github]

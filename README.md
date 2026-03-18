@@ -14,7 +14,7 @@ openclaw plugins install @m4d3bug/oh-my-openclaw
 curl -fsSL https://raw.githubusercontent.com/m4d3bug/oh-my-openclaw/master/install.sh | bash
 ```
 
-## Included skills (40)
+## Included skills (52)
 
 ### Security
 
@@ -95,6 +95,27 @@ curl -fsSL https://raw.githubusercontent.com/m4d3bug/oh-my-openclaw/master/insta
 | [executing-plans](https://clawhub.ai/chenleiyanquan/executing-plans) | 0.1.0 | 51 | ⚠️ Suspicious | Execute plans step-by-step with review checkpoints |
 | [copywriting](https://clawhub.ai/JK-0001/copywriting) | 0.1.0 | 124 | ✅ Benign | Marketing copy — AIDA/PAS/FAB, headlines, CTAs, ad copy |
 | [content-strategy](https://clawhub.ai/JK-0001/content-strategy) | 0.1.0 | 45 | ✅ Benign | Content marketing strategy, calendar, distribution, metrics |
+
+### Autonomous Execution
+
+| Skill | Version | Installs | OpenClaw Scan | What it does |
+|-------|---------|----------|---------------|-------------|
+| [better-ralph](https://clawskills.sh/skills/runeweaverstudios-better-ralph) | 1.0.0 | — | ✅ Benign | PRD-driven autonomous coding iteration |
+| [agent-weave](https://clawskills.sh/skills/gl813788-byte-agent-weave) | 1.0.0 | — | ✅ Benign | Master-Worker parallel task execution cluster |
+| [forge](https://clawskills.sh/skills/ikennaokpala-forge) | 1.0.0 | — | ✅ Benign | Autonomous QA swarm — E2E testing, self-healing fix loops |
+| [cli-worker](https://clawskills.sh/skills/quratus-cli-worker) | 0.3.0 | — | ✅ Benign | Git worktree isolated task delegation |
+| [autopilot](https://github.com/Yeachan-Heo/oh-my-claudecode) | — | — | omc | Full autonomous execution from idea to working code |
+
+### From oh-my-claudecode
+
+| Skill | What it does |
+|-------|-------------|
+| [deepinit](https://github.com/Yeachan-Heo/oh-my-claudecode) | Deep codebase initialization with AGENTS.md generation |
+| [trace](https://github.com/Yeachan-Heo/oh-my-claudecode) | Evidence-driven causal tracing with competing hypotheses |
+| [writer-memory](https://github.com/Yeachan-Heo/oh-my-claudecode) | Writing memory — track characters, relationships, scenes |
+| [configure-notifications](https://github.com/Yeachan-Heo/oh-my-claudecode) | Configure TG/Discord/Slack notifications via natural language |
+| [mcp-setup](https://github.com/Yeachan-Heo/oh-my-claudecode) | Configure popular MCP servers for enhanced agent capabilities |
+| [skill](https://github.com/Yeachan-Heo/oh-my-claudecode) | Manage local skills — list, add, remove, search, edit |
 
 > skill-vetter is installed first to audit all subsequent installs.
 
