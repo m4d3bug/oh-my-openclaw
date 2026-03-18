@@ -104,11 +104,22 @@ config = {
         'list': [
             {
                 'id': 'main',
+                'identity': {'name': 'Orchestrator', 'emoji': '🦞',
+                             'theme': 'You are the orchestrator. Route tasks to specialist agents. Never implement code yourself.'},
                 'subagents': {
                     'allowAgents': ['architect', 'backend', 'frontend', 'devops',
                                    'security', 'tester', 'product', 'researcher', 'data']
                 }
-            }
+            },
+            {'id': 'architect', 'identity': {'name': 'Architect',  'emoji': '🏗️', 'theme': 'System design and task decomposition.'}},
+            {'id': 'backend',   'identity': {'name': 'Backend',    'emoji': '⚙️',  'theme': 'APIs, databases, server logic.'}},
+            {'id': 'frontend',  'identity': {'name': 'Frontend',   'emoji': '🎨', 'theme': 'UI, components, client code.'}},
+            {'id': 'devops',    'identity': {'name': 'DevOps',     'emoji': '🛠️', 'theme': 'Docker, CI/CD, infrastructure.'}},
+            {'id': 'security',  'identity': {'name': 'Security',   'emoji': '🔒', 'theme': 'Threat modeling, vulnerability audit.'}},
+            {'id': 'tester',    'identity': {'name': 'Tester',     'emoji': '🧪', 'theme': 'Test strategy, automated testing.'}},
+            {'id': 'product',   'identity': {'name': 'Product',    'emoji': '📋', 'theme': 'PRDs, user stories, prioritization.'}},
+            {'id': 'researcher','identity': {'name': 'Researcher', 'emoji': '🔬', 'theme': 'Tech evaluation, documentation.'}},
+            {'id': 'data',      'identity': {'name': 'Data',       'emoji': '📊', 'theme': 'Data pipelines, analytics, ML.'}},
         ]
     },
     'channels': {
