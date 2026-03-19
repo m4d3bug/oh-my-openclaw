@@ -1,5 +1,7 @@
 # oh-my-openclaw
 
+[English](README.md) | [中文](README.zh-CN.md)
+
 Curated [ClawHub](https://clawhub.ai) skills for [OpenClaw](https://openclaw.ai), tested via GitHub Actions + Telegram.
 
 ## Install
@@ -245,7 +247,7 @@ Push / Manual trigger
        │    ├─ copy skills/*/SKILL.md → ~/.openclaw/skills/
        │    ├─ openclaw config set tools.profile full
        │    └─ openclaw gateway run (Telegram polling)
-       └─ Keep alive 15 min, then cleanup
+       └─ Keep alive 350 min, then cleanup
 ```
 
 ## License
