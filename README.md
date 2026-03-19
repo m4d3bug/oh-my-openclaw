@@ -143,14 +143,47 @@ openclaw config set channels.telegram.allowFrom '["*"]'   # skip pairing, anyone
 
 > Both local and GitHub Actions use `dmPolicy: open` + `allowFrom: ["*"]` to skip device pairing. Change `["*"]` to your Telegram user ID for production use.
 
-### 3. Enable full tools + start
+### 3. Set up environment variables
+
+```bash
+cp .env.example .env
+# Edit .env and fill in your values
+```
+
+Then load them:
+
+```bash
+# Option A: export all at once
+export $(grep -v '^#' .env | xargs)
+
+# Option B: use with a single command
+env $(grep -v '^#' .env | xargs) openclaw gateway run --verbose
+```
+
+### 4. Enable full tools + start
 
 ```bash
 openclaw config set tools.profile full
-TELEGRAM_BOT_TOKEN="your-bot-token" openclaw gateway run --verbose
+openclaw gateway run --verbose
 ```
 
 Chat with your bot on Telegram. Skills are loaded automatically from the plugin.
+
+### Docker (local)
+
+```bash
+cp .env.example .env
+# Edit .env and fill in your values
+
+docker run -d --name omocw \
+  --env-file .env \
+  -v "$PWD:/omocw:ro" \
+  ghcr.io/openclaw/openclaw \
+  bash /omocw/docker/entrypoint.sh
+```
+
+View logs: `docker logs -f omocw`
+Stop: `docker rm -f omocw`
 
 ---
 
