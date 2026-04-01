@@ -1,0 +1,3 @@
+[submodule "skills-submodules/self-improving-agent"]
+	path = skills-submodules/self-improving-agent
+	url = https://github.com/peterskoett/self-improving-agent.git

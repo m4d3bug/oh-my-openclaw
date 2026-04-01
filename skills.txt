@@ -1,0 +1,68 @@
+# oh-my-openclaw skill manifest
+# One slug per line. Lines starting with # are ignored.
+# [force] = clawhub install --force (VirusTotal flagged but OpenClaw Benign)
+# [github] = not on clawhub CLI, SKILL.md bundled in repo
+
+# ── Security ──────────────────────────────────────
+skill-vetter
+agent-sentinel [force]
+arc-skill-scanner [force]
+
+# ── Memory & Persistence ─────────────────────────
+self-improving-agent
+agent-memory
+ontology
+arc-wake-state [force]
+agent-wal [force]
+
+# ── Agent Behavior ───────────────────────────────
+proactivity
+self-reflection
+agent-team-orchestration
+reflection
+
+# ── Session Management ───────────────────────────
+smart-context [skillhub]
+summarize
+daily-digest
+
+# ── Code Intelligence ────────────────────────────
+github
+test-runner
+planning-with-files [force]
+docsync [force]
+simplify-and-harden
+env-setup
+
+# ── DevOps ───────────────────────────────────────
+cron-mastery [force]
+docker-essentials
+cicd-pipeline
+
+# ── Context & Search ─────────────────────────────
+multi-search-engine
+agent-reach [force]
+agent-browser [force]
+cli-anything [github]
+clawddocs
+humanizer
+
+# ── Creative & Planning ──────────────────────────
+brainstorming [force]
+writing-plans [force]
+copywriting
+content-strategy
+
+# ── Autonomous Execution ─────────────────────────
+better-ralph [force]
+agent-weave
+forge [force]
+agent-autonomy-kit
+codebase-documenter
+debug-pro
+
+# ── Location & Maps ──────────────────────────────
+amap-jsapi-skill
+amap-lbs-skill
+travel-cn [force]
+using-superpowers [force]

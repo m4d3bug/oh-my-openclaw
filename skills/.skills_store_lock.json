@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "skills": {
+    "claw-smart-context": {
+      "name": "Claw Smart Context",
+      "zip_url": "https://lightmake.site/api/v1/download?slug=claw-smart-context",
+      "source": "skillhub",
+      "version": "1.0.0"
+    }
+  }
+}

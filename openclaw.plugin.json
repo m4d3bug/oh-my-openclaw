@@ -1,0 +1,63 @@
+{
+  "id": "oh-my-openclaw",
+  "name": "oh-my-openclaw",
+  "description": "Curated ClawHub skills for OpenClaw \u2014 Claude Code level experience",
+  "version": "2.0.0",
+  "skills": [
+    "./skills/agent-autonomy-kit",
+    "./skills/agent-browser",
+    "./skills/agent-memory",
+    "./skills/agent-reach",
+    "./skills/agent-sentinel",
+    "./skills/agent-team-orchestration",
+    "./skills/agent-wal",
+    "./skills/agent-weave",
+    "./skills/amap-jsapi-skill",
+    "./skills/amap-lbs-skill",
+    "./skills/arc-skill-scanner",
+    "./skills/arc-wake-state",
+    "./skills/better-ralph",
+    "./skills/brainstorming",
+    "./skills/cicd-pipeline",
+    "./skills/clawddocs",
+    "./skills/cli-anything",
+    "./skills/codebase-documenter",
+    "./skills/content-strategy",
+    "./skills/copywriting",
+    "./skills/cron-mastery",
+    "./skills/daily-digest",
+    "./skills/debug-pro",
+    "./skills/docker-essentials",
+    "./skills/docsync",
+    "./skills/env-setup",
+    "./skills/forge",
+    "./skills/github",
+    "./skills/humanizer",
+    "./skills/multi-search-engine",
+    "./skills/ontology",
+    "./skills/planning-with-files",
+    "./skills/proactivity",
+    "./skills/reflection",
+    "./skills/self-improving-agent",
+    "./skills/self-reflection",
+    "./skills/simplify-and-harden",
+    "./skills/skill-vetter",
+    "./skills/smart-context",
+    "./skills/summarize",
+    "./skills/test-runner",
+    "./skills/travel-cn",
+    "./skills/using-superpowers",
+    "./skills/writing-plans"
+  ],
+  "configSchema": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+      "enableAllSkills": {
+        "type": "boolean",
+        "default": true,
+        "description": "Load all bundled ClawHub skills"
+      }
+    }
+  }
+}

@@ -1,0 +1,34 @@
+# oh-my-openclaw — example openclaw configuration
+# Copy to openclaw.yml and fill in your values.
+# This file is read-only inside the container (/host-config mount).
+
+gateway:
+  port: 18789
+  host: 0.0.0.0
+
+# AI model configuration
+model:
+  default: auto          # auto = omocw routes based on task complexity
+  fast: claude-haiku-4-5-20251001
+  smart: claude-sonnet-4-6
+  powerful: claude-opus-4-6
+
+# oh-my-openclaw agent routing thresholds
+omocw:
+  routing:
+    use_fast_below_tokens: 1000    # use fast model for short tasks
+    use_powerful_above_tokens: 8000 # use powerful model for complex tasks
+
+# Channels to receive notifications from agent completions
+notify_channels: []
+  # - telegram:+1234567890
+  # - slack:#dev-alerts
+  # - discord:channel-id
+
+# Skills to enable (all enabled by default)
+skills:
+  - autopilot
+  - team
+  - git
+  - code
+  - notify

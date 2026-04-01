@@ -1,0 +1,36 @@
+# Lightweight Alpine-based OpenClaw image
+FROM alpine/openclaw:latest AS base
+
+WORKDIR /omocw
+
+# Install Node.js 22+ and dependencies on Alpine
+RUN apk add --no-cache \
+    nodejs \
+    npm \
+    git \
+    curl \
+    bash
+
+# Copy project files
+COPY package.json ./
+COPY scripts/ ./scripts/
+COPY agents/ ./agents/
+COPY skills/ ./skills/
+COPY config/ ./config/
+COPY .openclaw/ ./.openclaw/
+
+# Install oh-my-openclaw dependencies (includes @goplus/agentguard)
+RUN npm install
+
+# Validate all skills through AgentGuard before baking into image
+RUN node scripts/validate.js --all --strict
+
+# Mount point for user's workspace
+VOLUME ["/workspace"]
+
+WORKDIR /workspace
+
+COPY docker/entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
+
+ENTRYPOINT ["/entrypoint.sh"]

@@ -1,0 +1,4 @@
+# Skills installed from GitHub repos (not on ClawHub)
+# Format: <git-clone-url> <path-to-SKILL.md> <skill-name>
+
+https://github.com/HKUDS/CLI-Anything.git openclaw-skill/SKILL.md cli-anything

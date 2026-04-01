@@ -1,0 +1,101 @@
+# oh-my-openclaw sources manifest
+# Defines external URLs for ALL openclaw markdown/script configurations.
+# Files are fetched fresh at container startup; local paths serve as fallback.
+#
+# Supported sections:
+#   agents    — create OpenClaw agent workspaces with their config files
+#   skills    — .js skill files loaded into ~/.openclaw/skills/
+#   workspace — files written to the default (main) agent workspace
+#
+# Each source entry:
+#   url   (optional) — fetched first; must return raw text
+#   local (optional) — path relative to /omocw used when url is absent or fails
+#   At least one of url / local must be present.
+#
+# Add as many entries as needed. Everything is optional — missing sections
+# are silently skipped.
+
+# ---------------------------------------------------------------------------
+# Agents
+# Each agent gets a workspace; files listed under `files` are written there.
+# Standard workspace files: BOOTSTRAP.md, SOUL.md, TOOLS.md, USER.md,
+#   HEARTBEAT.md, IDENTITY.md, AGENTS.md
+# ---------------------------------------------------------------------------
+agents:
+  - name: planner
+    emoji: "🧠"
+    default: true
+    files:
+      BOOTSTRAP.md:
+        url: https://raw.githubusercontent.com/uluckyXH/OpenMOSS/main/prompts/templates/task-planner.md
+        local: agents/planner.md
+
+  - name: executor
+    emoji: "💻"
+    files:
+      BOOTSTRAP.md:
+        url: https://raw.githubusercontent.com/uluckyXH/OpenMOSS/main/prompts/templates/executor.md
+        local: agents/executor.md
+
+  - name: reviewer
+    emoji: "🔍"
+    files:
+      BOOTSTRAP.md:
+        url: https://raw.githubusercontent.com/uluckyXH/OpenMOSS/main/prompts/templates/task-reviewer.md
+        local: agents/reviewer.md
+
+  - name: patrol
+    emoji: "🛡️"
+    files:
+      BOOTSTRAP.md:
+        url: https://raw.githubusercontent.com/uluckyXH/OpenMOSS/main/prompts/templates/task-patrol.md
+        local: agents/patrol.md
+
+  # Legacy agents — local only. Uncomment to activate.
+  # - name: architect
+  #   emoji: "🏗️"
+  #   files:
+  #     BOOTSTRAP.md:
+  #       local: agents/architect.md
+  #
+  # - name: backend
+  #   emoji: "⚙️"
+  #   files:
+  #     BOOTSTRAP.md:
+  #       local: agents/backend.md
+
+# ---------------------------------------------------------------------------
+# Skills
+# .js files are written to ~/.openclaw/skills/<name>
+# ---------------------------------------------------------------------------
+skills:
+  - name: autopilot.js
+    local: skills/autopilot.js
+
+  - name: team.js
+    local: skills/team.js
+
+  - name: git.js
+    local: skills/git.js
+
+  - name: code.js
+    local: skills/code.js
+
+  - name: notify.js
+    local: skills/notify.js
+
+  # Example: external skill from another project
+  # - name: openmoss-task.js
+  #   url: https://raw.githubusercontent.com/uluckyXH/OpenMOSS/main/skills/task-cli.py
+
+# ---------------------------------------------------------------------------
+# Workspace (default / main agent)
+# Files written to ~/.openclaw/workspace/<file>
+# ---------------------------------------------------------------------------
+workspace:
+  # - file: SOUL.md
+  #   url: https://raw.githubusercontent.com/.../SOUL.md
+  #   local: workspace/SOUL.md
+  #
+  # - file: TOOLS.md
+  #   local: workspace/TOOLS.md

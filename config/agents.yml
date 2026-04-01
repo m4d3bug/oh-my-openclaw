@@ -1,0 +1,18 @@
+# oh-my-openclaw agent configuration
+# Defines routing and agent behavior
+
+agents:
+  main:
+    model: smart
+    max_tokens: 8192
+    temperature: 0.7
+
+  autopilot:
+    model: fast
+    max_tokens: 4096
+    temperature: 0.5
+
+  researcher:
+    model: powerful
+    max_tokens: 16384
+    temperature: 0.9
