@@ -187,6 +187,44 @@ docker run -d --name omocw \
 View logs: `docker logs -f omocw`
 Stop: `docker rm -f omocw`
 
+## 🛡️ Best Practices
+
+### Security
+
+- **Lock down Telegram access** — change `allowFrom '["*"]'` to your Telegram ID for production:
+  ```bash
+  openclaw config set channels.telegram.allowFrom '["YOUR_TELEGRAM_ID"]'
+  ```
+- **Never hardcode secrets** — use `.env` files, never commit API keys or tokens into the repo
+- **Start with minimal tools profile** — enable `full` only when you need it:
+  ```bash
+  openclaw config set tools.profile minimal   # start restrictive
+  ```
+- **Audit skills before installing** — `skill-vetter` runs automatically when you install via this plugin; for one-off installs:
+  ```bash
+  clawhub install skill-vetter
+  clawhub install <target-skill>
+  ```
+- **Review gateway exposure** — if you expose `gateway.bind` or `gateway.remote.url` externally, ensure pairing and authentication are configured
+- **Periodic skill audit** — run `clawhub list` and `clawhub update --all` regularly; remove skills you no longer use
+
+### Reliability
+
+- **Use `skill-vetter` before any new install** — see Security above
+- **Enable structured memory** — install `agent-memory` or `ontology` to maintain context across sessions
+- **Docker for ephemeral environments** — the GitHub Actions workflow uses Docker to keep runs isolated; prefer containerized deployment for any long-running public-facing setup
+- **Don't run multiple instances simultaneously** — the CI workflow auto-cancels previous runs; in local use, avoid overlapping gateway processes
+
+### Operations
+
+- **Keep OpenClaw updated**:
+  ```bash
+  npm install -g openclaw
+  openclaw update
+  ```
+- **Use the plugin for managed installs** — `openclaw plugins install @m4d3bug/oh-my-openclaw` keeps skills in sync with this repo automatically
+- **Test-drive in CI before production** — fork the repo, set up GitHub Actions secrets, and verify your config works before running locally
+
 ---
 
 ## GitHub Actions + Telegram
@@ -219,10 +257,16 @@ Stop: `docker rm -f omocw`
 
 New runs automatically cancel previous ones.
 
-## Default configuration
+## Recommended Configuration
 
 ```
-tools.profile = full
+tools.profile = minimal   # start restrictive, enable full only when needed
+```
+
+> The README examples use `full` for convenience. For production, use `minimal` by default and only escalate when a specific task requires it.
+
+```bash
+openclaw config set tools.profile minimal
 ```
 
 ## Managing skills
